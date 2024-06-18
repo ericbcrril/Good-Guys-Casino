@@ -10,4 +10,4 @@ function Login() {
     );
 }
 
-export default home;
+export default Login;
