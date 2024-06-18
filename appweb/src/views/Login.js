@@ -1,5 +1,5 @@
 import React from 'react'
-import { MainNabvar } from "../components/navbars/MainNavbar";
+import MainNabvar from "../components/navbars/MainNavbar";
 
 function Login() {
     return(
@@ -10,8 +10,4 @@ function Login() {
     );
 }
 
-<<<<<<< HEAD
-export default home;
-=======
 export default Login;
->>>>>>> 81c4530522905e35ab11e918df15dda9ff9a4bd1

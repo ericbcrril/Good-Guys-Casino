@@ -2,7 +2,7 @@ import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Home from './views/Home';
 import Minigames from './views/ViewMinigames';
-import Login from './views/Home';
+import Login from './views/Login';
 import NotFound from './views/Home';
 
 function App() {
