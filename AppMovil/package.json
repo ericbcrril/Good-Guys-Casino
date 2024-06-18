@@ -22,5 +22,19 @@
   "devDependencies": {
     "@babel/core": "^7.20.0"
   },
+  "contributors": [
+    {
+      "name": "Eric Alejandro Becerril Solis",
+      "email": "ericbecerril1234@gmail.com",
+      "github": "https://github.com/ericbcrril",
+      "linkedin": "https://www.linkedin.com/in/ericbcrril061021/"
+    },
+    {
+      "name": "Juan Antonio Moreno Abundis",
+      "email": "juanshito.1905@gmail.com",
+      "github": "",
+      "linkedin": ""
+    }
+  ],
   "private": true
 }
