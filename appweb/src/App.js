@@ -1,9 +1,9 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import Home from './components/Home';
-import Minigames from './components/Contact';
-import Login from './components/Contact';
-import NotFound from './components/NotFound';
+import Home from './views/Home';
+import Minigames from './views/ViewMinigames';
+import Login from './views/Home';
+import NotFound from './views/Home';
 
 function App() {
   return (

@@ -1,5 +1,5 @@
 import React from 'react'
-import { MainNabvar } from "../components/navbars/MainNavbar";
+import MainNabvar from "../components/navbars/MainNavbar";
 
 function viewMinigames() {
     return(
