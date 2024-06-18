@@ -1,38 +1,106 @@
-.App {
-  text-align: center;
+* {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  padding: 0;
+  margin: 0;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+main {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 100vw;
+  height: 100vh;
+  left: 0; top: 10vh;
+  background-color: #F4F4F4;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+/*Estilos para home*/
+
+.home-content {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  margin: 10%;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.home-content-box {
   display: flex;
   flex-direction: column;
-  align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  align-items: center;
+  margin: 0 10%;
 }
 
-.App-link {
-  color: #61dafb;
+.home-logo {
+  height: 260px; 
+  width: 260px;
+  margin: 5%;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+/*Otros*/
+.social-icons {
+  color: #fff;
+  margin: 10px;
+}
+
+footer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 100%;
+  min-height: 100px;
+  background-color: #01200B;
+  color: #fff;
+  padding: 20px 0;
+}
+
+.footer-second {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  background-color: #000903;
+  color: #fff;
+  margin-top: 10px;
+  padding: 15px 0; /* Añadido para espacio interior */
+}
+
+
+.purple-box {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: #3E0B3A;
+  height: 150px; 
+  width: 150px;
+  border-radius: 20px;
+  margin: 5%; 
+  padding: 5%;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3), 
+              0 6px 6px rgba(0, 0, 0, 0.22); /* Sombra más pronunciada */
+  transition: box-shadow 0.3s ease; /* Transición para el efecto de hover */
+}
+
+.purple-box:hover {
+  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.5), 
+              0 10px 10px rgba(0, 0, 0, 0.4); /* Sombra más intensa en hover */
+}
+
+.purple-box a {
+  color: #fff;
+  text-decoration: none;
+  cursor: pointer;
+  font-size: 16px;
+  margin: 5%;
+}
+
+.purple-box img {
+  width: 80px;
+  height: 80px;
+  cursor: pointer;
 }
