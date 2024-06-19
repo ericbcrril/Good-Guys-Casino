@@ -7,9 +7,9 @@ function Login() {
         <main className='main'>
             <MainNabvar />
             <section className='main-box'>
-                <div>
+                <div className='header'>
                     <h1>Login</h1>
-                    <img src='/images/logos/logoGG.png' width={50}></img>
+                    <img src='/images/logos/logoGG.png' width={100}></img>
                 </div>
                 <div className='item1'>
                     <h3>email</h3>
@@ -19,8 +19,10 @@ function Login() {
                 </div>
                 <div className='item2'>
                     <div>
-                        <a href='#'><box-icon type='logo' name='facebook-circle'></box-icon></a>
-                        <a href='#'><box-icon type='logo' name='google'></box-icon></a>
+                        <a href='https://facebook.com/'><box-icon type='logo' name='facebook-circle' color='white'></box-icon></a>
+                        <a href='https://google.com/'><box-icon type='logo' name='google' color='white'></box-icon></a>
+                        <a href='https://instagram.com/'><box-icon type='logo' name='instagram' color='white'></box-icon></a>
+                        <a href='https://x.com/'><box-icon type='logo' name='twitter' color='white'></box-icon></a>
                     </div>
                     <div>
                         <h4>Iniciar sesion con</h4>
@@ -28,7 +30,10 @@ function Login() {
                 </div>
                 <div className='item3'>
                     <button>Iniciar sesion</button>
-                    <a href='#'><box-icon type='solid' name='user-plus'></box-icon></a>
+                    <div>
+                    <a href='#'><box-icon type='solid' name='user-plus' color='white'></box-icon></a>
+                    <h4>crear nueva cuenta</h4>
+                    </div>
                 </div>
             </section>
         </main>
