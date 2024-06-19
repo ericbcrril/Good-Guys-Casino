@@ -7,13 +7,13 @@ function Footer() {
         <footer>
             <div className="footer-icons">
                 <a href="https://facebook.com/" target="_blank" rel="noopener noreferrer">
-                    <FontAwesomeIcon icon={faFacebook} size="2x" className="social-icons"/>
+                    <FontAwesomeIcon icon={faFacebook} className="social-icons"/>
                 </a>
                 <a href="https://instagram.com/" target="_blank" rel="noopener noreferrer">
-                    <FontAwesomeIcon icon={faInstagram} size="2x" className="social-icons"/>
+                    <FontAwesomeIcon icon={faInstagram} className="social-icons"/>
                 </a>
                 <a href="https://twitter.com/" target="_blank" rel="noopener noreferrer">
-                    <FontAwesomeIcon icon={faTwitter} size="2x" className="social-icons"/>
+                    <FontAwesomeIcon icon={faTwitter} className="social-icons"/>
                 </a>
             </div>
             <p>cotact1234@example.com</p>

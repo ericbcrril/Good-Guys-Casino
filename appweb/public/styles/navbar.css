@@ -6,15 +6,16 @@ nav {
     top: 0; left: 0;
     align-items: center;
     background-color: #3E0B3A;
-    width: 100vw;
+    width: 100%;
     height: 10vh;
 }
 
 nav a {
     text-decoration: none;
     color: #fff;
+    font-size: 1.2vw;
     transition: color 0.3s;
-    margin: 20px;
+    margin: 1%;
 }
 
 nav a:hover {
@@ -39,7 +40,7 @@ nav button {
     border: none;
     border-radius: 12px;
     cursor: pointer;
-    margin: 10px;
+    margin: 1%;
     padding: 0;
     transition: background-color 0.3s;
 }
@@ -53,6 +54,37 @@ nav button:active {
 }
 
 nav img {
-    width: 30px;
-    height: 30px;
+    width: 3vw;
+    height: 3vw;
+}
+
+/* Estilos para dispositivos móviles */
+@media only screen and (min-width:320px) and (max-width:480px){
+    /*Estilos para barra de navegacion*/
+nav {
+    top: 0; left: 0;
+    background-color: #3E0B3A;
+}
+
+nav a {
+    font-size: 3.2vw;
+}
+
+nav button {     
+    width: 20%; 
+    height: 6%;
+}
+
+nav button:hover {
+    background-color: #700e60;
+}
+
+nav button:active {
+    background-color: #5c0a4c;
+}
+
+nav img {
+    width: 3vw;
+    height: 3vw;
+}
 }

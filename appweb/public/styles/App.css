@@ -10,8 +10,8 @@ main {
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  width: 100vw;
-  height: 100vh;
+  width: 100%;
+  height: 90vh;
   left: 0; top: 10vh;
   background-color: #F4F4F4;
 }
@@ -23,7 +23,10 @@ main {
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  margin: 10%;
+  padding: 10%;
+  margin-top: 10%;
+  width: 100%;
+  background-color: #F4F4F4;
 }
 
 .home-content-box {
@@ -31,18 +34,20 @@ main {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin: 0 10%;
+  margin: 0 5%;
 }
 
 .home-logo {
-  height: 260px; 
-  width: 260px;
+  height: 20vw; 
+  width: 20vw;
   margin: 5%;
 }
 
 /*Otros*/
 .social-icons {
   color: #fff;
+  width: 2vw;
+  height: 2vw;
   margin: 10px;
 }
 
@@ -51,11 +56,15 @@ footer {
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  width: 100%;
-  min-height: 100px;
+  width: 100vw;
+  min-height: 20vh;
   background-color: #01200B;
   color: #fff;
-  padding: 20px 0;
+  padding-top: 3%;
+}
+
+footer p {
+  font-size: 1vw;
 }
 
 .footer-second {
@@ -66,7 +75,11 @@ footer {
   background-color: #000903;
   color: #fff;
   margin-top: 10px;
-  padding: 15px 0; /* Añadido para espacio interior */
+  padding: 3% 0; /* Añadido para espacio interior */
+}
+
+.footer-second p {
+  font-size: 1vw;
 }
 
 
@@ -76,9 +89,9 @@ footer {
   justify-content: center;
   align-items: center;
   background-color: #3E0B3A;
-  height: 150px; 
-  width: 150px;
-  border-radius: 20px;
+  height: 12vw; 
+  width: 12vw;
+  border-radius: 12%;
   margin: 5%; 
   padding: 5%;
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3), 
@@ -95,12 +108,72 @@ footer {
   color: #fff;
   text-decoration: none;
   cursor: pointer;
-  font-size: 16px;
+  font-size: 1.4vw;
   margin: 5%;
 }
 
 .purple-box img {
-  width: 80px;
-  height: 80px;
+  width: 90%;
+  height: 90%;
   cursor: pointer;
+}
+
+
+.purple-box-img-link {
+  width: 60%;
+  height: 60%;
+  cursor: pointer;
+}
+
+/* Estilos para dispositivos móviles */
+@media only screen and (min-width:320px) and (max-width:480px){
+
+main {
+  flex-direction: column;
+  width: 100%;
+  height: 100vh;
+}
+
+.home-content {
+  flex-direction: column;
+  padding: 0;
+  margin-top: 60%;
+}
+
+.home-content-box {
+  flex-direction: column;
+  margin: 0 5%;
+}
+
+.home-logo {
+  height: 60vw; 
+  width: 60vw;
+}
+
+/*Otros*/
+.social-icons {
+  width: 8vw;
+  height: 8vw;
+}
+
+footer p {
+  font-size: 4vw;
+}
+
+.footer-second {
+  padding: 10% 0; /* Añadido para espacio interior */
+}
+
+.footer-second p {
+  font-size: 3vw;
+}
+
+.purple-box {
+  height: 40vw; 
+  width: 40vw;
+}
+
+.purple-box a {
+  font-size: 3.4vw;
+}
 }
