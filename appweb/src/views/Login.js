@@ -19,10 +19,10 @@ function Login() {
                 </div>
                 <div className='item2'>
                     <div>
-                        <a href='https://facebook.com/'><box-icon type='logo' name='facebook-circle' color='white'></box-icon></a>
-                        <a href='https://google.com/'><box-icon type='logo' name='google' color='white'></box-icon></a>
-                        <a href='https://instagram.com/'><box-icon type='logo' name='instagram' color='white'></box-icon></a>
-                        <a href='https://x.com/'><box-icon type='logo' name='twitter' color='white'></box-icon></a>
+                        <a href='https://facebook.com/'><i class='bx bxl-facebook-circle bx-burst-hover'></i></a>
+                        <a href='https://google.com/'><i class='bx bxl-google bx-burst-hover'></i></a>
+                        <a href='https://instagram.com/'><i class='bx bxl-instagram bx-burst-hover'></i></a>
+                        <a href='https://x.com/'><i class='bx bxl-twitter bx-burst-hover'></i></a>
                     </div>
                     <div>
                         <h4>Iniciar sesion con</h4>
@@ -31,7 +31,7 @@ function Login() {
                 <div className='item3'>
                     <button>Iniciar sesion</button>
                     <div>
-                    <a href='#'><box-icon type='solid' name='user-plus' color='white'></box-icon></a>
+                    <a href='#'><i class='bx bxs-user-plus'></i></a>
                     <h4>crear nueva cuenta</h4>
                     </div>
                 </div>
