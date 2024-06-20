@@ -30,7 +30,7 @@ nav a:active {
 nav button {
     display: flex; 
     position: fixed; 
-    right: 0;
+    right: 1vw;
     align-items: center;
     justify-content: center;
     text-align: center;
@@ -59,14 +59,27 @@ nav img {
     height: 3vw;
 }
 
-/* Estilos para dispositivos móviles */
-@media only screen and (min-width:320px) and (max-width:480px){
-    /*Estilos para barra de navegacion*/
-nav {
-    top: 0; left: 0;
-    background-color: #3E0B3A;
+/*Tablets*/
+@media (min-width: 768px) and (max-width: 991.98px) {
+    
+    nav a {
+        font-size: 3.2vw;
+    }
+    
+    nav button {
+        width: 25%; 
+        height: 6%;
+    }
+    
+    nav img {
+        width: 3vw;
+        height: 3vw;
+    }
 }
 
+/* Estilos para dispositivos móviles */
+@media only screen and (min-width:320px) and (max-width:480px){
+ 
 nav a {
     font-size: 3.2vw;
 }
@@ -74,14 +87,6 @@ nav a {
 nav button {     
     width: 20%; 
     height: 6%;
-}
-
-nav button:hover {
-    background-color: #700e60;
-}
-
-nav button:active {
-    background-color: #5c0a4c;
 }
 
 nav img {
