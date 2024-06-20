@@ -14,6 +14,9 @@ main {
   height: 90vh;
   left: 0; top: 10vh;
   background-color: #F4F4F4;
+  overflow-y: auto; /* Permite el desplazamiento vertical */
+  overflow-x: hidden; /* Evita el desplazamiento horizontal */
+  box-sizing: border-box; /* Asegura que el padding y el border no causen overflow */
 }
 
 /*Estilos para home*/
