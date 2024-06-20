@@ -2,8 +2,10 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import MainNavbar from "../components/navbars/MainNavbar";
-import openWindow from '../scripts/redirectWindow'; // Asumiendo que openWindow está definido en redirectWindow.js
+import openWindow from '../scripts/misc/redirectWindow'; // Asumiendo que openWindow está definido en redirectWindow.js
 import HelloWorld from './helloWorld'; // Asegúrate de importar correctamente HelloWorld
+//Minijuegos
+import Roulette from './minigames/roulette';
 
 function ViewMinigames() {
     const handleOpenWindow = (component) => {
@@ -20,7 +22,7 @@ function ViewMinigames() {
             <div className='minigames-boxes-container'>
                 <div className='minigame-box'>
                     <img src='/images/test.png'/>
-                    <Link onClick={() => handleOpenWindow(HelloWorld)}>Minijuego 1</Link>
+                    <Link onClick={() => handleOpenWindow(Roulette)}>Ruleta Rusa</Link>
                 </div>
                 <div className='minigame-box'>
                     <img src='/images/test.png'/>
