@@ -1,5 +1,6 @@
 import React from 'react';
 import MainNabvar from "../components/navbars/MainNavbar";
+import { Link } from 'react-router-dom';
 import 'boxicons';
 
 function Login() {
@@ -31,7 +32,8 @@ function Login() {
                 <div className='item3'>
                     <button>Iniciar sesion</button>
                     <div>
-                    <a href='#'><i class='bx bxs-user-plus'></i></a>
+                    
+                    <Link to="/register"><i class='bx bxs-user-plus'></i></Link>
                     <h4>crear nueva cuenta</h4>
                     </div>
                 </div>

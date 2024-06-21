@@ -4,6 +4,7 @@ import Home from './views/Home';
 import Minigames from './views/ViewMinigames';
 import Login from './views/Login';
 import NotFound from './views/Home';
+import Register from './views/Register';
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
         <Route path="/main" element={<Home />} />
         <Route path="/minigames" element={<Minigames />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </Router>
