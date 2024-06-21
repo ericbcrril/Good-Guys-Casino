@@ -43,7 +43,7 @@ nav button {
     cursor: pointer;
     margin: 1%;
     padding: 0;
-    transition: background-color 0.3s;
+    transition: background-color 0.3s, transform 0.3s;
 }
 
 nav button:hover {
@@ -52,6 +52,7 @@ nav button:hover {
 
 nav button:active {
     background-color: #5c0a4c;
+    transform: scale(0.9);
 }
 
 nav img {

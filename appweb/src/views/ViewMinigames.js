@@ -2,6 +2,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import MainNavbar from "../components/navbars/MainNavbar";
+import Footer from '../components/misc/Footer';
 import openWindow from '../scripts/misc/redirectWindow'; // Asumiendo que openWindow está definido en redirectWindow.js
 import HelloWorld from './helloWorld'; // Asegúrate de importar correctamente HelloWorld
 //Minijuegos

@@ -7,22 +7,7 @@
 html {
   margin: 0;
   padding: 0;
-  font-family: 'Press Start 2P', cursive;
   background-color: #2D0130;
-  color: #FFFFFF;
-}
-
-body {
-  margin: 0;
-  padding: 0;
-  background-color: '#2D0130';
-  color: '#FFFFFF';
-  display: 'flex';
-  flex-direction: 'column';
-  align-items: 'center';
-  justify-content: 'center';
-  height: '100vh';
-  background-size: 'cover';
 }
 
 main {
@@ -62,6 +47,7 @@ main {
 }
 
 .home-logo {
+  background: none;
   height: 20vw; 
   width: 20vw;
   margin: 5%;
@@ -120,12 +106,13 @@ footer p {
   padding: 5%;
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3), 
               0 6px 6px rgba(0, 0, 0, 0.22); /* Sombra más pronunciada */
-  transition: box-shadow 0.3s ease; /* Transición para el efecto de hover */
+  transition: box-shadow 0.3s ease, transform 0.3s; /* Transición para el efecto de hover */
 }
 
 .purple-box:hover {
   box-shadow: 0 14px 28px rgba(0, 0, 0, 0.5), 
               0 10px 10px rgba(0, 0, 0, 0.4); /* Sombra más intensa en hover */
+  transform: scale(1.1);
 }
 
 .purple-box a {
