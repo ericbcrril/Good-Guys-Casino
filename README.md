@@ -1,7 +1,7 @@
 <br />
 <div align="center">
   <a href="https://github.com/ericbcrril/Good-Guys-Casino">
-    <img src="logoGG.png" alt="Logo" width="180" height="180">
+    <img src="logoGgAnimated.gif" alt="Logo" width="280" height="280">
   </a>
 
   <h3 align="center">Good Guys Casino</h3>
