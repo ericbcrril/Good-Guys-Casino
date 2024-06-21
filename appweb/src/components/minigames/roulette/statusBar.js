@@ -1,10 +1,10 @@
 import React from 'react';
 
-const StatusBar = ({ health, coins }) => {
+const StatusBar = ({ health, coins, styles }) => {
   return (
-    <div>
-      <div>Salud: {health}</div>
-      <div>Monedas: {coins}</div>
+    <div className="status-bar">
+      <div className='statusBarItem'>Salud: {health}</div>
+      <div className='statusBarItem'>Monedas: {coins}</div>
     </div>
   );
 };

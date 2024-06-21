@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-const Bet = ({ onBet }) => {
+const Bet = ({ onBet, styles }) => {
   const [amount, setAmount] = useState(20);
   const [multiplier, setMultiplier] = useState(1);
 
@@ -10,18 +10,20 @@ const Bet = ({ onBet }) => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <label>
+    <form className="bet-form" onSubmit={handleSubmit}>
+      <label className="bet-label" >
         Cantidad a apostar:
         <input
+          className="bet-input"
           type="number"
           value={amount}
           onChange={(e) => setAmount(Number(e.target.value))}
         />
       </label>
-      <label>
+      <label className="bet-label" >
         Multiplicador:
         <select
+          className="bet-select"
           value={multiplier}
           onChange={(e) => setMultiplier(Number(e.target.value))}
         >
@@ -30,7 +32,7 @@ const Bet = ({ onBet }) => {
           <option value={100}>x100</option>
         </select>
       </label>
-      <button type="submit">Apostar</button>
+      <button className="game-button" type="submit">Apostar</button>
     </form>
   );
 };
