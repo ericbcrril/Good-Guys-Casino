@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-const GunSelection = ({ onSelectGun, styles }) => {
+const GunSelection = ({ onSelectGun }) => {
   const [numShots, setNumShots] = useState(1);
   const guns = [
     { name: 'Revólver 1', damage: 25 },
@@ -11,11 +11,10 @@ const GunSelection = ({ onSelectGun, styles }) => {
   return (
     <div>
       <h2>Selecciona un Revólver y la Cantidad de Tiros</h2>
-      <label className="bet-label" style={styles.betLabel}>
+      <label className="bet-label">
         Cantidad de Tiros:
         <input
           className="bet-input"
-          style={styles.betInput}
           type="number"
           value={numShots}
           min={1}
@@ -27,7 +26,6 @@ const GunSelection = ({ onSelectGun, styles }) => {
         <button
           key={index}
           className="game-button"
-          style={styles.gameButton}
           onClick={() => onSelectGun(gun, numShots)}
         >
           {gun.name}

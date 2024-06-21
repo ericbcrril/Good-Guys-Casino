@@ -3,7 +3,7 @@ import Bet from './bet';
 import GunSelection from './gunSelection';
 import StatusBar from './statusBar';
 
-const Game = ({ styles }) => {
+const Game = () => {
   const [gameState, setGameState] = useState('betting'); // 'betting', 'gunSelection', 'playing', 'gameOver', 'goodEnding'
   const [bet, setBet] = useState(20);
   const [multiplier, setMultiplier] = useState(1);
@@ -59,28 +59,28 @@ const Game = ({ styles }) => {
 
   return (
     <div>
-      {gameState === 'betting' && <Bet onBet={handleBet} styles={styles} />}
-      {gameState === 'gunSelection' && <GunSelection onSelectGun={handleGunSelection} styles={styles} />}
+      {gameState === 'betting' && <Bet onBet={handleBet}  />}
+      {gameState === 'gunSelection' && <GunSelection onSelectGun={handleGunSelection}  />}
       {gameState === 'playing' && (
         <div>
-          <StatusBar health={health} coins={coins} styles={styles} />
-          <button className="game-button" style={styles.gameButton} onClick={playRound}>Disparar</button>
-          <button className="game-button" style={styles.gameButton} onClick={withdraw}>Retirarse</button>
+          <StatusBar health={health} coins={coins}  />
+          <button className="game-button" onClick={playRound}>Disparar</button>
+          <button className="game-button" onClick={withdraw}>Retirarse</button>
         </div>
       )}
       {gameState === 'gameOver' && (
         <div>
-          <h2 className="game-over-message" style={styles.gameOverMessage}>Fin del Juego</h2>
-          <p className="game-over-text" style={styles.gameOverText}>Has perdido todo tu dinero.</p>
-          <button className="reset-button" style={styles.resetButton} onClick={resetGame}>Reiniciar</button>
+          <h2 className="game-over-message" >Fin del Juego</h2>
+          <p className="game-over-text" >Has perdido todo tu dinero.</p>
+          <button className="reset-button" onClick={resetGame}>Reiniciar</button>
         </div>
       )}
       {gameState === 'goodEnding' && (
         <div>
-          <h2 className="game-over-message" style={styles.gameOverMessage}>¡Felicidades!</h2>
-          <p className="game-over-text" style={styles.gameOverText}>Turnos jugados: {turns}</p>
-          <p className="game-over-text" style={styles.gameOverText}>Dinero ganado: {coins}</p>
-          <button className="reset-button" style={styles.resetButton} onClick={resetGame}>Reiniciar</button>
+          <h2 className="game-over-message" >¡Felicidades!</h2>
+          <p className="game-over-text" >Turnos jugados: {turns}</p>
+          <p className="game-over-text" >Dinero ganado: {coins}</p>
+          <button className="reset-button" onClick={resetGame}>Reiniciar</button>
         </div>
       )}
     </div>

@@ -10,22 +10,20 @@ const Bet = ({ onBet, styles }) => {
   };
 
   return (
-    <form className="bet-form" style={styles.betForm} onSubmit={handleSubmit}>
-      <label className="bet-label" style={styles.betLabel}>
+    <form className="bet-form" onSubmit={handleSubmit}>
+      <label className="bet-label" >
         Cantidad a apostar:
         <input
           className="bet-input"
-          style={styles.betInput}
           type="number"
           value={amount}
           onChange={(e) => setAmount(Number(e.target.value))}
         />
       </label>
-      <label className="bet-label" style={styles.betLabel}>
+      <label className="bet-label" >
         Multiplicador:
         <select
           className="bet-select"
-          style={styles.betInput}
           value={multiplier}
           onChange={(e) => setMultiplier(Number(e.target.value))}
         >
@@ -34,7 +32,7 @@ const Bet = ({ onBet, styles }) => {
           <option value={100}>x100</option>
         </select>
       </label>
-      <button className="game-button" style={styles.gameButton} type="submit">Apostar</button>
+      <button className="game-button" type="submit">Apostar</button>
     </form>
   );
 };

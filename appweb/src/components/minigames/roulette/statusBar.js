@@ -2,9 +2,9 @@ import React from 'react';
 
 const StatusBar = ({ health, coins, styles }) => {
   return (
-    <div className="status-bar" style={styles.statusBar}>
-      <div style={styles.statusBarItem}>Salud: {health}</div>
-      <div style={styles.statusBarItem}>Monedas: {coins}</div>
+    <div className="status-bar">
+      <div className='statusBarItem'>Salud: {health}</div>
+      <div className='statusBarItem'>Monedas: {coins}</div>
     </div>
   );
 };
