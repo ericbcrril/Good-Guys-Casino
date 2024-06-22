@@ -31,15 +31,16 @@ function Login() {
                         <a href='https://x.com/'><i class='bx bxl-twitter bx-burst-hover'></i></a>
                     </div>
                     <div>
-                        <h4>Iniciar sesion con</h4>
+                        <h4>Registrate tambien con</h4>
                     </div>
                 </div>
                 <div className='login-item'>
-                    <button>Iniciar sesion</button>
                     <div>
-                    <a href='#'><i class='bx bxs-user-plus'></i></a>
-                    <h4>crear nueva cuenta</h4>
+                    <a href='/login'><i class='bx bxs-user-plus'></i></a>
+                    <h4>iniciar sesion</h4>
                     </div>
+                    <button>crear cuenta</button>
+                    <a href='#'>info</a>
                 </div>
             </section>
         </main>
