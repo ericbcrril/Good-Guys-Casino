@@ -18,7 +18,7 @@ function home() {
                 </div>
 
                 <div className='home-content-box'>
-                    <img src='/images/logos/logoGG.png' className='home-logo' alt='logo'/>
+                    <img src='/images/logos/logoGgAnimated.gif' className='home-logo' alt='logo'/>
                     <div className='purple-box'>
                     <Link to="/main" className='purple-box-img-link'>
                         <img src='/images/icons/groups_24dp.svg' alt='icon'/>

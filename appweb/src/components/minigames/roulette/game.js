@@ -17,7 +17,7 @@ const Game = ({setScreenShake}) => {
   const [turns, setTurns] = useState(0);// Turnos jugados 
   const [shotsFired, setShotsFired] = useState(0);// Veces en las que se disparo el arma
   const [bulletFired, setBulletFired] = useState(0); // Veces en las que habia bala en el disparo
-  const [isShootButtonDisabled, setShootButtonDisabled] = useState(false); // Estado para manejar la desactivación del botón
+  const [isShootButtonDisabled, setShootButtonDisabled] = useState(false); // Estado para manejar la desactivación del botón disparar
 
   const handleBet = (amount, multiplier) => {
     setBet(amount);
@@ -27,9 +27,30 @@ const Game = ({setScreenShake}) => {
 
   const handleGunSelection = (gun, numShots) => {
     let casillasBala = generateBullets(numShots);
-    setSelectedGun({ ...gun, casillasBala: casillasBala });
+  
+    // Verificar si casillasBala es válida
+    const isValid = casillasBala && casillasBala.length === 6 && casillasBala.every((casilla) => casilla !== null);
+  
+    if (!isValid) {
+      // Si las casillasBala no son válidas, manejar el error
+      console.error('Error al generar casillasBala. Regenerando...');
+  
+      // Intentar generar de nuevo
+      casillasBala = generateBullets(numShots);
+  
+      // Verificar la validez de la nueva generación
+      if (!casillasBala || casillasBala.length !== 6 || casillasBala.some((casilla) => casilla === null)) {
+        console.error('No se pudo generar casillasBala correctamente. Revisar la función generateBullets.');
+        return;
+      }
+    }
+  
+    // Asignar el arma seleccionado con las casillasBala generadas
+    setSelectedGun({ ...gun, casillasBala });
     console.log("Arma:", gun);
     console.log("Cartucho del arma:", casillasBala);
+  
+    // Otros pasos después de seleccionar el arma
     setNd(numShots);
     revolverSpinSound.play();
     setTimeout(() => {
@@ -37,10 +58,22 @@ const Game = ({setScreenShake}) => {
     }, 2000); 
   };
   
+  
+  
+  
 
   const generateBullets = (numShots) => {
-    const casillas = Array(6).fill(false);//Creamos las 6 casillas de bala en el revolver
+    let casillas = Array(6).fill(false); // Inicializamos todas las casillas como false
     let shotsPlaced = 0;
+  
+    // Verificar si ya hay casillas con balas (false)
+    const allFalse = casillas.every((value) => value === false);
+    if (!allFalse) {
+      // Si hay balas ya colocadas, reiniciamos todas las casillas a false
+      casillas = Array(6).fill(false);
+    }
+  
+    // Colocar las balas aleatoriamente
     while (shotsPlaced < numShots) {
       const randomIndex = Math.floor(Math.random() * 6);
       if (!casillas[randomIndex]) {
@@ -48,12 +81,16 @@ const Game = ({setScreenShake}) => {
         shotsPlaced++;
       }
     }
+  
     return casillas;
   };
+  
+  
+  
+  
 
   const playRound = () => {
     setShootButtonDisabled(true); // Desactivar el botón de disparo
-    setTimeout(() => setShootButtonDisabled(false), 1000); // Reactivar el botón después de 1 segundo
   
     setTurns(turns + 1);
     setShotsFired(shotsFired + 1);
@@ -77,6 +114,7 @@ const Game = ({setScreenShake}) => {
       setCoinsEarned(coinsEarned - bet);
       setCoins(coins - bet);
       setBulletFired(bulletFired + 1);
+      setShootButtonDisabled(false)
       if (newHealth <= 0) {
         setGameState('gameOver');
       } else if (bulletFired >= (nd - 1) && health > 0) { //te toca bala y ya disparaste el No de balas seleccionadas
@@ -90,6 +128,7 @@ const Game = ({setScreenShake}) => {
       setCoins(coins + bet);
       console.log("Monedas ganadas:", coinsEarned);
       console.log(selectedGun);
+      setShootButtonDisabled(false)
       if (shotsFired >= 5) {
         console.log("Ups! ¿Y la bala?");
         setGameState('goodEnding');
