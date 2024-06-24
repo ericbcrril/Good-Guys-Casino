@@ -3,8 +3,9 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Home from './views/Home';
 import Minigames from './views/ViewMinigames';
 import Login from './views/Login';
-import NotFound from './views/Home';
 import Register from './views/Register';
+import HelloWorld from './views/helloWorld';
+import NotFound from './views/Home';
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
         <Route path="/minigames" element={<Minigames />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
+        <Route path='/tests' element={<HelloWorld />} />{/* Pestaña de pruebas */}
         <Route path="*" element={<NotFound />} />
       </Routes>
     </Router>

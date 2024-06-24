@@ -34,6 +34,19 @@ html {
     background-color: rgba(0, 0, 0, 0.5);
   }
   
+  .screen-shake {
+    animation: shake 0.3s linear;
+  }
+  
+  @keyframes shake {
+    0% { transform: translate(0, 0); }
+    25% { transform: translate(-5px, 0); }
+    50% { transform: translate(5px, 0); }
+    75% { transform: translate(-5px, 0); }
+    100% { transform: translate(0, 0); }
+  }
+  
+  
   /* Botones del juego */
   .game-button {
     display: block;
