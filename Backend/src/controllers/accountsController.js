@@ -52,6 +52,7 @@ exports.getItemByUser = async (req, res) => {
 
         res.cookie('access-token', accessToken, {
           maxAge: 30000,
+          httpOnly: true,
         })
 
         res.json({ message: 'LOGGED IN' });
@@ -64,9 +65,10 @@ exports.getItemByUser = async (req, res) => {
   }
 };
 
-exports.profile = validateToken, async (req, res) => {
-  
-} 
+exports.profile =  async (req, res) => {
+  await validateToken();
+  res.json("profile");
+};
 
 // Crear una nuevo registro
 exports.createItem = async (req, res) => {
