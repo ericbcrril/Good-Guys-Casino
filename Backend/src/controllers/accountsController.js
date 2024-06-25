@@ -1,7 +1,7 @@
 // backend/controllers/itemController.js
 const accounts = require('../models/accounts');
 const bcrypt = require('bcryptjs');
-
+const {createToken, validateToken} = require('../JWT');
 // Obtener todos los registros de una coleccion
 exports.getItems = async (req, res) => {
   try {
@@ -27,20 +27,46 @@ exports.getItemById = async (req, res) => {
   }
 };
 
-//Obtener registro por la clave, (Por un campo en este caso se uso el campo key)
+
 exports.getItemByUser = async (req, res) => {
   try {
-    const user = req.params.user; // Obtener la clave desde los parámetros de la solicitud
-    const account = await accounts.findOne({ user: user }); // Buscar una registro por su clave en la base de datos
-    if (!account) {
-      return res.status(404).json({ mensaje: 'Registro no encontrado' });
+    const { user, password } = req.body;
+
+    if (!user || !password) {
+      return res.status(400).json({ error: 'Faltan datos de usuario o contraseña' });
     }
-    res.json(account); // Devolver la registro encontrado como respuesta JSON
+
+    const account = await accounts.findOne({ user: user });
+
+    if (!account) {
+      return res.status(404).json({ error: 'Usuario no encontrado' });
+    }
+
+    const bdPassword = account.password;
+
+    bcrypt.compare(password, bdPassword).then((match) => {
+      if (!match) {
+        return res.status(400).json({ error: 'Usuario o contraseña incorrectos' });
+      } else {
+        const accessToken = createToken(account);
+
+        res.cookie('access-token', accessToken, {
+          maxAge: 30000,
+        })
+
+        res.json({ message: 'LOGGED IN' });
+      }
+    });
+
   } catch (error) {
-    console.error(error.message);
-    res.status(500).send('Error del servidor');
+    console.error(error);
+    res.status(500).json({ error: 'Error interno del servidor' });
   }
 };
+
+exports.profile = validateToken, async (req, res) => {
+  
+} 
 
 // Crear una nuevo registro
 exports.createItem = async (req, res) => {
