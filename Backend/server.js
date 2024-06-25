@@ -62,6 +62,9 @@ app.use(cors());
 const routes = require('./src/routes/routes'); //ruta
 app.use('/api/functions', routes); //endpoint
 
+const accountsRoutes = require('./src/routes/accountsRoutes');
+app.use('/api/accounts', accountsRoutes);
+
 
 // Iniciar el servidor
 app.listen(PORT, () => {
