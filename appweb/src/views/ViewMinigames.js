@@ -10,7 +10,7 @@ import Roulette from './minigames/roulette';
 
 function ViewMinigames() {
     const handleOpenWindow = (component) => {
-        openWindow(component); // Llama a openWindow con el componente que deseas renderizar
+        openWindow(component, 'Ruleta', ''); // Llama a openWindow con el componente que deseas renderizar
     };
 
     return (
