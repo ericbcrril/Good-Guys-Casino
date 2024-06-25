@@ -5,13 +5,12 @@ import StatusBar from './statusBar';
 //Efectos de sonido
 import {gunshotSound, emptyGunshotSound, revolverSpinSound} from '../../../constants/sounds/sounds';
 
-const Game = ({setScreenShake}) => {
+const Game = ({setScreenShake, coins, setCoins}) => {
   const [gameState, setGameState] = useState('betting'); // 'betting', 'gunSelection', 'playing', 'gameOver', 'goodEnding'
   const [bet, setBet] = useState(20); // Apuesta seleccionada
   const [multiplier, setMultiplier] = useState(1); // Multiplicador seleccionado
   const [selectedGun, setSelectedGun] = useState(null); // Revolver seleccionado
   const [health, setHealth] = useState(100); // Salud del jugador
-  const [coins, setCoins] = useState(100); // Monedas
   const [coinsEarned, setCoinsEarned] = useState(0); //Monedas ganadas
   const [nd, setNd] = useState(1);// Cantidad de balas que eligio el jugador
   const [turns, setTurns] = useState(0);// Turnos jugados 
@@ -26,29 +25,9 @@ const Game = ({setScreenShake}) => {
   };
 
   const handleGunSelection = (gun, numShots) => {
-    let casillasBala = generateBullets(numShots);
-  
-    // Verificar si casillasBala es válida
-    const isValid = casillasBala && casillasBala.length === 6 && casillasBala.every((casilla) => casilla !== null);
-  
-    if (!isValid) {
-      // Si las casillasBala no son válidas, manejar el error
-      console.error('Error al generar casillasBala. Regenerando...');
-  
-      // Intentar generar de nuevo
-      casillasBala = generateBullets(numShots);
-  
-      // Verificar la validez de la nueva generación
-      if (!casillasBala || casillasBala.length !== 6 || casillasBala.some((casilla) => casilla === null)) {
-        console.error('No se pudo generar casillasBala correctamente. Revisar la función generateBullets.');
-        return;
-      }
-    }
-  
     // Asignar el arma seleccionado con las casillasBala generadas
-    setSelectedGun({ ...gun, casillasBala });
+    setSelectedGun(gun);
     console.log("Arma:", gun);
-    console.log("Cartucho del arma:", casillasBala);
   
     // Otros pasos después de seleccionar el arma
     setNd(numShots);
@@ -57,94 +36,82 @@ const Game = ({setScreenShake}) => {
       setGameState('playing');
     }, 2000); 
   };
-  
-  
-  
-  
-
-  const generateBullets = (numShots) => {
-    let casillas = Array(6).fill(false); // Inicializamos todas las casillas como false
-    let shotsPlaced = 0;
-  
-    // Verificar si ya hay casillas con balas (false)
-    const allFalse = casillas.every((value) => value === false);
-    if (!allFalse) {
-      // Si hay balas ya colocadas, reiniciamos todas las casillas a false
-      casillas = Array(6).fill(false);
-    }
-  
-    // Colocar las balas aleatoriamente
-    while (shotsPlaced < numShots) {
-      const randomIndex = Math.floor(Math.random() * 6);
-      if (!casillas[randomIndex]) {
-        casillas[randomIndex] = true;
-        shotsPlaced++;
-      }
-    }
-  
-    return casillas;
-  };
-  
-  
-  
-  
 
   const playRound = () => {
     setShootButtonDisabled(true); // Desactivar el botón de disparo
   
-    setTurns(turns + 1);
-    setShotsFired(shotsFired + 1);
+    const probabiliy = (nd - bulletFired) / (6 - turns);
+    const isBullet = Math.random() < probabiliy;
   
-    const availableCasillas = selectedGun.casillasBala.filter(casilla => casilla !== null);
-    const randomIndex = Math.floor(Math.random() * availableCasillas.length);
-    const isBullet = availableCasillas[randomIndex];
+    const newTurns = turns + 1;
+    const newShotsFired = shotsFired + 1;
+    let newHealth = health;
+    let newCoins = coins;
+    let newCoinsEarned = coinsEarned;
+    let newBulletFired = bulletFired;
+    let newGameState = null;
   
-    // Eliminar la casilla disparada de la lista 
-    selectedGun.casillasBala[randomIndex] = null;
-  
-    if (isBullet) {//Toco bala
+    if (isBullet) { // Toco bala
       gunshotSound.play();
       setScreenShake(true); // Activar temblor
       setTimeout(() => {
         setScreenShake(false); // Desactivar temblor después de un breve tiempo
       }, 200);
       console.log('Te tocó bala!');
-      const newHealth = health - selectedGun.damage;
-      setHealth(newHealth);
-      setCoinsEarned(coinsEarned - bet);
-      setCoins(coins - bet);
-      setBulletFired(bulletFired + 1);
-      setShootButtonDisabled(false)
-      if (newHealth <= 0) {
-        setGameState('gameOver');
-      } else if (bulletFired >= (nd - 1) && health > 0) { //te toca bala y ya disparaste el No de balas seleccionadas
-        setCoinsEarned(coinsEarned - bet);  
-        setGameState('goodEnding');
-      }
-    } else {//No hay bala
+      newHealth -= selectedGun.damage;
+      newCoinsEarned -= bet * multiplier;
+      newCoins -= bet * multiplier;
+      newBulletFired += 1;
+    } else { // No hay bala
       emptyGunshotSound.play();
-      setCoins(coins * multiplier);
-      setCoinsEarned(coinsEarned + bet);
-      setCoins(coins + bet);
-      console.log("Monedas ganadas:", coinsEarned);
+      newCoinsEarned += bet * multiplier;
+      newCoins += bet * multiplier;
+      console.log("Monedas ganadas:", newCoinsEarned);
       console.log(selectedGun);
-      setShootButtonDisabled(false)
-      if (shotsFired >= 5) {
-        console.log("Ups! ¿Y la bala?");
-        setGameState('goodEnding');
-      }
     }
   
-    // Desactivar temblor después de un breve tiempo
+    if (newHealth <= 0) { // Se acabó tu salud ;(
+      console.log("Se acabó tu salud ;(");
+      newGameState = 'gameOver';
+    }
+    if (newTurns > 5 && newHealth > 0) { // Has sobrevivido a los 6 tiros
+      console.log("Sobreviviste los 6 tiros!");
+      newGameState = 'goodEnding';
+    }
+    if (newBulletFired === nd && newHealth > 0) { // Se han disparado todas las balas
+      console.log("Se han disparado todas las balas"); 
+      newGameState = 'goodEnding';
+    }
+    if (newShotsFired > 5 && newBulletFired < nd) { // Error
+      console.log("¡Ups! ¿Y la bala?");
+      newGameState = 'goodEnding';
+    }
+  
+    // Actualizar estados
+    setTurns(newTurns);
+    setShotsFired(newShotsFired);
+    setHealth(newHealth);
+    setCoins(newCoins);
+    setCoinsEarned(newCoinsEarned);
+    setBulletFired(newBulletFired);
+    setShootButtonDisabled(false);
+  
+    if (newGameState) {
+      setGameState(newGameState);
+    }
+  
+    // Desactivar temblor
     setTimeout(() => {
       setScreenShake(false);
     }, 200);
   };
   
+  
 
   const resetGame = () => {
     setHealth(100);
-    setCoinsEarned(bet);
+    setCoinsEarned(0);
+    setBulletFired(0);
     setNd(1);
     setTurns(0);
     setShotsFired(0);
@@ -161,7 +128,7 @@ const Game = ({setScreenShake}) => {
       {gameState === 'gunSelection' && <GunSelection onSelectGun={handleGunSelection} />}
       {gameState === 'playing' && (
         <div>
-          <StatusBar health={health} coins={coins} />
+          <StatusBar health={health} coins={coinsEarned} />
           <button className="game-button" onClick={playRound} disabled={isShootButtonDisabled}>Disparar</button>
           <button className="game-button" onClick={withdraw}>Retirarse</button>
         </div>
@@ -170,6 +137,7 @@ const Game = ({setScreenShake}) => {
         <div>
           <h2 className="game-over-message">Fin del Juego</h2>
           <p className="game-over-text">Has perdido todo tu dinero.</p>
+          <p className="game-over-text">Balance: {coinsEarned > 0 ? `+${coinsEarned}` : coinsEarned}</p>
           <button className="reset-button" onClick={resetGame}>Reiniciar</button>
         </div>
       )}
@@ -177,8 +145,8 @@ const Game = ({setScreenShake}) => {
         <div>
           <h2 className="game-over-message">¡Felicidades!</h2>
           <p className="game-over-text">Turnos jugados: {turns}</p>
-          <p className="game-over-text">Dinero ganado: {coinsEarned}</p>
           <p className="game-over-text">Salud restante: {health}</p>
+          <p className="game-over-text">Balance: {coinsEarned > 0 ? `+${coinsEarned}` : coinsEarned}</p>
           <button className="reset-button" onClick={resetGame}>Reiniciar</button>
         </div>
       )}
