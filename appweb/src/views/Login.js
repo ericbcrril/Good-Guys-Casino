@@ -1,9 +1,29 @@
-import React from 'react';
+import React, { useState } from 'react';
+import axios from 'axios';
 import MainNabvar from "../components/navbars/MainNavbar";
 import { Link } from 'react-router-dom';
 import 'boxicons';
+import { accountCollection } from '../model/collections';
 
-function Login() {
+
+
+const Login = () => {
+    const [account, setAccount] = useState({...accountCollection});
+
+    const handleChangeAccount = (e) => {
+        const { name, value } = e.target;
+        setAccount(prevState => ({ ...prevState, [name]: value }));
+      };
+
+      const handleSubmit = async (e) => {
+        e.preventDefault();
+        try {
+          await axios.post('http://localhost:5000/api/accounts/login', { ...account });
+          alert('sesion iniciada con exito');
+        } catch (error) {
+          alert('error al iniciar sesion');
+        }
+      };
     return (
         <main className='main'>
             <MainNabvar />
@@ -13,10 +33,12 @@ function Login() {
                     <img src='/images/logos/logoGG.png' width={100}></img>
                 </div>
                 <div className='item1'>
-                    <h3>email</h3>
-                    <input type='email' required placeholder='introduzca su correo electronico'></input>
+                    <h3>user</h3>
+                    <input type='email' name='user' value={account.user} onChange={handleChangeAccount}
+                    placeholder='introduzca su nombre de usuario' required></input>
                     <h3>contraseña</h3>
-                    <input type='password' required placeholder='introduzca contraseña'></input>
+                    <input type='password' name='password' value={account.password} onChange={handleChangeAccount}
+                    placeholder='introduzca su contraseña'></input>
                 </div>
                 <div className='item2'>
                     <div>
@@ -30,7 +52,7 @@ function Login() {
                     </div>
                 </div>
                 <div className='item3'>
-                    <button>Iniciar sesion</button>
+                    <button onClick={handleSubmit}>Iniciar sesion</button>
                     <div>
                     
                     <Link to="/register"><i class='bx bxs-user-plus'></i></Link>
