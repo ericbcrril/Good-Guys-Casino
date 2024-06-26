@@ -9,10 +9,10 @@ const GunSelection = ({ onSelectGun }) => {
   ];
 
   return (
-    <div>
-      <h2>Selecciona un Revólver y la Cantidad de Tiros</h2>
+    <div className='game-container'>
+      <h2>Selecciona un Revólver y la Cantidad de Balas</h2>
       <label className="bet-label">
-        Cantidad de Tiros:
+        Cantidad de Balas:
         <input
           className="bet-input"
           type="number"

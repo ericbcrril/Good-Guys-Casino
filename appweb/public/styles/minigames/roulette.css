@@ -14,27 +14,26 @@ html {
     align-items: center;
     justify-content: center;
     height: 100vh;
-    background-size: cover;
+    overflow: hidden;
   }
   
   .balance-box{
     position: absolute;
     display: flex;
-    left: 0vh;
-    top: 10vh;
+    left: 1vh;
+    top: 0vh;
   }
   /* Título del juego */
   .game-title {
     position: relative;
-    top: 5vh;
-    font-size: 48px;
+    font-size: 7vw;
     color: #FFFFFF;
     text-shadow: 2px 2px #000000;
-    margin-bottom: 20px;
+    margin: 5%;
   }
   
   /* Contenedor principal del juego */
-  #game-container {
+  .game-container {
     text-align: center;
     border: 4px solid #FF33CC;
     padding: 20px;
@@ -53,8 +52,19 @@ html {
     75% { transform: translate(-5px, 0); }
     100% { transform: translate(0, 0); }
   }
+
+  .game-actions{
+    position: relative;
+    bottom: -30vh;
+    text-align: center;
+    padding: 20px;
+    border-radius: 10px;
+  }
   
-  
+  .noVisible{
+    display: none;
+  }
+
   /* Botones del juego */
   .game-button {
     display: block;

@@ -27,11 +27,11 @@ function ViewMinigames() {
                 </div>
                 <div className='minigame-box'>
                     <img src='/images/test.png'/>
-                    <Link onClick={() => handleOpenWindow(HelloWorld)}>Minijuego 2</Link>
+                    <Link onClick={() => handleOpenWindow(HelloWorld)}>Blackjack</Link>
                 </div>
                 <div className='minigame-box'>
                     <img src='/images/test.png'/>
-                    <Link onClick={() => handleOpenWindow(HelloWorld)}>Minijuego 3</Link>
+                    <Link onClick={() => handleOpenWindow(HelloWorld)}>Bingo</Link>
                 </div>
                 <div className='minigame-box'>
                     <img src='/images/test.png'/>

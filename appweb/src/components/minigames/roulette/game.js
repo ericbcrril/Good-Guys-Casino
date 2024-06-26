@@ -5,7 +5,7 @@ import StatusBar from './statusBar';
 //Efectos de sonido
 import {gunshotSound, emptyGunshotSound, revolverSpinSound} from '../../../constants/sounds/sounds';
 
-const Game = ({setScreenShake, coins, setCoins}) => {
+const Game = ({setScreenShake, coins, setCoins, setVisibleH1}) => {
   const [gameState, setGameState] = useState('betting'); // 'betting', 'gunSelection', 'playing', 'gameOver', 'goodEnding'
   const [bet, setBet] = useState(20); // Apuesta seleccionada
   const [multiplier, setMultiplier] = useState(1); // Multiplicador seleccionado
@@ -20,6 +20,7 @@ const Game = ({setScreenShake, coins, setCoins}) => {
 
   const handleBet = (amount, multiplier) => {
     setBet(amount);
+    setCoins(coins - amount);
     setMultiplier(multiplier);
     setGameState('gunSelection');
   };
@@ -33,6 +34,7 @@ const Game = ({setScreenShake, coins, setCoins}) => {
     setNd(numShots);
     revolverSpinSound.play();
     setTimeout(() => {
+    setVisibleH1(false);
       setGameState('playing');
     }, 2000); 
   };
@@ -105,8 +107,6 @@ const Game = ({setScreenShake, coins, setCoins}) => {
       setScreenShake(false);
     }, 200);
   };
-  
-  
 
   const resetGame = () => {
     setHealth(100);
@@ -116,6 +116,7 @@ const Game = ({setScreenShake, coins, setCoins}) => {
     setTurns(0);
     setShotsFired(0);
     setGameState('betting');
+    setVisibleH1(true);
   };
 
   const withdraw = () => {
@@ -124,17 +125,17 @@ const Game = ({setScreenShake, coins, setCoins}) => {
 
   return (
     <div>
-      {gameState === 'betting' && <Bet onBet={handleBet} />}
+      {gameState === 'betting' && <Bet onBet={handleBet} coins={coins} />}
       {gameState === 'gunSelection' && <GunSelection onSelectGun={handleGunSelection} />}
       {gameState === 'playing' && (
-        <div>
-          <StatusBar health={health} coins={coinsEarned} />
+        <div className='game-container'>
           <button className="game-button" onClick={playRound} disabled={isShootButtonDisabled}>Disparar</button>
           <button className="game-button" onClick={withdraw}>Retirarse</button>
+          <StatusBar health={health} coins={coinsEarned} />
         </div>
       )}
       {gameState === 'gameOver' && (
-        <div>
+        <div className='game-container'>
           <h2 className="game-over-message">Fin del Juego</h2>
           <p className="game-over-text">Has perdido todo tu dinero.</p>
           <p className="game-over-text">Balance: {coinsEarned > 0 ? `+${coinsEarned}` : coinsEarned}</p>
@@ -142,7 +143,7 @@ const Game = ({setScreenShake, coins, setCoins}) => {
         </div>
       )}
       {gameState === 'goodEnding' && (
-        <div>
+        <div className='game-container'>
           <h2 className="game-over-message">¡Felicidades!</h2>
           <p className="game-over-text">Turnos jugados: {turns}</p>
           <p className="game-over-text">Salud restante: {health}</p>
