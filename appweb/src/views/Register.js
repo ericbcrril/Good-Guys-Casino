@@ -32,7 +32,7 @@ const  Register = () => {
                 <div className='inputs-item'>
                     <h3>nombre</h3>
                     <input type='text' required name='name' value={account.name} onChange={handleChangeAccount}
-                    placeholder='introduzca su nombre'></input>
+                    placeholder='introduzca su nombre' className='border-gradient-purple'></input>
                     <h3>apellido</h3>
                     <input type='text' required name='lastName' value={account.lastName} onChange={handleChangeAccount}
                     placeholder='introduzca su apellido'></input>
@@ -57,12 +57,12 @@ const  Register = () => {
                         <a href='https://x.com/'><i class='bx bxl-twitter bx-burst-hover'></i></a>
                     </div>
                     <div>
-                        <h4>Registrate tambien con</h4>
+                        <h4>Registrate con</h4>
                     </div>
                 </div>
                 <div className='login-item'>
                     <div>
-                    <a href='/login'><i class='bx bxs-user-plus'></i></a>
+                    <a href='/login'><i class='bx bx-log-in-circle'></i></a>
                     <h4>iniciar sesion</h4>
                     </div>
                     <button onClick={handleSubmit}>crear cuenta</button>

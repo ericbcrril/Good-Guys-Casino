@@ -33,7 +33,7 @@ const Login = () => {
                     <img src='/images/logos/logoGG.png' width={100}></img>
                 </div>
                 <div className='item1'>
-                    <h3>user</h3>
+                    <h3>usuario</h3>
                     <input type='email' name='user' value={account.user} onChange={handleChangeAccount}
                     placeholder='introduzca su nombre de usuario' required></input>
                     <h3>contraseña</h3>
