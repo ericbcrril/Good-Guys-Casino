@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import MainNabvar from "../components/navbars/MainNavbar";
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import 'boxicons';
 import { accountCollection } from '../model/collections';
 
@@ -9,6 +9,7 @@ import { accountCollection } from '../model/collections';
 
 const Login = () => {
     const [account, setAccount] = useState({...accountCollection});
+    const navigate = useNavigate();
 
     const handleChangeAccount = (e) => {
         const { name, value } = e.target;
@@ -20,6 +21,7 @@ const Login = () => {
         try {
           await axios.post('http://localhost:5000/api/accounts/login', { ...account });
           alert('sesion iniciada con exito');
+          navigate('/profile');
         } catch (error) {
           alert('error al iniciar sesion');
         }

@@ -16,7 +16,7 @@ function App() {
         <Route path="/minigames" element={<Minigames />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
-        <Route path='/tests' element={<HelloWorld />} />{/* Pestaña de pruebas */}
+        <Route path='/profile' element={<HelloWorld />} />{/* Pestaña de pruebas */}
         <Route path="*" element={<NotFound />} />
       </Routes>
     </Router>

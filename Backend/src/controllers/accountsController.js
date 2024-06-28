@@ -66,8 +66,7 @@ exports.getItemByUser = async (req, res) => {
 };
 
 exports.profile =  async (req, res) => {
-  await validateToken();
-  res.json("profile");
+  res.json({message: "profile"});
 };
 
 // Crear una nuevo registro
