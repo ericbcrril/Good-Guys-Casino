@@ -7,6 +7,7 @@ import {gunshotSound, emptyGunshotSound, revolverSpinSound} from '../../../const
 
 const Game = ({setScreenShake, coins, setCoins, setVisibleH1}) => {
   const [gameState, setGameState] = useState('betting'); // 'betting', 'gunSelection', 'playing', 'gameOver', 'goodEnding'
+  const [message, setMessage] = useState(''); //Mensaje de conclusión del juego
   const [bet, setBet] = useState(20); // Apuesta seleccionada
   const [multiplier, setMultiplier] = useState(1); // Multiplicador seleccionado
   const [selectedGun, setSelectedGun] = useState(null); // Revolver seleccionado
@@ -59,13 +60,14 @@ const Game = ({setScreenShake, coins, setCoins, setVisibleH1}) => {
       setTimeout(() => {
         setScreenShake(false); // Desactivar temblor después de un breve tiempo
       }, 200);
-      console.log('Te tocó bala!');
+      setMessage('Te tocó bala!');
       newHealth -= selectedGun.damage;
       newCoinsEarned -= bet * multiplier;
       newCoins -= bet * multiplier;
       newBulletFired += 1;
     } else { // No hay bala
       emptyGunshotSound.play();
+      setMessage('Que suerte, ¡No hay bala!');
       newCoinsEarned += bet * multiplier;
       newCoins += bet * multiplier;
       console.log("Monedas ganadas:", newCoinsEarned);
@@ -73,19 +75,18 @@ const Game = ({setScreenShake, coins, setCoins, setVisibleH1}) => {
     }
   
     if (newHealth <= 0) { // Se acabó tu salud ;(
-      console.log("Se acabó tu salud ;(");
+      setMessage("Se acabó tu salud ;(");
       newGameState = 'gameOver';
     }
     if (newTurns > 5 && newHealth > 0) { // Has sobrevivido a los 6 tiros
-      console.log("Sobreviviste los 6 tiros!");
+      setMessage("Sobreviviste los 6 tiros!");
       newGameState = 'goodEnding';
-    }
-    if (newBulletFired === nd && newHealth > 0) { // Se han disparado todas las balas
-      console.log("Se han disparado todas las balas"); 
+    } else if (newBulletFired === nd && newHealth > 0) { // Se han disparado todas las balas
+      setMessage("Se han disparado todas las balas"); 
       newGameState = 'goodEnding';
     }
     if (newShotsFired > 5 && newBulletFired < nd) { // Error
-      console.log("¡Ups! ¿Y la bala?");
+      setMessage("¡Ups! ¿Y la bala?");
       newGameState = 'goodEnding';
     }
   
@@ -132,11 +133,13 @@ const Game = ({setScreenShake, coins, setCoins, setVisibleH1}) => {
           <button className="game-button" onClick={playRound} disabled={isShootButtonDisabled}>Disparar</button>
           <button className="game-button" onClick={withdraw}>Retirarse</button>
           <StatusBar health={health} coins={coinsEarned} />
+          <p>{message}</p>
         </div>
       )}
       {gameState === 'gameOver' && (
         <div className='game-container'>
           <h2 className="game-over-message">Fin del Juego</h2>
+          <p>{message}</p>
           <p className="game-over-text">Has perdido todo tu dinero.</p>
           <p className="game-over-text">Balance: {coinsEarned > 0 ? `+${coinsEarned}` : coinsEarned}</p>
           <button className="reset-button" onClick={resetGame}>Reiniciar</button>
@@ -145,6 +148,7 @@ const Game = ({setScreenShake, coins, setCoins, setVisibleH1}) => {
       {gameState === 'goodEnding' && (
         <div className='game-container'>
           <h2 className="game-over-message">¡Felicidades!</h2>
+          <p>{message}</p>
           <p className="game-over-text">Turnos jugados: {turns}</p>
           <p className="game-over-text">Salud restante: {health}</p>
           <p className="game-over-text">Balance: {coinsEarned > 0 ? `+${coinsEarned}` : coinsEarned}</p>
