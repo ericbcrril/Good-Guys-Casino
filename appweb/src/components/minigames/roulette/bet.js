@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-const Bet = ({ onBet, styles, coins}) => {
+const Bet = ({ onBet, coins }) => {
   const [amount, setAmount] = useState(20);
   const [multiplier, setMultiplier] = useState(1);
 

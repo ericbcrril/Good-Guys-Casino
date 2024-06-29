@@ -7,6 +7,7 @@ import openWindow from '../scripts/misc/redirectWindow'; // Asumiendo que openWi
 import HelloWorld from './helloWorld'; // Asegúrate de importar correctamente HelloWorld
 //Minijuegos
 import Roulette from './minigames/roulette';
+import BlackJack from './minigames/blackjack';
 
 function ViewMinigames() {
     const handleOpenWindow = (component) => {
@@ -27,7 +28,7 @@ function ViewMinigames() {
                 </div>
                 <div className='minigame-box'>
                     <img src='/images/test.png'/>
-                    <Link onClick={() => handleOpenWindow(HelloWorld)}>Blackjack</Link>
+                    <Link onClick={() => handleOpenWindow(BlackJack)}>Blackjack</Link>
                 </div>
                 <div className='minigame-box'>
                     <img src='/images/test.png'/>
