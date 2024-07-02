@@ -1,33 +1,31 @@
-const { sign, verify } = require('jsonwebtoken');
+const { sign, verify, decode } = require('jsonwebtoken');
 
 const createToken = (user) => {
     const accessToken = sign(
-        { username: user.user, id: user._id },
-        "jwtsecret(changethisafter)"
+        {
+            user
+        },
+        process.env.ACCESS_TOKEN_SECRET
     );
-
+    console.log(accessToken)
     return accessToken;
 };
 
 const validateToken = (req, res, next) => {
-    const accessToken = req.cookies["access-token"];
-    console.log('Access Token:', accessToken); // Debugging line
+    const accessToken = req.cookies.access-token;
+    console.log('si esta pasando por aqui', accessToken); // Debugging line
 
-    if (!accessToken){
+    if (!accessToken) {
         console.log('No access token found'); // Debugging line
-         return res.status(400).json({error: "User not Authenticate4d"});
-        }
-    try {
-        const validToken = verify(accessToken, "jwtsecret(changethisafter)");
-        console.log('Valid Token:', validToken); // Debugging line
-        if (validToken) {
-            req.authenticated = true;
-            return next();
-        }
-    } catch (error) {
-        console.log('Token verification failed:', error); // Debugging line
-        return res.status(400).json({error: error});
+        return res.status(400).json({ error: "User not Authenticate4d" });
     }
-}
+    verify(accessToken, process.env.ACCESS_TOKEN_SECRET, (err, user) => {
+        if (err) {
+            return res.sendStatus(403);
+        }
+        req.user = user;
+        next();
+    });
+};
 
-module.exports = {createToken, validateToken};
+module.exports = { createToken, validateToken };

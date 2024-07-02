@@ -67,7 +67,6 @@ app.use('/api/functions', routes); //endpoint
 const accountsRoutes = require('./src/routes/accountsRoutes');
 app.use('/api/accounts', accountsRoutes);
 
-
 // Iniciar el servidor
 app.listen(PORT, () => {
   console.log(`Servidor en ejecución en el puerto ${PORT}`);

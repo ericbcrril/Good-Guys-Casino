@@ -8,24 +8,23 @@ import { accountCollection } from '../model/collections';
 
 
 const Login = () => {
-    const [account, setAccount] = useState({...accountCollection});
+    const [account, setAccount] = useState({ ...accountCollection });
     const navigate = useNavigate();
 
     const handleChangeAccount = (e) => {
         const { name, value } = e.target;
         setAccount(prevState => ({ ...prevState, [name]: value }));
-      };
+    };
 
-      const handleSubmit = async (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-          await axios.post('http://localhost:5000/api/accounts/login', { ...account });
-          alert('sesion iniciada con exito');
-          navigate('/profile');
+            await axios.post('http://localhost:5000/api/accounts/login', { ...account });
+            alert('sesion iniciada con exito');
         } catch (error) {
-          alert('error al iniciar sesion');
+            alert('error al iniciar sesion');
         }
-      };
+    };
     return (
         <main className='main'>
             <MainNabvar />
@@ -37,10 +36,10 @@ const Login = () => {
                 <div className='item1'>
                     <h3>usuario</h3>
                     <input type='email' name='user' value={account.user} onChange={handleChangeAccount}
-                    placeholder='introduzca su nombre de usuario' required></input>
+                        placeholder='introduzca su nombre de usuario' required></input>
                     <h3>contraseña</h3>
                     <input type='password' name='password' value={account.password} onChange={handleChangeAccount}
-                    placeholder='introduzca su contraseña'></input>
+                        placeholder='introduzca su contraseña'></input>
                 </div>
                 <div className='item2'>
                     <div>
@@ -56,9 +55,9 @@ const Login = () => {
                 <div className='item3'>
                     <button onClick={handleSubmit}>Iniciar sesion</button>
                     <div>
-                    
-                    <Link to="/register"><i class='bx bxs-user-plus'></i></Link>
-                    <h4>crear nueva cuenta</h4>
+
+                        <Link to="/register"><i class='bx bxs-user-plus'></i></Link>
+                        <h4>crear nueva cuenta</h4>
                     </div>
                 </div>
             </section>

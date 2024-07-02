@@ -2,6 +2,8 @@
 const accounts = require('../models/accounts');
 const bcrypt = require('bcryptjs');
 const {createToken, validateToken} = require('../JWT');
+const { decode } = require('jsonwebtoken');
+const { signedCookie } = require('cookie-parser');
 // Obtener todos los registros de una coleccion
 exports.getItems = async (req, res) => {
   try {
@@ -28,7 +30,7 @@ exports.getItemById = async (req, res) => {
 };
 
 
-exports.getItemByUser = async (req, res) => {
+exports.login = async (req, res) => {
   try {
     const { user, password } = req.body;
 
@@ -49,13 +51,12 @@ exports.getItemByUser = async (req, res) => {
         return res.status(400).json({ error: 'Usuario o contraseña incorrectos' });
       } else {
         const accessToken = createToken(account);
-
+        console.log(decode(accessToken));
         res.cookie('access-token', accessToken, {
           maxAge: 30000,
           httpOnly: true,
-        })
-
-        res.json({ message: 'LOGGED IN' });
+        });
+        res.status(200).json({ message: 'Inicio de sesión exitoso', redirectUrl: '/profile' });
       }
     });
 
@@ -65,8 +66,22 @@ exports.getItemByUser = async (req, res) => {
   }
 };
 
-exports.profile =  async (req, res) => {
-  res.json({message: "profile"});
+exports.profile = async (req, res) => {
+  console.log("si paso por aca");
+
+  // Verifica si el _id está correctamente pasando como un ObjectId
+  const user = req.user; // Asumiendo que el middleware validateToken asigna el user al request
+
+  try {
+    const account = await accounts.findById(user);
+    if (!account) {
+      return res.status(404).json({ error: "Profile not found" });
+    }
+    res.json(account);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: "An error occurred while retrieving the profile" });
+  }
 };
 
 // Crear una nuevo registro
