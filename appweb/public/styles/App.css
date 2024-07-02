@@ -119,6 +119,7 @@ footer p {
   color: #fff;
   text-decoration: none;
   cursor: pointer;
+  text-wrap: nowrap;
   font-size: 1.4vw;
   margin: 5%;
 }

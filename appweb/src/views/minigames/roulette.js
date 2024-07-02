@@ -10,6 +10,7 @@ const App = () => {
   return (
     <div>
         <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet" />
+        <link rel="stylesheet" href="/styles/minigames/styles.css" />
         <link rel="stylesheet" href="/styles/minigames/roulette.css" />
         <p className='balance-box'>Balance: {coins}</p>
         <h1 className={`game-title ${visibleH1 ? '' : 'noVisible'}`}>Ruleta Rusa</h1>

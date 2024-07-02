@@ -7,6 +7,7 @@ const App = () => {
     return (
         <div>
             <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet" />
+            <link rel="stylesheet" href="/styles/minigames/styles.css" />
             <link rel="stylesheet" href="/styles/minigames/blackjack.css" />
             <p className='balance-box'>Balance: {coins}</p>
             <Game coins={coins} setCoins={setCoins}/>
