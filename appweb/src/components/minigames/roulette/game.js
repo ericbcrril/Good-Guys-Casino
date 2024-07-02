@@ -5,7 +5,7 @@ import StatusBar from './statusBar';
 // Efectos de sonido
 import { gunshotSound, emptyGunshotSound, revolverSpinSound } from '../../../constants/sounds/sounds';
 
-const Game = ({ setScreenShake, coins, setCoins, setVisibleH1 }) => {
+const Game = ({ setScreenShake, coins, setCoins }) => {
   const [gameState, setGameState] = useState('betting'); // 'betting', 'gunSelection', 'playing', 'gameOver', 'goodEnding'
   const [message, setMessage] = useState('Empieza el juego...'); // Mensaje de conclusión del juego
   const [bet, setBet] = useState(20); // Apuesta seleccionada
@@ -20,27 +20,25 @@ const Game = ({ setScreenShake, coins, setCoins, setVisibleH1 }) => {
   const [isShootButtonDisabled, setShootButtonDisabled] = useState(false); // Estado para manejar la desactivación del botón disparar
   const [isResetButtonDisabled, setResetButtonDisabled] = useState(true);
 
-  const handleBet = (amount, multiplier) => {
+  const handleBet = (amount) => {
     setBet(amount);
     setInitialCoins(coins);
     setCoins(coins - amount);
-    setMultiplier(multiplier);
     setGameState('gunSelection');
   };
 
   const handleGunSelection = (gun, numShots) => {
-    setSelectedGun(gun);
-    setBullets(numShots);
     revolverSpinSound.play();
+    setSelectedGun(gun);
+    setMultiplier(gun.multiplier += numShots);
+    setBullets(numShots);
     setTimeout(() => {
-      setVisibleH1(false);
       setGameState('playing');
     }, 2000);
   };
 
   const playRound = () => {
     setShootButtonDisabled(true); // Desactivar el botón de disparo
-
     const probability = (bullets - bulletFired) / (6 - turns);
     const isBullet = Math.random() < probability;
 
@@ -61,12 +59,12 @@ const Game = ({ setScreenShake, coins, setCoins, setVisibleH1 }) => {
       newBulletFired += 1;
     } else { // No hay bala
       emptyGunshotSound.play();
-      setMessage('¡Qué suerte, no hay bala!');
+      setMessage('¡Qué suerte,no hay bala!');
       newCoins += bet * multiplier;
     }
 
     if (newHealth <= 0) { // Se acabó tu salud
-      setMessage('Se acabó tu salud ;(');
+      setMessage('Has muerto...');
       newGameState = 'gameOver';
     } else if (newTurns >= 6 || newBulletFired === bullets) { // Has sobrevivido a los 6 tiros o se han disparado todas las balas
       setMessage(newTurns >= 6 ? '¡Sobreviviste los 6 tiros!' : 'Se han disparado todas las balas');
@@ -88,14 +86,12 @@ const Game = ({ setScreenShake, coins, setCoins, setVisibleH1 }) => {
 
   const resetGame = () => {
     setHealth(100);
-    setCoins(initialCoins);
     setBulletFired(0);
     setBullets(1);
     setTurns(0);
     setShotsFired(0);
     setGameState('betting');
     setMessage('Empieza el juego...');
-    setVisibleH1(true);
     setResetButtonDisabled(true);
   };
 
@@ -115,7 +111,7 @@ const Game = ({ setScreenShake, coins, setCoins, setVisibleH1 }) => {
           <StatusBar health={health} coins={coins - initialCoins} />
         </div>
         <div className= 'game-container'>
-            <p>{message}</p>
+            <p className='game-messages'>{message}</p>
         </div>
         </div>
       )}

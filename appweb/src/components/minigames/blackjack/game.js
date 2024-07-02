@@ -1,14 +1,14 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Bet from './bet';
 
 const Game = ({ coins, setCoins }) => {
     const [gameState, setGameState] = useState('betting'); // 'betting', 'playing', 'gameOver', 'goodEnding'
-    const [coinsEarned, setCoinsEarned] = useState(0); //Monedas ganadas
-    const [bet, setBet] = useState(20); //Apuesta
-    const [playerCards, setPlayerCards] = useState([]); //Cartas del jugador
-    const [dealerCards, setDealerCards] = useState([]); //Rival
-    const [deck, setDeck] = useState([]);// Baraja
-    const [message, setMessage] = useState(''); //Mensaje de conclusión del juego
+    const [coinsEarned, setCoinsEarned] = useState(0); // Monedas ganadas
+    const [bet, setBet] = useState(20); // Apuesta
+    const [playerCards, setPlayerCards] = useState([]); // Cartas del jugador
+    const [dealerCards, setDealerCards] = useState([]); // Rival
+    const [deck, setDeck] = useState([]); // Baraja
+    const [message, setMessage] = useState(''); // Mensaje de conclusión del juego
 
     const getCardValue = (card) => {
         if (['J', 'Q', 'K'].includes(card.value)) return 10;
@@ -27,7 +27,7 @@ const Game = ({ coins, setCoins }) => {
     };
 
     const generateDeck = () => {
-        const suits = ['Corazones', 'Diamantes', 'Tréboles', 'Picas'];
+        const suits = ['hearts', 'diamonds', 'clubs', 'spades'];
         const values = ['2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K', 'A'];
         const deck = [];
         for (const suit of suits) {
@@ -137,6 +137,12 @@ const Game = ({ coins, setCoins }) => {
         setMessage('');
     };
 
+    const getCardImage = (card) => {
+        const value = card.value;
+        const suit = card.suit.toLowerCase();
+        return `/images/minigames/blackjack/cards/${suit}/${value}.png`;
+    };
+
     return (
         <div>
             {gameState === 'betting' && <Bet onBet={handleBet} coins={coins} />}
@@ -144,12 +150,40 @@ const Game = ({ coins, setCoins }) => {
                 <div>
                     <div>
                         <h2>Crupier</h2>
-                        <div>{dealerCards.map(card => `${card.value} de ${card.suit}`).join(', ')}</div>
+                        <div>
+                            {dealerCards.map((card, index) => (
+                                <div key={index} className="card-container">
+                                    <img
+                                        src={getCardImage(card)}
+                                        alt={`${card.value} de ${card.suit}`}
+                                        className='card'
+                                    />
+                                    <div className="corner top-left"></div>
+                                    <div className="corner top-right"></div>
+                                    <div className="corner bottom-left"></div>
+                                    <div className="corner bottom-right"></div>
+                                </div>
+                            ))}
+                        </div>
                         <div>Total: {calculateTotal(dealerCards)}</div>
                     </div>
                     <div>
                         <h2>Jugador</h2>
-                        <div>{playerCards.map(card => `${card.value} de ${card.suit}`).join(', ')}</div>
+                        <div>
+                            {playerCards.map((card, index) => (
+                                <div key={index} className="card-container">
+                                    <img
+                                        src={getCardImage(card)}
+                                        alt={`${card.value} de ${card.suit}`}
+                                        className='card'
+                                    />
+                                    <div className="corner top-left"></div>
+                                    <div className="corner top-right"></div>
+                                    <div className="corner bottom-left"></div>
+                                    <div className="corner bottom-right"></div>
+                                </div>
+                            ))}
+                        </div>
                         <div>Total: {calculateTotal(playerCards)}</div>
                     </div>
                     <div>

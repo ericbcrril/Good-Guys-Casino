@@ -20,6 +20,17 @@
     75% { transform: translate(-5px, 0); }
     100% { transform: translate(0, 0); }
   }
+
+.fade-in {
+    opacity: 1;
+    transition: opacity 0.5s ease-in-out;
+}
+
+.fade-out {
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
+}
+
   
 /* Título del juego */
 .game-title {
@@ -27,6 +38,7 @@
     font-size: 7vw;
     color: #FFFFFF;
     text-shadow: 2px 2px #000000;
+    text-wrap: nowrap;
     margin: 5%;
 }
 
@@ -35,6 +47,10 @@
     display: flex;
     left: 1vh;
     top: 0vh;
+  }
+
+  .game-messages{
+    white-space: break-space;
   }
 
 
@@ -120,6 +136,7 @@
 
 .bet-label {
     font-size: 16px;
+    text-wrap: nowrap;
 }
 
 /* Formulario */
