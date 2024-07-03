@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 function mainNabvar() {
     return(
         <nav>
-            <img src="/images/logo/logo.png" />
+            <img className='main-logo' src="/images/logos/logo_min.png" draggable='false'/>
             <Link to="/main" >Inicio</Link>
             <Link to="/minigames" >Minijuegos</Link>
             <button>
