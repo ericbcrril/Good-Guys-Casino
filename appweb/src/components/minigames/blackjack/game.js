@@ -11,6 +11,9 @@ const Game = ({ coins, setCoins }) => {
     const [deck, setDeck] = useState([]); // Baraja
     const [message, setMessage] = useState('¡Ah jugar!'); // Mensaje de conclusión del juego
     const [dealerSecondCardVisible, setDealerSecondCardVisible] = useState(false); // Estado de visibilidad de la segunda carta del crupier
+    const [isResetButtonDisabled, setResetButtonDisabled] = useState(false);
+    const [isHitButtonDisabled, setHitButtonDisabled] = useState(false);
+    const [isStandButtonDisabled, setStandButtonDisabled] = useState(false);
 
     const getCardValue = (card) => {
         if (['J', 'Q', 'K'].includes(card.value)) return 10;
@@ -67,6 +70,7 @@ const Game = ({ coins, setCoins }) => {
 
     const playerHit = () => {
         cardSound.play();
+        setResetButtonDisabled(true);
         const newDeck = [...deck];
         const newCard = newDeck.pop();
         const newPlayerCards = [...playerCards, newCard];
@@ -81,16 +85,21 @@ const Game = ({ coins, setCoins }) => {
     };
 
     const playerStand = () => {
+        setResetButtonDisabled(true);
+        setHitButtonDisabled(true);
+        setStandButtonDisabled(true);
         let newDeck = [...deck];
         let newDealerCards = [...dealerCards];
     
         // Mostrar la segunda carta del crupier
+        setMessage("Crupier voltea su carta");
         setDealerSecondCardVisible(true);
         flipCard.play();
         
         const dealerDrawInterval = setInterval(() => {
             if (calculateTotal(newDealerCards) < 17) {
                 cardSound.play();
+                setMessage("Crupier toma una carta");
                 const newCard = newDeck.pop();
                 newDealerCards = [...newDealerCards, newCard];
                 setDealerCards(newDealerCards);
@@ -165,6 +174,9 @@ const Game = ({ coins, setCoins }) => {
         setDeck([]);
         setGameState('betting');
         setMessage('¡Ah jugar!');
+        setResetButtonDisabled(false);
+        setHitButtonDisabled(false);
+        setStandButtonDisabled(false);
         setDealerSecondCardVisible(false); // Reiniciar el estado de visibilidad de la segunda carta del crupier
     };
 
@@ -210,15 +222,14 @@ const Game = ({ coins, setCoins }) => {
                         </div>
                         <div>Total: {calculateTotal(playerCards)}</div>
                     </div>
-                    <p>{message}</p>
                     <div>
-                        <button className="game-button" onClick={playerHit} disabled={gameState !== 'playing'}>
+                        <button className="game-button" onClick={playerHit} disabled={isHitButtonDisabled}>
                             Pedir
                         </button>
-                        <button className="game-button" onClick={playerStand} disabled={gameState !== 'playing'}>
+                        <button className="game-button" onClick={playerStand} disabled={isStandButtonDisabled}>
                             Plantarse
                         </button>
-                        <button className="game-button" onClick={withdraw} disabled={gameState !== 'playing'}>
+                        <button className="game-button" onClick={withdraw} disabled={isResetButtonDisabled}>
                             Retirarse
                         </button>
                     </div>

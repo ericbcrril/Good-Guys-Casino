@@ -1,11 +1,8 @@
-// viewMinigames.js
 import React from 'react';
-import { Link } from 'react-router-dom';
 import MainNavbar from "../components/navbars/MainNavbar";
-import Footer from '../components/misc/Footer';
-import openWindow from '../scripts/misc/redirectWindow'; // Asumiendo que openWindow está definido en redirectWindow.js
-import HelloWorld from './helloWorld'; // Asegúrate de importar correctamente HelloWorld
-//Minijuegos
+import openWindow from '../scripts/misc/redirectWindow'; 
+import HelloWorld from './helloWorld'; 
+// Minijuegos
 import Roulette from './minigames/roulette';
 import BlackJack from './minigames/blackjack';
 
@@ -23,20 +20,28 @@ function ViewMinigames() {
             </div>
             <div className='minigames-boxes-container'>
                 <div className='minigame-box'>
-                    <img src='/images/test.png'/>
-                    <Link onClick={() => handleOpenWindow(Roulette)}>Ruleta Rusa</Link>
+                    <img src='/images/test.png' alt='Ruleta Rusa'/>
+                    <h3>Ruleta Rusa</h3>
+                    <p>Prueba tu suerte</p>
+                    <button onClick={() => handleOpenWindow(Roulette)}>Jugar</button>
                 </div>
                 <div className='minigame-box'>
-                    <img src='/images/test.png'/>
-                    <Link onClick={() => handleOpenWindow(BlackJack)}>Blackjack</Link>
+                    <img src='/images/test.png' alt='Blackjack'/>
+                    <h3>Blackjack</h3>
+                    <p>Desafía al crupier</p>
+                    <button onClick={() => handleOpenWindow(BlackJack)}>Jugar</button>
                 </div>
                 <div className='minigame-box'>
-                    <img src='/images/test.png'/>
-                    <Link onClick={() => handleOpenWindow(HelloWorld)}>Bingo</Link>
+                    <img src='/images/test.png' alt='Bingo'/>
+                    <h3>Bingo</h3>
+                    <p>¡Gana premios!</p>
+                    <button onClick={() => handleOpenWindow(HelloWorld)}>Jugar</button>
                 </div>
                 <div className='minigame-box'>
-                    <img src='/images/test.png'/>
-                    <Link onClick={() => handleOpenWindow(HelloWorld)}>Minijuego 4</Link>
+                    <img src='/images/test.png' alt='Minijuego 4'/>
+                    <h3>Minijuego 4</h3>
+                    <p>¡Diviértete!</p>
+                    <button onClick={() => handleOpenWindow(HelloWorld)}>Jugar</button>
                 </div>
             </div>
         </main>

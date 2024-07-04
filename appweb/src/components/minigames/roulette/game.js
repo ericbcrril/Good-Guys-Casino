@@ -30,7 +30,7 @@ const Game = ({ setScreenShake, coins, setCoins }) => {
   const handleGunSelection = (gun, numShots) => {
     revolverSpinSound.play();
     setSelectedGun(gun);
-    setMultiplier(gun.multiplier += numShots);
+    setMultiplier(gun.multiplier += (numShots * 2));
     setBullets(numShots);
     setTimeout(() => {
       setGameState('playing');
@@ -66,6 +66,7 @@ const Game = ({ setScreenShake, coins, setCoins }) => {
     if (newHealth <= 0) { // Se acabó tu salud
       setMessage('Has muerto...');
       newGameState = 'gameOver';
+      newCoins -= turns*(bet*multiplier);
     } else if (newTurns >= 6 || newBulletFired === bullets) { // Has sobrevivido a los 6 tiros o se han disparado todas las balas
       setMessage(newTurns >= 6 ? '¡Sobreviviste los 6 tiros!' : 'Se han disparado todas las balas');
       newGameState = 'goodEnding';
@@ -104,14 +105,14 @@ const Game = ({ setScreenShake, coins, setCoins }) => {
       {gameState === 'betting' && <Bet onBet={handleBet} coins={coins} />}
       {gameState === 'gunSelection' && <GunSelection onSelectGun={handleGunSelection} />}
       {gameState === 'playing' && (
-        <div>
-          <div className='game-container'>
+        <div className='game-actions'>
+          <StatusBar health={health} coins={coins - initialCoins} />
+          <div className='game-container' style={{display: 'flex', flexDirection: 'row'}}>
           <button className="game-button" onClick={playRound} disabled={isShootButtonDisabled}>Disparar</button>
           <button className="game-button" onClick={withdraw} disabled={isResetButtonDisabled}>Retirarse</button>
-          <StatusBar health={health} coins={coins - initialCoins} />
         </div>
-        <div className= 'game-container'>
-            <p className='game-messages'>{message}</p>
+        <div className= 'container-messages'>
+            <p>{message}</p>
         </div>
         </div>
       )}
@@ -119,7 +120,7 @@ const Game = ({ setScreenShake, coins, setCoins }) => {
         <div className='game-container'>
           <h2 className="game-over-message">Fin del Juego</h2>
           <p>{message}</p>
-          <p className="game-over-text">Has perdido todo tu dinero.</p>
+          <p className="game-over-text">Has perdido toda tu apuesta.</p>
           <p className="game-over-text">Balance: {coins - initialCoins > 0 ? `+${coins - initialCoins}` : coins - initialCoins}</p>
           <button className="reset-button" onClick={resetGame}>Reiniciar</button>
         </div>
