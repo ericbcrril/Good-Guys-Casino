@@ -60,6 +60,20 @@ nav img {
     height: 3vw;
 }
 
+.main-logo {
+    width: 40px;
+    height: 40px;
+    margin: 1%;
+    display: inline-block; /* Para que las dimensiones funcionen */
+}
+
+.main-logo img {
+    width: 100%;
+    height: 100%;
+    display: block;
+    pointer-events: none;
+}
+
 /*Tablets*/
 @media (min-width: 768px) and (max-width: 991.98px) {
     

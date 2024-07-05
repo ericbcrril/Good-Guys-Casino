@@ -1,108 +1,132 @@
+/* Estilos generales */
 .container-welcome-message {
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    justify-content: start;
-    width: 95%;
-    height: 10%;
-    left: 0;
-    top: 0;
-    margin-bottom: 5%;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  width: 95%;
+  height: 10%;
+  margin-bottom: 5%;
 }
 
 .container-welcome-message h1 {
-    font-size: 2vw;
+  font-size: 2vw;
 }
 
 .minigames-boxes-container {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    width: 90%;
-    height: 80%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  width: 90%;
+  height: 80%;
+  margin: auto;
 }
 
 .minigame-box {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    width: 20%;
-    height: 60%;
-    margin: 1%;
-    padding: 1%;
-    border-radius: 5%;
-    background-color: #fff;
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3), 
-    0 6px 6px rgba(0, 0, 0, 0.22); /* Sombra más pronunciada */
-    transition: box-shadow 0.3s ease; /* Transición para el efecto de hover */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 20%;
+  height: 75%;
+  margin: 1%;
+  padding: 1%;
+  border-radius: 5%;
+  background-color: #fff;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3), 
+              0 6px 6px rgba(0, 0, 0, 0.22); /* Sombra más pronunciada */
+  transition: box-shadow 0.3s ease; /* Transición para el efecto de hover */
 }
 
 .minigame-box:hover {
-    box-shadow: 0 14px 28px rgba(0, 0, 0, 0.5), 
-                0 10px 10px rgba(0, 0, 0, 0.4); /* Sombra más intensa en hover */
-  }
+  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.5), 
+              0 10px 10px rgba(0, 0, 0, 0.4); /* Sombra más intensa en hover */
+}
 
-.minigame-box a {
-    color: #000;
-    text-decoration: none;
-    cursor: pointer;
-    font-size: 1.4vw;
-  }
+.minigame-box h3 {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
+  font-size: 1.4vw;
+  margin: 10px 0;
+}
 
-  .minigame-box p {
-    color: #000;
-    text-decoration: none;
-    cursor: pointer;
-    font-size: 1.4vw;
-  }
-  
+.minigame-box p {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
+  font-size: 1.2vw;
+  margin: 5px 0;
+}
+
 .minigame-box img {
-    width: 90%;
-    height: 100%;
-    border-radius: 5%;
-    cursor: pointer;
+  width: 90%;
+  height: auto;
+  border-radius: 5%;
+  cursor: pointer;
+}
+
+.minigame-box button {
+  background-color: #831675;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  margin-top: 10px;
+}
+
+.minigame-box button:hover {
+  background-color: #700e60;
+}
+
+/* Estilos para tablets */
+@media (min-width: 768px) and (max-width: 991.98px) {
+  .container-welcome-message h1 {
+      font-size: 3vw;
   }
   
-  
-.minigame-box-img-link {
-    width: 60%;
-    height: 60%;
-    cursor: pointer;
+  .minigame-box {
+      width: 30%;
+      height: 60%;
   }
 
-  @media (min-width: 768px) and (max-width: 991.98px) {
-  
+  .minigame-box h3,
+  .minigame-box p,
+  .minigame-box button {
+      font-size: 2vw;
   }
+}
 
-  @media only screen and (min-width:320px) and (max-width:480px){
-
+/* Estilos para móviles */
+@media only screen and (min-width: 320px) and (max-width: 480px) {
   .container-welcome-message {
-    margin: 1%;
+      margin: 1%;
   }
-  
+
   .container-welcome-message h1 {
       font-size: 4vw;
   }
-  
+
   .minigames-boxes-container {
       flex-direction: column;
       flex-wrap: nowrap;
       align-items: center;
       padding-bottom: 5%;
   }
-  
+
   .minigame-box {
-      width: 40%;
-      height: 70%;
+      width: 80%;
+      height: auto;
       margin: 5%;
-      padding: 1%;
+      padding: 2%;
   }
-  
-  .minigame-box a {
-      text-decoration: none;
-      font-size: 2.8vw;
-      margin: 5%;
-    }
+
+  .minigame-box h3,
+  .minigame-box p,
+  .minigame-box button {
+      font-size: 3.5vw;
   }
+}

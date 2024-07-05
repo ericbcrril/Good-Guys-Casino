@@ -9,39 +9,21 @@ body {
     background: linear-gradient(90deg, rgba(0,74,23,1) 0%, rgba(0,125,39,1) 50%, rgba(0,74,23,1) 100%);
 }
 
+.cards-container{
+    flex-wrap: wrap;
+}
+
+.card{
+    width: 12vw;
+    height: 20vw;
+}
+
 .card-container {
     position: relative;
     display: inline-block;
-    margin: 5px;
+    margin: 5px -25px 5px 5px;
 }
 
 .card-container img {
     display: block;
-}
-
-.corner {
-    position: absolute;
-    width: 1px;
-    height: 1px;
-    background-color: transparent;
-}
-
-.top-left {
-    top: 0;
-    left: 0;
-}
-
-.top-right {
-    top: 0;
-    right: 0;
-}
-
-.bottom-left {
-    bottom: 0;
-    left: 0;
-}
-
-.bottom-right {
-    bottom: 0;
-    right: 0;
 }
