@@ -12,7 +12,7 @@ const createToken = (user) => {
 };
 
 const validateToken = (req, res, next) => {
-    const accessToken = req.cookies.access-token;
+    const accessToken = req.cookies['access-token'];
     console.log('si esta pasando por aqui', accessToken); // Debugging line
 
     if (!accessToken) {

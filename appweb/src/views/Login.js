@@ -4,6 +4,7 @@ import MainNabvar from "../components/navbars/MainNavbar";
 import { Link, useNavigate } from 'react-router-dom';
 import 'boxicons';
 import { accountCollection } from '../model/collections';
+import Footer from '../components/misc/Footer';
 
 
 
@@ -19,12 +20,16 @@ const Login = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            await axios.post('http://localhost:5000/api/accounts/login', { ...account });
+            const response = await axios.post('http://localhost:5000/api/accounts/login', { ...account }, { withCredentials: true});
             alert('sesion iniciada con exito');
+            console.log('Response: ', response);
+            navigate(response.data.redirectURL);
         } catch (error) {
             alert('error al iniciar sesion');
         }
     };
+
+
     return (
         <main className='main'>
             <MainNabvar />
@@ -61,6 +66,7 @@ const Login = () => {
                     </div>
                 </div>
             </section>
+            <Footer />
         </main>
     );
 }

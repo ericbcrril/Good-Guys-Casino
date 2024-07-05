@@ -6,8 +6,18 @@ import 'boxicons';
 
 const  Register = () => {
     const [account, setAccount] = useState({...accountCollection});
+    const [passwordsMatch, setPasswordsMatch] = useState(true);
     const handleChangeAccount = (e) => {
         const { name, value } = e.target;
+        setAccount( prevState => {
+            const newState = { ...prevState, [name]: value };
+
+            // Comparar los valores de 'password' y 'firstPassword'
+            if (newState.password && newState.firstPassword) {
+                setPasswordsMatch(newState.password === newState.firstPassword);
+            }
+            return newState;
+        });
         setAccount(prevState => ({ ...prevState, [name]: value }));
       };
 
@@ -43,11 +53,12 @@ const  Register = () => {
                     <input type='text' required name='user' value={account.user} onChange={handleChangeAccount}
                     placeholder='introduzca su nombre de usuario'></input>
                     <h3>crear contraseña</h3>
-                    <input type='password' required name='password'
-                     placeholder='introduzca contraseña'></input>
+                    <input type='password' required name='firstPassword'
+                     placeholder='introduzca contraseña' onChange={handleChangeAccount}></input>
                     <h3>confirmar contraseña</h3>
                     <input type='password' required name='password' value={account.password} onChange={handleChangeAccount} 
                     placeholder='introduzca contraseña'></input>
+                    {!passwordsMatch && <h4 style={{ color: 'red', zIndex: 3 }}>la contraseña no coincide</h4>}
                 </div>
                 <div className='options-item'>
                     <div>

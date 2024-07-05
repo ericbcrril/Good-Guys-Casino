@@ -6,7 +6,7 @@ import Login from './views/Login';
 import Register from './views/Register';
 import HelloWorld from './views/helloWorld';
 import NotFound from './views/Home';
-import UserInformation from './components/misc/userInformation';
+import HomeUser from './views/HomeUser';
 
 function App() {
   return (
@@ -17,7 +17,7 @@ function App() {
         <Route path="/minigames" element={<Minigames />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
-        <Route path='/profile' element={<UserInformation />} />{/* Pestaña de pruebas */}
+        <Route path="/profile" element={<HomeUser />}/>
         <Route path="*" element={<NotFound />} />
       </Routes>
     </Router>
