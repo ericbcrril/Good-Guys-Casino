@@ -24,10 +24,10 @@ const UserLoggedNavbar = () => {
 
     return(
         <nav>
-            <img src="/images/logo/logo.png" />
+            <img className='main-logo' src="/images/logos/logo_min.png" draggable='false'/>
             <Link to="/main" >Inicio</Link>
             <Link to="/minigames" >Minijuegos</Link>
-            <i class='bx bxs-user-circle' onClick={handleProfileClick}></i>
+            <i class='bx bxs-user-circle user-icon' onClick={handleProfileClick}></i>
             {showProfile && <Profile className={animationClass}/>}
         </nav>
     );
