@@ -51,12 +51,12 @@ exports.login = async (req, res) => {
         return res.status(400).json({ error: 'Usuario o contraseña incorrectos' });
       } else {
         const accessToken = createToken(account);
-        console.log(decode(accessToken));
         res.cookie('access-token', accessToken, {
-          maxAge: 30000,
           httpOnly: true,
+          maxAge: 3600000,
         });
-        res.status(200).json({ message: 'Inicio de sesión exitoso', redirectUrl: '/profile' });
+        //const setCookieHeader = res.getHeader('Set-Cookie');
+        res.json({redirectURL: '/profile'});
       }
     });
 
@@ -68,9 +68,7 @@ exports.login = async (req, res) => {
 
 exports.profile = async (req, res) => {
   console.log("si paso por aca");
-
-  // Verifica si el _id está correctamente pasando como un ObjectId
-  const user = req.user; // Asumiendo que el middleware validateToken asigna el user al request
+  const user = req.user; 
 
   try {
     const account = await accounts.findById(user);
