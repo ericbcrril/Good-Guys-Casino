@@ -18,8 +18,8 @@
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: space-between;
-  width: 90%;
-  height: 80%;
+  width: 90vw;
+  height: 80vh;
   margin: auto;
 }
 
@@ -28,8 +28,8 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: 20%;
-  height: 75%;
+  width: 18vw;
+  height:55vh;
   margin: 1%;
   padding: 1%;
   border-radius: 5%;
@@ -56,7 +56,7 @@
   color: #000;
   text-decoration: none;
   cursor: pointer;
-  font-size: 1.2vw;
+  font-size: 1.15vw;
   margin: 5px 0;
 }
 
@@ -107,7 +107,7 @@
   }
 
   .container-welcome-message h1 {
-      font-size: 4vw;
+      font-size: 6vw;
   }
 
   .minigames-boxes-container {
@@ -115,6 +115,9 @@
       flex-wrap: nowrap;
       align-items: center;
       padding-bottom: 5%;
+      margin-top: 5%;
+      width: 70vw;
+      height: 60vh;
   }
 
   .minigame-box {

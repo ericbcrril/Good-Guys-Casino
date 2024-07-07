@@ -192,7 +192,7 @@ const Game = ({ coins, setCoins }) => {
             {gameState === 'playing' && (
                 <div>
                     <div>
-                        <h2>Crupier</h2>
+                        <h2 className='game-text'>Crupier</h2>
                         <div>
                             {dealerCards.map((card, index) => (
                                 <div key={index} className="card-container">
@@ -205,10 +205,10 @@ const Game = ({ coins, setCoins }) => {
                             ))}
 
                         </div>
-                        <div className={`${!dealerSecondCardVisible ? 'noVisible' : ''}`}>Total: {calculateTotal(dealerCards)}</div>
+                        <div className={`game-text ${!dealerSecondCardVisible ? 'noVisible' : ''}`}>Total: {calculateTotal(dealerCards)}</div>
                     </div>
                     <div>
-                        <h2>Jugador</h2>
+                        <h2 className='game-text'>Jugador</h2>
                         <div>
                             {playerCards.map((card, index) => (
                                 <div key={index} className="card-container">
@@ -220,7 +220,7 @@ const Game = ({ coins, setCoins }) => {
                                 </div>
                             ))}
                         </div>
-                        <div>Total: {calculateTotal(playerCards)}</div>
+                        <div className='game-text'>Total: {calculateTotal(playerCards)}</div>
                     </div>
                     <div>
                         <button className="game-button" onClick={playerHit} disabled={isHitButtonDisabled}>

@@ -1,0 +1,33 @@
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    overflow: hidden;
+    background: rgb(0,74,23);
+    background: linear-gradient(90deg, rgba(0,74,23,1) 0%, rgba(0,125,39,1) 50%, rgba(0,74,23,1) 100%);
+}
+
+.cards-container{
+    flex-wrap: wrap;
+}
+
+.card{
+    width: 20vw;
+    height: 28vw;
+}
+
+.card-container {
+    position: relative;
+    display: inline-block;
+    margin: 50px -150px 50px 50px;
+}
+
+.card-container img {
+    display: block;
+}
+
+.game-text{
+    font-size: 4vw;
+}

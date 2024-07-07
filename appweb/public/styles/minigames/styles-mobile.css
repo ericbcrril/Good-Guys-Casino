@@ -1,0 +1,156 @@
+/* Estilos generales para los minijuegos*/
+
+* {
+    font-family: 'Press Start 2P', cursive;
+    color: #FFFFFF;
+    font-size: 4vw;
+}
+
+.noVisible {
+    display: none;
+}
+
+.screen-shake {
+    animation: shake 0.3s linear;
+  }
+  
+@keyframes shake {
+    0% { transform: translate(0, 0); }
+    25% { transform: translate(-2vw, 0); }
+    50% { transform: translate(2vw, 0); }
+    75% { transform: translate(-2vw, 0); }
+    100% { transform: translate(0, 0); }
+}
+
+.fade-in {
+    opacity: 1;
+    transition: opacity 0.5s ease-in-out;
+}
+
+.fade-out {
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
+}
+
+  
+/* Título del juego */
+.game-title {
+    position: relative;
+    font-size: 8vw;
+    color: #FFFFFF;
+    text-shadow: 2px 2px #000000;
+    text-wrap: nowrap;
+    margin: 5%;
+}
+
+.balance-box{
+    position: absolute;
+    display: flex;
+    font-size: 3.5vw;
+    left: 1vh;
+    top: 0vh;
+  }
+
+  .game-messages{
+    white-space: break-space;
+  }
+
+
+/* Contenedores del juego */
+.game-container {
+    text-align: center;
+    border: 8px solid #FF33CC;
+    padding: 8vw;
+    border-radius: 4vw;
+    background-color: #2D0130;
+}
+
+/* Mensaje de Fin del Juego */
+.game-over-message {
+    font-size: 6vw;
+    color: #FF33CC;
+    text-shadow: 2px 2px #000000;
+    text-wrap: nowrap;
+    margin: 20px 0;
+  }
+
+/* Botones del juego */
+.game-button {
+    display: block;
+    width: 50vw;
+    padding: 3vw;
+    margin: 4vw auto;
+    font-size: 4vw;
+    color: #FFFFFF;
+    background-color: #FF33CC;
+    border: 5px solid #FF33CC;
+    border-radius: 20px;
+    cursor: pointer;
+    text-transform: uppercase;
+    text-shadow: 2px 2px #000000;
+    transition: background-color 0.3s, transform 0.1s;
+}
+
+.game-button:disabled{
+    background-color: #d82ead;
+    transform: scale(0.95);
+    pointer-events: none;
+}
+
+.game-button:hover {
+    background-color: #CC00FF;
+}
+
+.game-button:active {
+    background-color: #9900CC;
+}
+
+.reset-button {
+    background-color: #FF3333;
+    border: 4px solid #FF3333;
+    font-size: 4vw;
+    padding: 3vw;
+}
+
+.reset-button:hover {
+    background-color: #FF0000;
+}
+
+.reset-button:active {
+    background-color: #CC0000;
+}
+
+/* Inputs del formulario */
+.bet-input,
+.bet-select {
+    width: 50vw;
+    padding: 2vw;
+    margin: 4vw;
+    font-size: 4vw;
+    color: #FFFFFF;
+    background-color: #2D0130;
+    border: 2px solid #FF33CC;
+    border-radius: 2vw;
+    text-align: center;
+}
+
+.bet-label {
+    font-size: 4vw;
+    text-wrap: nowrap;
+}
+
+/* Formulario */
+.bet-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.bet-form label {
+    margin-bottom: 2vw;
+}
+
+.bet-form button {
+    width: auto;
+}
+

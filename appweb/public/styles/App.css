@@ -51,6 +51,7 @@ main {
   height: 20vw; 
   width: 20vw;
   margin: 5%;
+  pointer-events: none;
 }
 
 /*Otros*/
@@ -128,6 +129,7 @@ footer p {
   width: 90%;
   height: 90%;
   cursor: pointer;
+  pointer-events: none;
 }
 
 

@@ -2,6 +2,7 @@ import React from 'react';
 import MainNavbar from "../components/navbars/MainNavbar";
 import openWindow from '../scripts/misc/redirectWindow'; 
 import HelloWorld from './helloWorld'; 
+import Footer from '../components/misc/Footer';
 // Minijuegos
 import Roulette from './minigames/roulette';
 import BlackJack from './minigames/blackjack';
@@ -33,8 +34,8 @@ function ViewMinigames() {
                 </div>
                 <div className='minigame-box'>
                     <img src='/images/test.png' alt='Bingo'/>
-                    <h3>Bingo</h3>
-                    <p>¡Gana premios!</p>
+                    <h3>Ruleta Americana</h3>
+                    <p>Juego de azar típico en casinos</p>
                     <button onClick={() => handleOpenWindow(HelloWorld)}>Jugar</button>
                 </div>
                 <div className='minigame-box'>
