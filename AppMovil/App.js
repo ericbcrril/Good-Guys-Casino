@@ -8,8 +8,9 @@ import { Logo } from './components/misc/components';
 import { styles } from "./assets/styles/styles";
 //Imagenes 
 const logoGG = require('./assets/images/logos/logoGG.png');
+const logoGgAnimated = require('./assets/images/logos/logoGgAnimated.gif');
 //Vistas
-import HomeScreen from './views/HomeScreen';
+import AppScreen from './views/AppScreen';
 import LoginScreen from './views/LoginScreen';
 
 const Stack = createStackNavigator();
@@ -23,15 +24,15 @@ export default function App() {
     // Simulando una verificación de sesión al inicio de la aplicación
     setTimeout(() => {
       setIsLoading(false);
-      setIsLoggedIn(false); // Cambiar a true si se detecta una sesión iniciada
+      setIsLoggedIn(true); // Cambiar a true si se detecta una sesión iniciada
     }, 2000); // Simulación de carga durante 2 segundos
   }, []);
 
   if (isLoading) {
     return (
       <View style={styles.main}>
-        <Logo source={logoGG} resizeMode='contain'/>
-        <ActivityIndicator size="large" />
+        <Logo source={logoGgAnimated} resizeMode='contain'/>
+        <ActivityIndicator size="large" color='#831675' />
       </View>
     );
   }
@@ -40,7 +41,7 @@ export default function App() {
     <NavigationContainer>
       <Stack.Navigator>
         {isLoggedIn ? (
-          <Stack.Screen name="Home" component={HomeScreen} options={{ headerShown: false }}/>
+          <Stack.Screen name="App" component={AppScreen} options={{ headerShown: false }}/>
         ) : (
           <Stack.Screen name="Login" component={LoginScreen} options={{ headerShown: false }}/>
         )}

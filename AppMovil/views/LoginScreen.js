@@ -1,26 +1,35 @@
 // LoginScreen.js
 import React from 'react';
+import { useState } from 'react';
 import Icon from 'react-native-vector-icons/FontAwesome';
 //Estilos
 import { styles } from "../assets/styles/styles";
 //Componentes
-import { View, Image } from 'react-native';
+import { View, Image, TouchableOpacity, Text } from 'react-native';
 import { LabelForm, TitleForm, FormInput, ButtonText, LoginButton, 
         GoogleButton, GoogleButtonText } from "../components/forms/formComponents";
 import { Logo, WhiteBoxLink } from "../components/misc/components";
 const logoGG = require('../assets/images/logos/logoGG.png');
+const logoGgAnimated = require('../assets/images/logos/logoGgAnimated.gif');
 
 export default function App() {
+    const [isPasswordVisible, setIsPasswordVisible] = useState(false);
+
     return (
-        <View style={styles.main}>
+        <View style={styles.mainLogin}>
             <View>
-                <Logo source={logoGG} resizeMode='contain'/>
+                <Logo source={logoGgAnimated} resizeMode='contain'/>
             </View>
             <View style={{width: "70%"}}>
                 <LabelForm>Usuario:</LabelForm>
                 <FormInput placeholder="Usuario" autoCapitalize="none" keyboardType="email-address"/>
                 <LabelForm>Contraseña:</LabelForm>
-                <FormInput placeholder="Contraseña" secureTextEntry/>
+                <View style={{display: 'flex', flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center'}}>
+                <FormInput placeholder="Contraseña" secureTextEntry={isPasswordVisible} style={{width: '100%'}}/>
+                <TouchableOpacity onPress={() => setIsPasswordVisible(!isPasswordVisible)}>
+                <Icon name={isPasswordVisible ? 'eye-slash' : 'eye'} size={24} style={{margin: '15%'}}/>
+                </TouchableOpacity>
+                </View>
                 <View style={{display: 'flex', flexDirection: 'row', justifyContent: 'space-between'}}>
                     <WhiteBoxLink>Registrate</WhiteBoxLink><WhiteBoxLink>Olvide mi Contraseña</WhiteBoxLink>
                 </View>

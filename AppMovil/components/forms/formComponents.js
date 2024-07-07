@@ -24,7 +24,7 @@ const FormInput = styled(TextInput)({
 });
 
 const LoginButton = styled(TouchableOpacity)({
-    backgroundColor: '#6b0103',
+    backgroundColor: '#831675',
     padding: 10,
     alignItems: 'center',
     borderRadius: 5,
@@ -40,7 +40,7 @@ const ButtonText = styled(Text)({
 // Estilos adicionales para el botón de Google
 const GoogleButton = styled(LoginButton)({
     flexDirection: 'row',
-    backgroundColor: '#DB4437',
+    backgroundColor: '#5D1675',
     marginTop: 10,
 });
 
