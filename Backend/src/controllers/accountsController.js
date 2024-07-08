@@ -54,6 +54,7 @@ exports.login = async (req, res) => {
         res.cookie('access-token', accessToken, {
           httpOnly: true,
           maxAge: 3600000,
+          //path: '/profile',
         });
         //const setCookieHeader = res.getHeader('Set-Cookie');
         res.json({redirectURL: '/profile'});
@@ -67,19 +68,26 @@ exports.login = async (req, res) => {
 };
 
 exports.profile = async (req, res) => {
-  console.log("si paso por aca");
-  const user = req.user; 
-
   try {
-    const account = await accounts.findById(user);
-    if (!account) {
-      return res.status(404).json({ error: "Profile not found" });
+    const { user, password } = req.body;
+
+    if (!user || !password) {
+      return res.status(400).json({ error: 'Faltan datos de usuario o contraseña' });
     }
-    res.json(account);
-  } catch (error) {
+    const account = await accounts.findOne({ user: user});
+    if (!account) {
+        return res.status(404).json({ error: 'Usuario no encontrado' });
+    }
+    res.json({
+        user: account.user,
+        email: account.email,
+        name: account.name,
+        // Agrega más campos según sea necesario
+    });
+} catch (error) {
     console.error(error);
-    res.status(500).json({ error: "An error occurred while retrieving the profile" });
-  }
+    res.status(500).json({ error: 'Error interno del servidor' });
+}
 };
 
 // Crear una nuevo registro

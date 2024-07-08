@@ -12,6 +12,7 @@ const createToken = (user) => {
 };
 
 const validateToken = (req, res, next) => {
+    alert('no esta pasando por aca'); // Debugging line
     const accessToken = req.cookies['access-token'];
     console.log('si esta pasando por aqui', accessToken); // Debugging line
 
