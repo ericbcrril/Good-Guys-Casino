@@ -1,50 +1,59 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import 'boxicons';
-import { accountCollection } from '../../model/collections';
 
 const Profile = ({ className }) => {
   const [profileData, setProfileData] = useState(null);
   const [error, setError] = useState(null);
 
+  useEffect(() => {
+    const fetchProfileData = async () => {
+      try {
+        const response = await axios.get('http://localhost:5000/api/accounts/profile', { withCredentials: true });
+        setProfileData(response.data);
+        console.log('Perfil obtenido:', response.data);
+      } catch (error) {
+        setError('Error al obtener datos del perfil');
+        console.error('Error:', error);
+      }
+    };
 
-        const fetchProfileData = async (e) => {
-          e.preventDefault();
-            try {
-                const response = await axios.get('http://localhost:5000/api/accounts/profile', {withCredentials: true});
-                alert('algo no funciona bien', response);
-                setProfileData(response.data);
-            } catch (error) {
-                setError('Error al obtener datos del perfil');
-                console.error('Error:', error);
-            }
-        };
+    fetchProfileData(); // Llama a la función de obtención de datos del perfil al montar el componente
+  }, []); // [] asegura que el efecto se ejecute solo una vez, al montar el componente
+
+  if (error) {
+    return <div>Error: {error}</div>;
+  }
+
+  if (!profileData) {
+    return <div>Cargando...</div>;
+  }
 
   return (
     <div className={`profile ${className}`}>
       <section className='profile-header'>
-      <i class='bx bxs-user-circle'></i>
-      <h2>{ profileData } </h2>
-      <p>user@gmail.com</p>
-      <div>
-        <h3>Manage GG account</h3>
-        <i class='bx bxs-cog' ></i>
-      </div>
+        <i className='bx bxs-user-circle'></i>
+        <h2>{profileData.user}</h2>
+        <p>{profileData.email}</p>
+        <div>
+          <h3>Manage GG account</h3>
+          <i className='bx bxs-cog'></i>
+        </div>
       </section>
       <section className='information'>
         <div className='box'>
-        <i class='bx bxs-wallet'></i>
-        <p>wallet</p>
+          <i className='bx bxs-wallet'></i>
+          <p>wallet</p>
         </div>
         <div className='box'>
-        <i class='bx bx-history' ></i>
-        <p>history</p>
+          <i className='bx bx-history'></i>
+          <p>history</p>
         </div>
       </section>
       <section className='log-out'>
-      <i class='bx bx-log-in'></i>
+        <i className='bx bx-log-in'></i>
       </section>
-      <button onClick={fetchProfileData}>click</button>
+      <button>click</button>
     </div>
   );
 };

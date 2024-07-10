@@ -1,9 +1,11 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 import Footer from "../components/misc/Footer";
 import { Link } from 'react-router-dom';
 import UserLoggedNavbar from '../components/navbars/UserLoggedNavbar';
 
-function homeUser() {
+const HomeUser = () => {
+
     return(
         <main>
             <UserLoggedNavbar />
@@ -41,4 +43,4 @@ function homeUser() {
     );
 }
 
-export default homeUser;
+export default HomeUser;

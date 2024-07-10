@@ -7,6 +7,7 @@ import Register from './views/Register';
 import HelloWorld from './views/helloWorld';
 import NotFound from './views/Home';
 import HomeUser from './views/HomeUser';
+import ProtectedRoute from './ProtectedRoute';
 
 function App() {
   return (
@@ -17,7 +18,10 @@ function App() {
         <Route path="/minigames" element={<Minigames />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
-        <Route path="/profile" element={<HomeUser />}/>
+        <Route
+          path="/profile"
+          element={ <ProtectedRoute element={<HomeUser />} />}
+        />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </Router>
