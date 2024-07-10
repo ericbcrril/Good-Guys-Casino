@@ -2,20 +2,19 @@ import { ImageBackground } from 'react-native';
 import { View, Text, TouchableOpacity, Image } from 'react-native';
 import styled from 'styled-components/native';
 //Estilos
-import { styles } from "../../assets/styles/styles";
+import { styles } from "assets/styles/styles";
 
 const Logo = styled(Image)({
   width: 250,
   height: 250,
   marginBottom: 20,
 });
-const NavBar = () => (
-  <View style={styles.navBar}>
-    <Text style={styles.navBarText}>Inicio</Text>
-    <Text style={styles.navBarText}>Minijuegos</Text>
-    <Text style={styles.navBarText}>Ajustes</Text>
-  </View>
-);
+
+const Hr = styled(View)({
+    height: 1,
+    backgroundColor: '#CED0CE',
+    marginVertical: 10,
+});
 /*White Box es un view redondeado con sombra*/
 const WhiteBox = styled(View)({
     padding: 20,
@@ -59,4 +58,4 @@ const WhiteBox = styled(View)({
     marginTop: 10,
 });
 
-  export {WhiteBox, WhiteBoxTitle, WhiteBoxText, WhiteBoxLink, WhiteBoxButton, Logo, NavBar };
+  export {WhiteBox, WhiteBoxTitle, WhiteBoxText, WhiteBoxLink, WhiteBoxButton, Logo, Hr };

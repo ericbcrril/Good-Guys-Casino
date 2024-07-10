@@ -3,22 +3,20 @@ import { StatusBar } from 'expo-status-bar';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import { Text, View, ScrollView, Image, StyleSheet, TouchableOpacity } from 'react-native';
 //Componentes 
-import { WhiteBox, WhiteBoxText, WhiteBoxTitle, WhiteBoxLink, WhiteBoxButton, NavBar } from "../components/misc/components";
-import { UserIcon } from '../components/home/homeComponents';
+import { WhiteBox, WhiteBoxText, WhiteBoxTitle, WhiteBoxLink, WhiteBoxButton, NavBar } from "components/misc/components";
+import { UserIcon } from 'components/home/homeComponents';
 //Estilos
-import { styles } from "../assets/styles/styles";
-import { home } from "../assets/styles/home";
+import { styles } from "assets/styles/styles";
+import { home } from "assets/styles/home";
 //Imagenes
-const logoGG = require('../assets/images/logos/logoGG.png');
-const theTest = require('../assets/images/test.png');
+const logoGG = require('assets/images/logos/logoGG.png');
+const theTest = require('assets/images/test.png');
 
 export default function HomeScreen() {
   return (
       <ScrollView style={styles.mainHome}>
 
-        <View style={{display: 'flex', flexDirection: 'row', alignItems: 'center'}}>
-          <TouchableOpacity style={{flexDirection: 'row', alignItems: 'center'}}><UserIcon source={theTest}/><Text>Usuario 1</Text></TouchableOpacity>
-        </View>
+        
 
         <WhiteBox style={{ width: '95%' }}>
     <WhiteBoxTitle>Balance</WhiteBoxTitle>

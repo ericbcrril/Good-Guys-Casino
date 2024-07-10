@@ -19,7 +19,7 @@ const styles = StyleSheet.create({
       flex: 1,
       backgroundColor: '#F5FCFF',
       padding: "5%",
-      paddingTop: '10%',
+      paddingTop: '0%',
       overflow: 'visible',
     },
     containerLoading: {

@@ -10,8 +10,8 @@ import { styles } from "./assets/styles/styles";
 const logoGG = require('./assets/images/logos/logoGG.png');
 const logoGgAnimated = require('./assets/images/logos/logoGgAnimated.gif');
 //Vistas
-import AppScreen from './views/AppScreen';
-import LoginScreen from './views/LoginScreen';
+import AppScreen from './views/minigames/rouletteScreen';
+import LoginScreen from './views/login/LoginScreen';
 
 const Stack = createStackNavigator();
 
