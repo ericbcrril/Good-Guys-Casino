@@ -1,29 +1,92 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, Button, StyleSheet } from 'react-native';
-//Estilos
+import { View, Text, TouchableOpacity } from 'react-native';
+import { Audio } from 'expo-av'; // Importa el módulo de audio de Expo AV
 import { styles } from 'assets/styles/minigames/styles';
 import { stylesRoulette } from 'assets/styles/minigames/roulette';
-//Componentes
-import { GameText, GameContainer, ButtonText, GameButton, TextGameButton, GameTextInput, GameTitle, ResetButton } from 'components/minigames/roulette/components';
 import Bet from './bet';
 import GunSelection from './gunSelection';
 import StatusBar from './statusBar';
-// Importa los efectos de sonido según sea necesario en React Native
+import {
+  GameText,
+  GameContainer,
+  GameButton,
+  TextGameButton,
+  ResetButton,
+} from 'components/minigames/roulette/components';
 
 const Game = ({ setScreenShake, coins, setCoins }) => {
-  const [gameState, setGameState] = useState('betting'); // 'betting', 'gunSelection', 'playing', 'gameOver', 'goodEnding'
-  const [message, setMessage] = useState('Empieza el juego...'); // Mensaje de conclusión del juego
-  const [bet, setBet] = useState(20); // Apuesta seleccionada
-  const [multiplier, setMultiplier] = useState(1); // Multiplicador seleccionado
-  const [selectedGun, setSelectedGun] = useState(null); // Revolver seleccionado
-  const [health, setHealth] = useState(100); // Salud del jugador
-  const [initialCoins, setInitialCoins] = useState(coins); // Monedas iniciales antes de comenzar el juego
-  const [bullets, setBullets] = useState(1); // Cantidad de balas que eligió el jugador
-  const [turns, setTurns] = useState(0); // Turnos jugados
-  const [shotsFired, setShotsFired] = useState(0); // Veces en las que se disparó el arma
-  const [bulletFired, setBulletFired] = useState(0); // Veces en las que había bala en el disparo
-  const [isShootButtonDisabled, setShootButtonDisabled] = useState(false); // Estado para manejar la desactivación del botón disparar
-  const [isResetButtonDisabled, setResetButtonDisabled] = useState(true); // Estado para manejar la desactivación del botón reiniciar
+  // Estados del juego
+  const [gameState, setGameState] = useState('betting');
+  const [message, setMessage] = useState('Empieza el juego...');
+  const [bet, setBet] = useState(20);
+  const [multiplier, setMultiplier] = useState(1);
+  const [selectedGun, setSelectedGun] = useState(null);
+  const [health, setHealth] = useState(100);
+  const [initialCoins, setInitialCoins] = useState(coins);
+  const [bullets, setBullets] = useState(1);
+  const [turns, setTurns] = useState(0);
+  const [shotsFired, setShotsFired] = useState(0);
+  const [bulletFired, setBulletFired] = useState(0);
+  const [isShootButtonDisabled, setShootButtonDisabled] = useState(false);
+  const [isResetButtonDisabled, setResetButtonDisabled] = useState(true);
+
+  // Referencias a los sonidos
+  const gunshotSound = React.useRef(new Audio.Sound());
+  const emptyGunshotSound = React.useRef(new Audio.Sound());
+  const revolverSpinSound = React.useRef(new Audio.Sound());
+
+  useEffect(() => {
+    // Carga los sonidos al montar el componente
+    const loadSounds = async () => {
+      try {
+        await gunshotSound.current.loadAsync(
+          require('assets/sounds/minigames/roulette/single-gunshot.mp3')
+        );
+        await emptyGunshotSound.current.loadAsync(
+          require('assets/sounds/minigames/roulette/empty-gunshot.mp3')
+        );
+        await revolverSpinSound.current.loadAsync(
+          require('assets/sounds/minigames/roulette/revolver-spin.mp3')
+        );
+      } catch (error) {
+        console.log('Error loading sounds:', error);
+      }
+    };
+
+    loadSounds();
+
+    return () => {
+      // Descarga los sonidos al desmontar el componente para liberar recursos
+      gunshotSound.current.unloadAsync();
+      emptyGunshotSound.current.unloadAsync();
+    };
+  }, []);
+
+  // Función para reproducir el sonido de disparo
+  const playGunshotSound = async () => {
+    try {
+      await gunshotSound.current.replayAsync();
+    } catch (error) {
+      console.log('Error playing gunshot sound:', error);
+    }
+  };
+
+  // Función para reproducir el sonido de disparo vacío
+  const playEmptyGunshotSound = async () => {
+    try {
+      await emptyGunshotSound.current.replayAsync();
+    } catch (error) {
+      console.log('Error playing empty gunshot sound:', error);
+    }
+  };
+
+  const playrevolverSpinSound = async () => {
+    try {
+      await revolverSpinSound.current.replayAsync();
+    } catch (error) {
+      console.log('Error playing empty gunshot sound:', error);
+    }
+  };
 
   const handleBet = (amount) => {
     setBet(amount);
@@ -32,18 +95,19 @@ const Game = ({ setScreenShake, coins, setCoins }) => {
     setGameState('gunSelection');
   };
 
-  const handleGunSelection = (gun, numShots) => {
-    // Aquí deberías manejar la reproducción de sonidos en React Native si es necesario
+  const handleGunSelection = async (gun, numShots) => {
+    await playrevolverSpinSound();
     setSelectedGun(gun);
-    setMultiplier(gun.multiplier + (numShots * 2));
+    setMultiplier(gun.multiplier + numShots * 2);
     setBullets(numShots);
     setTimeout(() => {
       setGameState('playing');
     }, 2000);
   };
 
-  const playRound = () => {
-    setShootButtonDisabled(true); // Desactivar el botón de disparo
+  const playRound = async () => {
+    setShootButtonDisabled(true);
+
     const probability = (bullets - bulletFired) / (6 - turns);
     const isBullet = Math.random() < probability;
 
@@ -54,26 +118,28 @@ const Game = ({ setScreenShake, coins, setCoins }) => {
     let newBulletFired = bulletFired;
     let newGameState = null;
 
-    if (isBullet) { // Toco bala
-      // Aquí deberías manejar la reproducción de sonidos en React Native si es necesario
-      setScreenShake(true); // Activar temblor
+    if (isBullet) {
+      await playGunshotSound();
+      setScreenShake(true);
       setTimeout(() => setScreenShake(false), 200);
-      setMessage('Te tocó bala!');
+      setMessage('¡Te tocó bala!');
       newHealth -= selectedGun.damage;
       newCoins -= bet * multiplier;
       newBulletFired += 1;
-    } else { // No hay bala
-      // Aquí deberías manejar la reproducción de sonidos en React Native si es necesario
+    } else {
+      await playEmptyGunshotSound();
       setMessage('¡Qué suerte, no hay bala!');
       newCoins += bet * multiplier;
     }
 
-    if (newHealth <= 0) { // Se acabó tu salud
+    if (newHealth <= 0) {
       setMessage('Has muerto...');
       newGameState = 'gameOver';
       newCoins -= turns * (bet * multiplier);
-    } else if (newTurns >= 6 || newBulletFired === bullets) { // Has sobrevivido a los 6 tiros o se han disparado todas las balas
-      setMessage(newTurns >= 6 ? '¡Sobreviviste los 6 tiros!' : 'Se han disparado todas las balas');
+    } else if (newTurns >= 6 || newBulletFired === bullets) {
+      setMessage(
+        newTurns >= 6 ? '¡Sobreviviste los 6 tiros!' : 'Se han disparado todas las balas'
+      );
       newGameState = 'goodEnding';
     }
 
@@ -113,14 +179,14 @@ const Game = ({ setScreenShake, coins, setCoins }) => {
         <View style={stylesRoulette.gameActions}>
           <StatusBar health={health} coins={coins - initialCoins} />
           <GameContainer style={{ flexDirection: 'row', width: '100%' }}>
-            <GameButton onPress={playRound} disabled={isShootButtonDisabled} >
+            <GameButton onPress={playRound} disabled={isShootButtonDisabled}>
               <TextGameButton>Disparar</TextGameButton>
             </GameButton>
-            <GameButton onPress={withdraw} disabled={isResetButtonDisabled} >
+            <GameButton onPress={withdraw} disabled={isResetButtonDisabled}>
               <TextGameButton>Retirarse</TextGameButton>
             </GameButton>
           </GameContainer>
-          <View style={{ ...stylesRoulette.containerMessages, width: '100%'}}>
+          <View style={{ ...stylesRoulette.containerMessages, width: '100%' }}>
             <Text style={stylesRoulette.containerMessagesText}>{message}</Text>
           </View>
         </View>
@@ -129,19 +195,29 @@ const Game = ({ setScreenShake, coins, setCoins }) => {
         <GameContainer>
           <Text style={styles.gameOverMessage}>Fin del Juego</Text>
           <GameText>{message}</GameText>
-          <GameText >Has perdido toda tu apuesta.</GameText>
-          <GameText >Balance: {coins - initialCoins > 0 ? `+${coins - initialCoins}` : coins - initialCoins}</GameText>
-          <ResetButton  onPress={resetGame}><TextGameButton>Reiniciar</TextGameButton></ResetButton>
+          <GameText>Has perdido toda tu apuesta.</GameText>
+          <GameText>
+            Balance: {coins - initialCoins > 0 ? `+${coins - initialCoins}` : coins - initialCoins}
+          </GameText>
+          <ResetButton onPress={resetGame}>
+            <TextGameButton>Reiniciar</TextGameButton>
+          </ResetButton>
         </GameContainer>
       )}
       {gameState === 'goodEnding' && (
         <GameContainer>
-          <Text style={styles.gameOverMessage}>{coins - initialCoins > 0 ? '¡Felicidades!' : '¡Mala suerte!'}</Text>
-          <GameText >{message}</GameText>
-          <GameText >Turnos jugados: {turns}</GameText>
-          <GameText >Salud restante: {health}</GameText>
-          <GameText >Balance: {coins - initialCoins > 0 ? `+${coins - initialCoins}` : coins - initialCoins}</GameText>
-          <ResetButton  onPress={resetGame}><TextGameButton>Reiniciar</TextGameButton></ResetButton>
+          <Text style={styles.gameOverMessage}>
+            {coins - initialCoins > 0 ? '¡Felicidades!' : '¡Mala suerte!'}
+          </Text>
+          <GameText>{message}</GameText>
+          <GameText>Turnos jugados: {turns}</GameText>
+          <GameText>Salud restante: {health}</GameText>
+          <GameText>
+            Balance: {coins - initialCoins > 0 ? `+${coins - initialCoins}` : coins - initialCoins}
+          </GameText>
+          <ResetButton onPress={resetGame}>
+            <TextGameButton>Reiniciar</TextGameButton>
+          </ResetButton>
         </GameContainer>
       )}
     </View>
