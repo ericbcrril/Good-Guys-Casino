@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
 import { View, Text, TextInput, Button } from 'react-native';
-import { GameContainer, GameButton, TextGameButton, GameTextInput, GameTitle } from 'components/minigames/roulette/components';
+import { useNavigation } from '@react-navigation/native';
+import { GameContainer, GameButton, TextGameButton, GameTextInput, GameTitle, ResetButton } from 'components/minigames/roulette/components';
 import { styles } from 'assets/styles/minigames/styles';
 
 const Bet = ({ onBet, coins }) => {
+  const navigation = useNavigation();
   const [amount, setAmount] = useState('20'); // Inicializado como string para el TextInput
   const [multiplier, setMultiplier] = useState(1);
   const balance = coins; // Suponiendo que coins representa el balance del jugador
@@ -20,6 +22,10 @@ const Bet = ({ onBet, coins }) => {
     }
     onBet(betAmount, multiplier);
   };
+
+  const handleExit = () => {
+    navigation.navigate('App');
+  }
 
   return (
     <GameContainer>
@@ -41,6 +47,9 @@ const Bet = ({ onBet, coins }) => {
         <GameButton onPress={handleSubmit}>
           <TextGameButton>Apostar</TextGameButton>
         </GameButton>
+        <ResetButton onPress={handleExit}>
+          <TextGameButton>Salir</TextGameButton>
+        </ResetButton>
       </View>
     </GameContainer>
   );

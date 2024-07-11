@@ -1,41 +1,61 @@
 import { Audio } from 'expo-av';
+const VOLUME = 1.0;
 
-const useSound = (file) => {
-  const [sound, setSound] = useState();
+const soundsEffects = {
+  gunshotSound: new Audio.Sound(),
+  emptyGunshotSound: new Audio.Sound(),
+  revolverSpinSound: new Audio.Sound(),
 
-  useEffect(() => {
-    const loadSound = async () => {
-      const { sound } = await Audio.Sound.createAsync(
-        file
-      );
-      setSound(sound);
-    };
-
-    loadSound();
-
-    return () => {
-      if (sound) {
-        sound.unloadAsync(); // Descargar el sonido al desmontar el componente
-      }
-    };
-  }, []);
-
-  const playSound = async () => {
-    if (sound) {
-      await sound.replayAsync();
+  async loadSounds() {
+    try {
+      await this.gunshotSound.loadAsync(require('assets/sounds/minigames/roulette/single-gunshot.mp3'));
+      await this.emptyGunshotSound.loadAsync(require('assets/sounds/minigames/roulette/empty-gunshot.mp3'));
+      await this.revolverSpinSound.loadAsync(require('assets/sounds/minigames/roulette/revolver-spin.mp3'));
+    } catch (error) {
+      console.log('Error loading sounds:', error);
     }
-  };
+  },
 
-  return playSound;
+  async playSound(soundName, duration = null) {
+    try {
+      const sound = this[soundName];
+      if (!sound) {
+        console.log(`Sound ${soundName} not found`);
+        return;
+      }
+
+      await sound.setVolumeAsync(VOLUME);
+
+      if (duration !== null) {
+        await sound.setPositionAsync(0); // Reset sound position to start
+        sound.setOnPlaybackStatusUpdate(async (status) => {
+          if (status.isPlaying && status.positionMillis >= duration) {
+            await sound.stopAsync();
+          }
+        });
+        await sound.playAsync();
+      } else {
+        const status = await sound.getStatusAsync();
+        if (status.isLoaded) {
+          await sound.replayAsync();
+        } else {
+          console.log(`Sound ${soundName} is not loaded properly`);
+        }
+      }
+    } catch (error) {
+      console.log(`Error playing sound ${soundName}:`, error);
+    }
+  },
+
+  async unloadSounds() {
+    try {
+      await this.gunshotSound.unloadAsync();
+      await this.emptyGunshotSound.unloadAsync();
+      await this.revolverSpinSound.unloadAsync();
+    } catch (error) {
+      console.log('Error unloading sounds:', error);
+    }
+  },
 };
 
-// Definir los sonidos
-const useGunshotSound = useSound(require('assets/sounds/minigames/roulette/single-gunshot.mp3'));
-const useEmptyGunshotSound = useSound(require('assets/sounds/minigames/roulette/empty-gunshot.mp3'));
-const useRevolverSpinSound = useSound(require('assets/sounds/minigames/roulette/revolver-spin.mp3'));
-
-const useCardDealSound = useSound(require('assets/sounds/minigames/blackjack/card-mixing.mp3'));
-const useCardSound = useSound(require('assets/sounds/minigames/blackjack/card-sound.mp3'));
-const useFlipCardSound = useSound(require('assets/sounds/minigames/blackjack/flipcard.mp3'));
-
-export { useGunshotSound, useEmptyGunshotSound, useRevolverSpinSound, useCardDealSound, useCardSound, useFlipCardSound };
+export default soundsEffects;

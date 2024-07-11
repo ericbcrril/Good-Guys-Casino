@@ -1,21 +1,14 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, TouchableOpacity } from 'react-native';
-import { Audio } from 'expo-av'; // Importa el módulo de audio de Expo AV
-import { styles } from 'assets/styles/minigames/styles';
+import { View, Text } from 'react-native';
 import { stylesRoulette } from 'assets/styles/minigames/roulette';
+import { styles } from 'assets/styles/minigames/styles';
 import Bet from './bet';
 import GunSelection from './gunSelection';
 import StatusBar from './statusBar';
-import {
-  GameText,
-  GameContainer,
-  GameButton,
-  TextGameButton,
-  ResetButton,
-} from 'components/minigames/roulette/components';
+import { GameContainer, GameButton, TextGameButton, ResetButton, GameText } from 'components/minigames/roulette/components';
+import soundsEffects from 'constants/sounds/minigames/soundsEffects'; // Importa el gestor de sonidos
 
 const Game = ({ setScreenShake, coins, setCoins }) => {
-  // Estados del juego
   const [gameState, setGameState] = useState('betting');
   const [message, setMessage] = useState('Empieza el juego...');
   const [bet, setBet] = useState(20);
@@ -30,63 +23,13 @@ const Game = ({ setScreenShake, coins, setCoins }) => {
   const [isShootButtonDisabled, setShootButtonDisabled] = useState(false);
   const [isResetButtonDisabled, setResetButtonDisabled] = useState(true);
 
-  // Referencias a los sonidos
-  const gunshotSound = React.useRef(new Audio.Sound());
-  const emptyGunshotSound = React.useRef(new Audio.Sound());
-  const revolverSpinSound = React.useRef(new Audio.Sound());
-
   useEffect(() => {
-    // Carga los sonidos al montar el componente
-    const loadSounds = async () => {
-      try {
-        await gunshotSound.current.loadAsync(
-          require('assets/sounds/minigames/roulette/single-gunshot.mp3')
-        );
-        await emptyGunshotSound.current.loadAsync(
-          require('assets/sounds/minigames/roulette/empty-gunshot.mp3')
-        );
-        await revolverSpinSound.current.loadAsync(
-          require('assets/sounds/minigames/roulette/revolver-spin.mp3')
-        );
-      } catch (error) {
-        console.log('Error loading sounds:', error);
-      }
-    };
-
-    loadSounds();
+    soundsEffects.loadSounds();
 
     return () => {
-      // Descarga los sonidos al desmontar el componente para liberar recursos
-      gunshotSound.current.unloadAsync();
-      emptyGunshotSound.current.unloadAsync();
+      soundsEffects.unloadSounds();
     };
   }, []);
-
-  // Función para reproducir el sonido de disparo
-  const playGunshotSound = async () => {
-    try {
-      await gunshotSound.current.replayAsync();
-    } catch (error) {
-      console.log('Error playing gunshot sound:', error);
-    }
-  };
-
-  // Función para reproducir el sonido de disparo vacío
-  const playEmptyGunshotSound = async () => {
-    try {
-      await emptyGunshotSound.current.replayAsync();
-    } catch (error) {
-      console.log('Error playing empty gunshot sound:', error);
-    }
-  };
-
-  const playrevolverSpinSound = async () => {
-    try {
-      await revolverSpinSound.current.replayAsync();
-    } catch (error) {
-      console.log('Error playing empty gunshot sound:', error);
-    }
-  };
 
   const handleBet = (amount) => {
     setBet(amount);
@@ -96,7 +39,7 @@ const Game = ({ setScreenShake, coins, setCoins }) => {
   };
 
   const handleGunSelection = async (gun, numShots) => {
-    await playrevolverSpinSound();
+    await soundsEffects.playSound('revolverSpinSound');
     setSelectedGun(gun);
     setMultiplier(gun.multiplier + numShots * 2);
     setBullets(numShots);
@@ -119,7 +62,7 @@ const Game = ({ setScreenShake, coins, setCoins }) => {
     let newGameState = null;
 
     if (isBullet) {
-      await playGunshotSound();
+      await soundsEffects.playSound('gunshotSound');
       setScreenShake(true);
       setTimeout(() => setScreenShake(false), 200);
       setMessage('¡Te tocó bala!');
@@ -127,7 +70,7 @@ const Game = ({ setScreenShake, coins, setCoins }) => {
       newCoins -= bet * multiplier;
       newBulletFired += 1;
     } else {
-      await playEmptyGunshotSound();
+      await soundsEffects.playSound('emptyGunshotSound');
       setMessage('¡Qué suerte, no hay bala!');
       newCoins += bet * multiplier;
     }

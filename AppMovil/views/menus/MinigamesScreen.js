@@ -2,6 +2,7 @@
 import { StatusBar } from 'expo-status-bar';
 import Icon from 'react-native-vector-icons/Ionicons';
 import { Text, View, ScrollView, Image, StyleSheet, TouchableOpacity } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 //Componentes 
 import { WhiteBox, WhiteBoxText, WhiteBoxTitle, WhiteBoxLink, WhiteBoxButton, NavBar } from "../../components/misc/components";
 import { PurpleButton, ButtonText } from '../../components/forms/formComponents';
@@ -14,17 +15,23 @@ const logoGG = require('assets/images/logos/logoGG.png');
 const theTest = require('assets/images/test.png');
 
 export default function HomeScreen() {
+  
+  const navigation = useNavigation();
+
+  const handlePlayGame = (gameType) => {
+    navigation.navigate('MinigameScreen', { gameType });
+  };
+
   return (
     <ScrollView style={styles.mainHome}>
      
-
     <View>
     <WhiteBox style={{ width: '95%', flexDirection: 'row' }}>
         <Image source={theTest} style={{width: 100, height: 100, marginRight: 10}}/>
         <View>
         <WhiteBoxTitle>Ruleta Rusa</WhiteBoxTitle>
         <WhiteBoxText>Prueba tu suerte</WhiteBoxText>
-        <PurpleButton style={{width: 100, left: 115}}><ButtonText>Jugar</ButtonText></PurpleButton>
+        <PurpleButton style={{width: 100, left: 115}} onPress={() => handlePlayGame('russianRoulette')}><ButtonText>Jugar</ButtonText></PurpleButton>
         </View>
       </WhiteBox>
       
