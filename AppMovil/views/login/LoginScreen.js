@@ -3,14 +3,14 @@ import React from 'react';
 import { useState } from 'react';
 import Icon from 'react-native-vector-icons/FontAwesome';
 //Estilos
-import { styles } from "../assets/styles/styles";
+import { styles } from "assets/styles/styles";
 //Componentes
 import { View, Image, TouchableOpacity, Text } from 'react-native';
-import { LabelForm, TitleForm, FormInput, ButtonText, LoginButton, 
-        GoogleButton, GoogleButtonText } from "../components/forms/formComponents";
-import { Logo, WhiteBoxLink } from "../components/misc/components";
-const logoGG = require('../assets/images/logos/logoGG.png');
-const logoGgAnimated = require('../assets/images/logos/logoGgAnimated.gif');
+import { LabelForm, TitleForm, FormInput, ButtonText, PurpleButton, 
+        GoogleButton, GoogleButtonText } from "../../components/forms/formComponents";
+import { Logo, WhiteBoxLink } from "../../components/misc/components";
+const logoGG = require('assets/images/logos/logoGG.png');
+const logoGgAnimated = require('assets/images/logos/logoGgAnimated.gif');
 
 export default function App() {
     const [isPasswordVisible, setIsPasswordVisible] = useState(false);
@@ -35,9 +35,9 @@ export default function App() {
                 </View>
             </View>
             <View>
-                <LoginButton>
+                <PurpleButton>
                     <ButtonText>Iniciar Sesión</ButtonText>
-                </LoginButton>
+                </PurpleButton>
                 <GoogleButton>
                     <Icon name="google" size={20} color="white" />
                     <GoogleButtonText>Iniciar con Google</GoogleButtonText>

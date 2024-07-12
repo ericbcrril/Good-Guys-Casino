@@ -23,7 +23,7 @@ const FormInput = styled(TextInput)({
     borderRadius: 5,
 });
 
-const LoginButton = styled(TouchableOpacity)({
+const PurpleButton = styled(TouchableOpacity)({
     backgroundColor: '#831675',
     padding: 10,
     alignItems: 'center',
@@ -38,7 +38,7 @@ const ButtonText = styled(Text)({
 });
 
 // Estilos adicionales para el botón de Google
-const GoogleButton = styled(LoginButton)({
+const GoogleButton = styled(PurpleButton)({
     flexDirection: 'row',
     backgroundColor: '#5D1675',
     marginTop: 10,
@@ -48,7 +48,7 @@ const GoogleButtonText = styled(ButtonText)({
     marginLeft: 10,
 });
 
-export { LabelForm,TitleForm, FormInput, LoginButton, ButtonText, 
+export { LabelForm,TitleForm, FormInput, PurpleButton, ButtonText, 
             GoogleButton, GoogleButtonText };
 
 
