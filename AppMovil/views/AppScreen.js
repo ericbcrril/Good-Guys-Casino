@@ -25,6 +25,8 @@ const Settings = () => (
   <SettingsScreen />
 );
 
+
+
 const NavBar = ({ setScreen }) => (
   <View style={styles.navBar}>
     <TouchableOpacity style={styles.navItem} onPress={() => setScreen('home')}>
@@ -36,6 +38,7 @@ const NavBar = ({ setScreen }) => (
     <TouchableOpacity style={styles.navItem} onPress={() => setScreen('settings')}>
       <Icon name="settings" size={32} color="#fff" />
     </TouchableOpacity>
+    
   </View>
 );
 

@@ -20,8 +20,7 @@ function App() {
         <Route path="/register" element={<Register />} />
         <Route
           path="/profile"
-          element={ <ProtectedRoute element={<HomeUser />} />}
-        />
+          element={ <ProtectedRoute component={HomeUser}/> }/>
         <Route path="*" element={<NotFound />} />
       </Routes>
     </Router>
