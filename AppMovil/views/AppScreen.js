@@ -5,6 +5,7 @@ import Icon from 'react-native-vector-icons/Ionicons';
 import HomeScreen from "./HomeScreen";
 import MinigamesScreen from './MinigamesScreen';
 import SettingsScreen from './SettingsScreen';
+import Roulette from './CasinoRoulette';
 // Estilos
 import { styles } from "../assets/styles/styles";
 // Imagenes
@@ -22,6 +23,8 @@ const Settings = () => (
   <SettingsScreen />
 );
 
+
+
 const NavBar = ({ setScreen }) => (
   <View style={styles.navBar}>
     <TouchableOpacity style={styles.navItem} onPress={() => setScreen('home')}>
@@ -33,6 +36,7 @@ const NavBar = ({ setScreen }) => (
     <TouchableOpacity style={styles.navItem} onPress={() => setScreen('settings')}>
       <Icon name="settings" size={32} color="#fff" />
     </TouchableOpacity>
+    
   </View>
 );
 

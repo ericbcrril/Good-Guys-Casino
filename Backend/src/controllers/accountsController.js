@@ -2,18 +2,51 @@
 const accounts = require('../models/accounts');
 const bcrypt = require('bcryptjs');
 const {createToken, validateToken} = require('../JWT');
-const { decode } = require('jsonwebtoken');
+const { decode, verify } = require('jsonwebtoken');
 const { signedCookie } = require('cookie-parser');
 // Obtener todos los registros de una coleccion
+
 exports.getItems = async (req, res) => {
-  try {
-    const items = await accounts.find();
-    res.json(items);
-  } catch (error) {
-    console.error(error.message);
-    res.status(500).send('Error del servidor');
-  }
+    console.log('Cookies recibidas:', req.cookies);
+
+    try {
+        const accessToken = req.cookies['access-token'];
+
+        if (!accessToken) {
+            return res.status(400).json({ error: 'No se encontró el token' });
+        }
+
+        // Verificar y decodificar el token
+        verify(accessToken, process.env.ACCESS_TOKEN_SECRET, async (err, decoded) => {
+            if (err) {
+                return res.status(403).json({ error: 'Token inválido' });
+            }
+
+            const user = decoded.user.user; // Suponiendo que el token contiene el nombre de usuario
+            console.log('Usuario decodificado del token:', user);
+
+            if (!user) {
+                return res.status(400).json({ error: 'Faltan datos de usuario en el token' });
+            }
+
+            const account = await accounts.findOne({ user: user });
+            if (!account) {
+                return res.status(404).json({ error: 'Usuario no encontrado' });
+            }
+            console.log(account);
+            res.json({
+                user: account.user,
+                email: account.email,
+                name: account.name,
+                // Agrega más campos según sea necesario
+            });
+        });
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: 'Error interno del servidor' });
+    }
 };
+
 
 // Obtener un registro por su ID
 exports.getItemById = async (req, res) => {
@@ -67,29 +100,24 @@ exports.login = async (req, res) => {
   }
 };
 
-exports.profile = async (req, res) => {
-  try {
-    const { user, password } = req.body;
-
-    if (!user || !password) {
-      return res.status(400).json({ error: 'Faltan datos de usuario o contraseña' });
-    }
-    const account = await accounts.findOne({ user: user});
-    if (!account) {
-        return res.status(404).json({ error: 'Usuario no encontrado' });
-    }
-    res.json({
-        user: account.user,
-        email: account.email,
-        name: account.name,
-        // Agrega más campos según sea necesario
-    });
-} catch (error) {
-    console.error(error);
-    res.status(500).json({ error: 'Error interno del servidor' });
-}
+exports.getProfile = async (req, res) => { 
+  const user = req.user.user.user;
+  const account = await accounts.findOne({ user: user });
+  if (!account) {
+      return res.status(404).json({ error: 'Usuario no encontrado' });
+  }
+  res.json({
+      user: account.user,
+      email: account.email,
+      name: account.name,
+      // Agrega más campos según sea necesario
+  }); 
 };
 
+
+exports.checkAuth = async (req, res) => {
+  res.status(200).json({mesagge: 'Authenticated'});
+};
 // Crear una nuevo registro
 exports.createItem = async (req, res) => {
   try {

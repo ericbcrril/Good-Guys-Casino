@@ -1,17 +1,37 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Navigate } from 'react-router-dom';
-import Cookies from 'js-cookie';
 
+const ProtectedRoute = ({ component: Component, ...rest }) => {
+    const [isAuthenticated, setIsAuthenticated] = useState(false);
+    const [loading, setLoading] = useState(true);
 
-const ProtectedRoute = ({element: Element, ...rest}) => {
-  // Obtener la cookie 'access-token'
-  const allCookies = Cookies.get();
-  console.log('todas las cookies', allCookies);
-  const auth = Cookies.get('access-token');
-  console.log(auth);
-  
-  // Verificar si la cookie existe
-  return auth ? <Element {...rest} /> : <Navigate to='/login' replace />;
+    useEffect(() => {
+        const checkAuth = async () => {
+            try {
+                const response = await fetch('http://localhost:5000/api/accounts/Authentication', {
+                    credentials: 'include'
+                });
+
+                if (response.ok) {
+                    setIsAuthenticated(true);
+                } 
+            } catch (error) {
+                console.error('Error checking auth', error);
+            } finally {
+                setLoading(false);
+            }
+        };
+
+        checkAuth();
+    }, []);
+
+    if (loading) {
+        return <div>Loading...</div>;
+    }
+
+    return (
+        isAuthenticated ? <Component {...rest} /> : <Navigate to='/login' replace />
+    );
 };
 
 export default ProtectedRoute;
