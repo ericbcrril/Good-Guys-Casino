@@ -6,8 +6,10 @@ import { Logo } from './components/misc/components';
 import { styles } from "./assets/styles/styles";
 const logoGG = require('./assets/images/logos/logoGG.png');
 const logoGgAnimated = require('./assets/images/logos/logoGgAnimated.gif');
+//Componentes
 import AppScreen from './views/AppScreen';
 import MinigameScreen from './views/minigames/minigameScreen';
+import SubScreen from './views/misc/SubScreen';
 import LoginScreen from './views/login/LoginScreen';
 
 const Stack = createStackNavigator();
@@ -39,6 +41,7 @@ export default function App() {
           <>
             <Stack.Screen name="App" component={AppScreen} options={{ headerShown: false }}/>
             <Stack.Screen name="MinigameScreen" component={MinigameScreen} options={{ headerShown: false }}/>
+            <Stack.Screen name="SubScreen" component={SubScreen} options={{ headerShown: false }}/>
           </>
         ) : (
           <Stack.Screen name="Login" component={LoginScreen} options={{ headerShown: false }}/>

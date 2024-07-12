@@ -15,6 +15,15 @@ const Hr = styled(View)({
     backgroundColor: '#CED0CE',
     marginVertical: 10,
 });
+
+const TitleSreen = styled(View)({
+    display: 'flex',
+    width: '100%',
+    paddingTop: '10%',
+    justifyContent: 'center',
+    backgroundColor: 'white',
+});
+
 /*White Box es un view redondeado con sombra*/
 const WhiteBox = styled(View)({
     padding: 20,
@@ -58,4 +67,4 @@ const WhiteBox = styled(View)({
     marginTop: 10,
 });
 
-  export {WhiteBox, WhiteBoxTitle, WhiteBoxText, WhiteBoxLink, WhiteBoxButton, Logo, Hr };
+  export {WhiteBox, WhiteBoxTitle, WhiteBoxText, WhiteBoxLink, WhiteBoxButton, Logo, Hr, TitleSreen };

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { View, Text, TextInput, Button } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
-import { GameContainer, GameButton, TextGameButton, GameTextInput, GameTitle, ResetButton } from 'components/minigames/roulette/components';
+import { GameContainer, GameButton, TextGameButton, GameTextInput, GameTitle, ResetButton } from 'components/minigames/components';
 import { styles } from 'assets/styles/minigames/styles';
 
 const Bet = ({ onBet, coins }) => {

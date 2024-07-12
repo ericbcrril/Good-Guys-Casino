@@ -5,12 +5,18 @@ const soundsEffects = {
   gunshotSound: new Audio.Sound(),
   emptyGunshotSound: new Audio.Sound(),
   revolverSpinSound: new Audio.Sound(),
+  cardSound: new Audio.Sound(),
+  flipCardSound: new Audio.Sound(),
 
   async loadSounds() {
     try {
+      //Ruleta Rusa
       await this.gunshotSound.loadAsync(require('assets/sounds/minigames/roulette/single-gunshot.mp3'));
       await this.emptyGunshotSound.loadAsync(require('assets/sounds/minigames/roulette/empty-gunshot.mp3'));
       await this.revolverSpinSound.loadAsync(require('assets/sounds/minigames/roulette/revolver-spin.mp3'));
+      //BlackJack
+      await this.cardSound.loadAsync(require('assets/sounds/minigames/blackjack/card-sound.mp3'));
+      await this.flipCardSound.loadAsync(require('assets/sounds/minigames/blackjack/flipcard.mp3'));
     } catch (error) {
       console.log('Error loading sounds:', error);
     }

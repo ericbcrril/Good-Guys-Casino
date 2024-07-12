@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { View, Text, TextInput, Button, StyleSheet } from 'react-native';
 //Componentes
-import { GameContainer, ButtonText, GameButton, TextGameButton, GameTextInput, GameTitle, ResetButton } from 'components/minigames/roulette/components';
+import { GameContainer, ButtonText, GameButton, TextGameButton, GameTextInput, GameTitle, ResetButton } from 'components/minigames/components';
 //Estilos
 import { styles } from 'assets/styles/minigames/styles';
 

@@ -1,11 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import { View, Text } from 'react-native';
+//Estilos
 import { stylesRoulette } from 'assets/styles/minigames/roulette';
 import { styles } from 'assets/styles/minigames/styles';
+//Componentes
 import Bet from './bet';
 import GunSelection from './gunSelection';
 import StatusBar from './statusBar';
-import { GameContainer, GameButton, TextGameButton, ResetButton, GameText } from 'components/minigames/roulette/components';
+import { GameContainer, GameButton, TextGameButton, ResetButton, GameText } from 'components/minigames/components';
+//Audio
 import soundsEffects from 'constants/sounds/minigames/soundsEffects'; // Importa el gestor de sonidos
 
 const Game = ({ setScreenShake, coins, setCoins }) => {

@@ -1,10 +1,9 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Text, Animated, View, StyleSheet, TouchableOpacity } from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
-
 // Componentes 
 import HomeScreen from "./menus/HomeScreen";
-import MinigamesScreen from './menus/MinigamesScreen';
+import SelectGameScreen from './menus/SelectGameScreen';
 import SettingsScreen from './menus/SettingsScreen';
 import { UserIcon } from 'components/home/homeComponents';
 // Estilos
@@ -19,7 +18,7 @@ const Home = () => (
 );
 
 const Minigames = () => (
-  <MinigamesScreen />
+  <SelectGameScreen />
 );
 
 const Settings = () => (

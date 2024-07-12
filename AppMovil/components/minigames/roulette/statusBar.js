@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 //Componentes
-import {  } from 'components/minigames/roulette/components';
+import {  } from 'components/minigames/components';
 //Estilos
 import { stylesRoulette } from 'assets/styles/minigames/roulette';
 import { styles } from 'assets/styles/minigames/styles';
