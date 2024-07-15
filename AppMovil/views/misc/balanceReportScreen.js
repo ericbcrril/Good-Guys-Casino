@@ -1,26 +1,12 @@
 import React, { useEffect, useState, useMemo } from 'react';
-import { ScrollView, Text, View, StyleSheet, Dimensions, TouchableOpacity } from 'react-native';
+import { ScrollView, Text, View, Dimensions, TouchableOpacity } from 'react-native';
 import { LineChart } from 'react-native-chart-kit';
 import Collapsible from 'react-native-collapsible';
-//Estilos
-import {styles} from 'assets/styles/balanceReport';
+import { stylesbalanceReport } from 'assets/styles/balanceReport';
+//Usuario
+import { userData, movementsData } from '../../constants/simulateUser';
 
-const transactionsData = {
-    "transactions": [
-        { "date": "2024-01-10", "amount": 359, "reason": "jugando blackjack" },
-        { "date": "2024-02-15", "amount": -200, "reason": "perdida en ruleta" },
-        { "date": "2024-03-20", "amount": 500, "reason": "ganancia en póker" },
-        { "date": "2024-04-25", "amount": 150, "reason": "jugando blackjack" },
-        { "date": "2024-05-05", "amount": -100, "reason": "perdida en ruleta" },
-        { "date": "2024-06-10", "amount": 200, "reason": "ganancia en póker" },
-        { "date": "2024-07-15", "amount": -50, "reason": "perdida en ruleta" },
-        { "date": "2024-08-20", "amount": 100, "reason": "jugando blackjack" },
-        { "date": "2024-09-25", "amount": -300, "reason": "perdida en póker" },
-        { "date": "2024-10-30", "amount": 400, "reason": "ganancia en póker" },
-        { "date": "2024-11-05", "amount": -250, "reason": "perdida en ruleta" },
-        { "date": "2024-12-10", "amount": 350, "reason": "jugando blackjack" }
-    ]
-};
+const transactionsData = movementsData;
 
 const BalanceReport = () => {
     const [monthlyTransactions, setMonthlyTransactions] = useState({});
@@ -36,24 +22,19 @@ const BalanceReport = () => {
     ];
 
     useEffect(() => {
-        const transactions = transactionsData.transactions;
         const monthlyData = {};
-        const initialChartData = Array(12).fill(0);
-
-        transactions.forEach((transaction) => {
+        transactionsData.forEach((transaction) => {
             const date = new Date(transaction.date);
             const year = date.getFullYear();
-            const month = date.getMonth(); // Los meses son 0-indexados en JS
+            const month = date.getMonth();
 
             if (year === currentYear) {
                 if (!monthlyData[month]) {
                     monthlyData[month] = [];
                 }
                 monthlyData[month].push(transaction);
-                initialChartData[month] += transaction.amount;
             }
         });
-
         setMonthlyTransactions(monthlyData);
     }, [currentYear]);
 
@@ -68,25 +49,25 @@ const BalanceReport = () => {
     }, [monthlyTransactions]);
 
     return (
-        <View style={styles.container}>
-            <ScrollView style={styles.scrollView}>
-                <Text style={styles.title}>Informe de Balance</Text>
+        <View style={stylesbalanceReport.container}>
+            <ScrollView style={stylesbalanceReport.scrollView}>
+                <Text style={stylesbalanceReport.title}>Informe de Balance</Text>
                 {Object.keys(monthlyTransactions).map((month) => (
-                    <View key={month} style={styles.monthContainer}>
-                        <Text style={styles.monthTitle}>{monthNames[month]}</Text>
+                    <View key={month} style={stylesbalanceReport.monthContainer}>
+                        <Text style={stylesbalanceReport.monthTitle}>{monthNames[month]}</Text>
                         {monthlyTransactions[month].map((transaction, index) => (
-                            <View key={index} style={styles.transaction}>
-                                <Text style={transaction.amount > 0 ? styles.positive : styles.negative}>
+                            <View key={index} style={stylesbalanceReport.transaction}>
+                                <Text style={transaction.amount > 0 ? stylesbalanceReport.positive : stylesbalanceReport.negative}>
                                     {transaction.amount > 0 ? '+' : ''}{transaction.amount}
                                 </Text>
-                                <Text style={styles.details}>{transaction.date} - {transaction.reason}</Text>
+                                <Text style={stylesbalanceReport.details}>{transaction.date} - {transaction.reason}</Text>
                             </View>
                         ))}
                     </View>
                 ))}
             </ScrollView>
             <TouchableOpacity onPress={() => setIsChartVisible(!isChartVisible)}>
-                <Text style={styles.chartToggle}>{isChartVisible ? 'Ocultar Gráfica' : 'Mostrar Gráfica'}</Text>
+                <Text style={stylesbalanceReport.chartToggle}>{isChartVisible ? 'Ocultar Gráfica' : 'Mostrar Gráfica'}</Text>
             </TouchableOpacity>
             <Collapsible collapsed={!isChartVisible}>
                 <LineChart

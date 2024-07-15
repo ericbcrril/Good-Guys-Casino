@@ -5,9 +5,14 @@ import Game from 'components/minigames/blackjack/game';
 import { useFonts } from '@expo-google-fonts/press-start-2p';
 import { styles } from 'assets/styles/minigames/styles';
 import { stylesBlackjack } from 'assets/styles/minigames/blackjack';
+import { userData } from '../../constants/simulateUser';
 
 const App = () => {
-    const [coins, setCoins] = useState(100); // Monedas o Balance
+    const [coins, setCoins] = useState(userData.balance); // Monedas o Balance
+
+    useEffect(() => {
+      userData.balance = coins;
+    }, [coins]);
 
     const [fontsLoaded] = useFonts({
         'PressStart2P': require('assets/fonts/PressStart2P-Regular.ttf'),

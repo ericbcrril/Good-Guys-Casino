@@ -59,7 +59,8 @@ connectToDatabase();
 app.use(bodyParser.json());
 app.use(express.json());
 app.use(cors({
-  origin: 'http://localhost:3000',
+  //origin: ['http://localhost:3000', 'exp://192.168.1.72:8081'],
+  origin: true,
   credentials: true
 }));
 app.use(cookieParser());
@@ -70,6 +71,9 @@ app.use('/api/functions', routes); //endpoint
 
 const accountsRoutes = require('./src/routes/accountsRoutes');
 app.use('/api/accounts', accountsRoutes);
+
+const movementsRoutes = require('./src/routes/movementsRoutes');
+app.use('/api/movements', movementsRoutes);
 
 
 // Iniciar el servidor

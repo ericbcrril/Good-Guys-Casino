@@ -8,6 +8,8 @@ import SettingsScreen from './menus/SettingsScreen';
 import { UserIcon } from 'components/home/homeComponents';
 // Estilos
 import { styles } from "assets/styles/styles";
+//Usuario
+import { userData, movementsData } from '../constants/simulateUser';
 
 // Imagenes
 const logoGG = require('assets/images/logos/logoGG.png');
@@ -99,15 +101,18 @@ export default function AppScreen() {
   const [currentScreen, setCurrentScreen] = useState('home');
   const [previousScreen, setPreviousScreen] = useState(null);
 
-  const handleSetScreen = (screen) => {
+   const handleSetScreen = (screen) => {
     setPreviousScreen(currentScreen);
     setCurrentScreen(screen);
   };
 
   return (
     <View style={{ flex: 1, backgroundColor: '#F5FCFF' }}>
-          <View style={{ display: currentScreen === 'settings' ? 'none' : 'flex', flexDirection: 'row', alignItems: 'center', margin: 10, marginTop: 35}}>
-            <TouchableOpacity style={{flexDirection: 'row', alignItems: 'center'}}><UserIcon source={theTest}/><Text>Usuario 1</Text></TouchableOpacity>
+          <View style={{ display: currentScreen === 'settings' ? 'none' : 'flex', flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', margin: 10, marginTop: 35}}>
+            <TouchableOpacity style={{flexDirection: 'row', alignItems: 'center'}}>
+              <UserIcon source={theTest}/><Text>{ userData.user }</Text>
+            </TouchableOpacity>
+            <Text style={{ display: currentScreen == 'minigames' ? 'flex' : 'none'}}>{ userData.balance } GGP</Text>
           </View>
         <AnimatedScreen currentScreen={currentScreen} previousScreen={previousScreen} />
         <NavBar setScreen={handleSetScreen} />
