@@ -86,7 +86,7 @@ exports.login = async (req, res) => {
         const accessToken = createToken(account);
         res.cookie('access-token', accessToken, {
           httpOnly: true,
-          maxAge: 3600000,
+          maxAge: 86400000,
           //path: '/profile',
         });
         //const setCookieHeader = res.getHeader('Set-Cookie');
@@ -102,6 +102,7 @@ exports.login = async (req, res) => {
 
 exports.getProfile = async (req, res) => { 
   const user = req.user.user.user;
+  console.log(req.user.user);
   const account = await accounts.findOne({ user: user });
   if (!account) {
       return res.status(404).json({ error: 'Usuario no encontrado' });
@@ -112,6 +113,29 @@ exports.getProfile = async (req, res) => {
       name: account.name,
       // Agrega más campos según sea necesario
   }); 
+};
+
+exports.GGP = async (req, res) => {
+  try {
+    const id = req.user.user._id;
+    console.log('si se obtiene el id', id);
+    const { amount } = req.body;
+    console.log('amount recibido: ', amount);
+
+    const updatedAccount = await accounts.findByIdAndUpdate(
+      id,
+      { $inc: { 'wallet.totalggp': amount } },
+      { new: true }
+    );
+
+    if (!updatedAccount) {
+      return res.status(404).json({ mensaje: 'Registro no encontrado' });
+    }
+    res.json(updatedAccount);
+  } catch (error) {
+    console.error(error.message);
+    res.status(500).send('Error del servidor');
+  }
 };
 
 

@@ -8,6 +8,8 @@ import HelloWorld from './views/helloWorld';
 import NotFound from './views/Home';
 import HomeUser from './views/HomeUser';
 import ProtectedRoute from './ProtectedRoute';
+import Wallet from './views/Wallet';
+import { LineGraph } from './components/misc/Graph';
 
 function App() {
   return (
@@ -22,6 +24,8 @@ function App() {
           path="/profile"
           element={ <ProtectedRoute component={HomeUser}/> }/>
         <Route path="*" element={<NotFound />} />
+        <Route path='/Wallet' element={<Wallet/>}/>
+        <Route path='/graph' element={<LineGraph/>}/>
       </Routes>
     </Router>
   );

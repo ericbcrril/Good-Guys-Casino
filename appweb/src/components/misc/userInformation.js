@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import 'boxicons';
+import { Link } from 'react-router-dom';
 
 const Profile = ({ className }) => {
   const [profileData, setProfileData] = useState(null);
@@ -41,10 +42,12 @@ const Profile = ({ className }) => {
         </div>
       </section>
       <section className='information'>
-        <div className='box'>
-          <i className='bx bxs-wallet'></i>
-          <p>wallet</p>
-        </div>
+        <Link to={"/Wallet"}>
+          <div className='box'>
+            <i className='bx bxs-wallet'></i>
+            <p>wallet</p>
+          </div>
+        </Link>
         <div className='box'>
           <i className='bx bx-history'></i>
           <p>history</p>
