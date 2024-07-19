@@ -4,6 +4,10 @@ import { useRoute, useNavigation } from '@react-navigation/native';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons'
 //Componentes
 import { TitleSreen } from '../../components/misc/components';
+import HelpScreen from './helpScreen';
+import BalanceReport from './balanceReportScreen';
+import BuyGGPoints from './buyGGPointsScreen';
+import AccountScreen from './accountScreen';
 
 export default function SubScreen() {
   const navigation = useNavigation();
@@ -20,16 +24,19 @@ export default function SubScreen() {
 
   switch (screen) {
     case 'help':
-      screenContent = <Text>Ayuda</Text>;
+      screenContent = <HelpScreen/>;
       break;
     case 'balanceReport':
-      screenContent = <Text>Informe de Balance</Text>;
+      screenContent = <BalanceReport/>;
       break;
     case 'buyPoints':
-        screenContent = <Text>Comprar puntos</Text>;
+        screenContent = <BuyGGPoints/>;
+        break;
+    case 'account':
+            screenContent = <AccountScreen/>;
         break;
     case 'payment':
-            screenContent = <Text>Metodos de pago</Text>;
+            screenContent = <AccountScreen/>;
         break;
     // Agrega más casos según sea necesario
     default:

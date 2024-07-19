@@ -10,6 +10,8 @@ import { UserIcon, OptionText } from 'components/home/settingsComponents';
 import { styles } from "assets/styles/settings";
 // Imágenes (asegúrate de que las rutas estén correctamente definidas)
 const theTest = require('assets/images/test.png');
+//Usuario
+import { userData, movementsData } from '../../constants/simulateUser';
 
 export default function SettingsScreen() {
   const navigation = useNavigation();
@@ -21,15 +23,15 @@ export default function SettingsScreen() {
   return (
     <ScrollView style={styles.main}>
       <View style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', margin: 10, marginTop: 35 }}>
-        <TouchableOpacity style={{ flexDirection: 'row', alignItems: 'center' }}>
+        <TouchableOpacity onPress={() => handleNavigate('account')} style={{ flexDirection: 'row', alignItems: 'center' }}>
           <UserIcon source={theTest} />
-          <Text style={{ fontSize: 32 }}>Usuario 1</Text>
+          <Text style={{ fontSize: 32 }}>{ userData.user }</Text>
         </TouchableOpacity>
       </View>
       <Hr />
       <View style={{ alignItems: 'center' }}>
         <View>
-          <Text style={{ color: '#F5FCFF' }}>-------------------------------------------------------------</Text>
+          <Text style={{ color: '#F5FCFF' }}>------------------------------------------------------------------------</Text>
           <TouchableOpacity style={{ flexDirection: 'row', alignItems: 'center' }} onPress={() => navigation.navigate('App')}>
             <Icon name="home" size={22} color="#000" style={{ marginLeft: 5 }} />
             <OptionText>Inicio</OptionText>
@@ -44,7 +46,7 @@ export default function SettingsScreen() {
       <Hr />
       <View style={{ alignItems: 'center' }}>
         <View>
-          <Text style={{ color: '#F5FCFF' }}>-------------------------------------------------------------</Text>
+          <Text style={{ color: '#F5FCFF' }}>------------------------------------------------------------------------</Text>
           <TouchableOpacity style={{ flexDirection: 'row', alignItems: 'center' }}
                             onPress={() => handleNavigate('balanceReport')}>
             <Icon name="arrow-top-right" size={22} color="#000" style={{ marginLeft: 5 }} />
@@ -53,7 +55,7 @@ export default function SettingsScreen() {
           <TouchableOpacity style={{ flexDirection: 'row', alignItems: 'center' }}
                             onPress={() => handleNavigate('buyPoints')}>
             <IconFontAwesome5 name="coins" size={22} color="#000" style={{ marginLeft: 5 }} />
-            <OptionText>Fichas de Valor</OptionText>
+            <OptionText>Good Guys Points (GGP)</OptionText>
           </TouchableOpacity>
           <TouchableOpacity style={{ flexDirection: 'row', alignItems: 'center' }}
                             onPress={() => handleNavigate('payment')}>
