@@ -10,6 +10,7 @@ import HomeUser from './views/HomeUser';
 import ProtectedRoute from './ProtectedRoute';
 import Wallet from './views/Wallet';
 import { LineGraph } from './components/misc/Graph';
+import { GgInformation } from './views/GgInformation';
 
 function App() {
   return (
@@ -26,6 +27,7 @@ function App() {
         <Route path="*" element={<NotFound />} />
         <Route path='/Wallet' element={<Wallet/>}/>
         <Route path='/graph' element={<LineGraph/>}/>
+        <Route path='/GoodGuys' element={<GgInformation/>}/>
       </Routes>
     </Router>
   );
