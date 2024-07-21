@@ -56,7 +56,6 @@ const Profile = ({ className }) => {
       <section className='log-out'>
         <i className='bx bx-log-in'></i>
       </section>
-      <button>click</button>
     </div>
   );
 };
