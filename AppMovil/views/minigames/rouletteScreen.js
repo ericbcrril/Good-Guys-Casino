@@ -7,14 +7,14 @@ import useScreenShake from 'assets/effects/shake'; // Ajusta la ruta según tu e
 import { userData } from '../../constants/simulateUser'; 
 
 const App = () => {
-  const [coins, setCoins] = useState(userData.balance);
+  const [coins, setCoins] = useState(userData.wallet.totalgg);
   const { screenShake, setScreenShake, shakeAnimation } = useScreenShake();
   const [fontsLoaded] = useFonts({
     'PressStart2P': require('assets/fonts/PressStart2P-Regular.ttf'),
   });
 
   useEffect(() => {
-    userData.balance = coins;
+    userData.wallet.totalgg = coins;
   }, [coins]);
 
   if (!fontsLoaded) {

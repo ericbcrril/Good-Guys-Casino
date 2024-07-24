@@ -5,7 +5,9 @@ export var userData = {
         "lastName": "Becerril",
         "email": "eribecerril@gmail.com",
         "user": "ericBC",
-        "balance": 2334.00,
+        "wallet":{ 
+            "totalgg": 2334.00,
+        },
         "password": "$2a$10$2GBDXSkesOw92Tsf5nETZ.y90LGSh8ynxF/MqQgodlEFEJAcceWu."
     }
 

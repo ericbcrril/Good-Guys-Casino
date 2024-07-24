@@ -4,7 +4,8 @@ const mongoose = require('mongoose');
 const movements = new mongoose.Schema({
       userId: String,
       date: String, 
-      amount: Number, 
+      amount: Number,
+      totalggp: Number, 
       reason: String, 
       platform: String 
 });

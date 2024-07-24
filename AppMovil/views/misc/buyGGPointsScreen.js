@@ -1,6 +1,6 @@
 import { StatusBar } from 'expo-status-bar';
 import Icon from 'react-native-vector-icons/Ionicons';
-import { Text, View, ScrollView, Image, StyleSheet, TouchableOpacity } from 'react-native';
+import { Text, View, ScrollView, Image, Alert, TouchableOpacity } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 //Componentes 
 import { WhiteBox, WhiteBoxText, WhiteBoxTitle, WhiteBoxLink, WhiteBoxButton, NavBar } from "components/misc/components";
@@ -19,14 +19,24 @@ import { userData } from '../../constants/simulateUser';
 
 export default function HomeScreen() {
   
+  const createConfirmAlert = (amount, totalggp, rason) =>
+    Alert.alert('Atencion!', '¿Deseas continuar con la compra?', [
+      {
+        text: 'Cancel',
+        onPress: () => console.log('Cancel Pressed'),
+        style: 'cancel',
+      },
+      {text: 'OK', onPress: () => handleBuy(amount, totalggp, rason)},
+    ]);
+
   const navigation = useNavigation();
 
   const handlePlayGame = (gameType) => {
     navigation.navigate('MinigameScreen', { gameType });
   };
 
-  const handleBuy = async (userId, date, amount, reason) => {
-    await handleTransaction(userId, date, amount, reason);
+  const handleBuy = async (amount, totalggp, reason) => {
+    await handleTransaction(amount, totalggp, reason);
   }
 
   return (
@@ -38,7 +48,7 @@ export default function HomeScreen() {
             <WhiteBoxTitle>150 GGP</WhiteBoxTitle>
             <PurpleButton 
               style={{width: 100, left: 100}} 
-              onPress={() => handleBuy(userData.user, new Date(), 150.00, 'Compra de paquete 150 GGP')}
+              onPress={()=>createConfirmAlert(80, 150, 'Compra de paquete 150 GGP')}
             >
               <ButtonText>80.00 $</ButtonText>
             </PurpleButton>
@@ -51,7 +61,7 @@ export default function HomeScreen() {
             <WhiteBoxTitle>500 GGP</WhiteBoxTitle>
             <PurpleButton 
               style={{width: 100, left: 100}} 
-              onPress={() => handleBuy(userData.user, new Date(), 500.00, 'Compra de paquete 500 GGP')}
+              onPress={()=>createConfirmAlert(215, 500, 'Compra de paquete 500 GGP')}
             >
               <ButtonText>215.00 $</ButtonText>
             </PurpleButton>
@@ -64,7 +74,7 @@ export default function HomeScreen() {
             <WhiteBoxTitle>1350 GGP</WhiteBoxTitle>
             <PurpleButton 
               style={{width: 100, left: 100}} 
-              onPress={() => handleBuy(userData.user, new Date(), 1350.00, 'Compra de paquete 1350 GGP')}
+              onPress={()=>createConfirmAlert(500, 1350, 'Compra de paquete 1350 GGP')}
             >
               <ButtonText>500.00 $</ButtonText>
             </PurpleButton>
@@ -77,7 +87,7 @@ export default function HomeScreen() {
             <WhiteBoxTitle>2500 GGP</WhiteBoxTitle>
             <PurpleButton 
               style={{width: 100, left: 100}} 
-              onPress={() => handleBuy(userData.user, new Date(), 2500.00, 'Compra de paquete 2500 GGP')}
+              onPress={()=>createConfirmAlert(1200, 2500, 'Compra de paquete 2500 GGP')}
             >
               <ButtonText>1200.00 $</ButtonText>
             </PurpleButton>

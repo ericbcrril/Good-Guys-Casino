@@ -8,10 +8,10 @@ import { stylesBlackjack } from 'assets/styles/minigames/blackjack';
 import { userData } from '../../constants/simulateUser';
 
 const App = () => {
-    const [coins, setCoins] = useState(userData.balance); // Monedas o Balance
+    const [coins, setCoins] = useState(userData.wallet.totalgg); // Monedas o Balance
 
     useEffect(() => {
-      userData.balance = coins;
+      userData.wallet.totalgg = coins;
     }, [coins]);
 
     const [fontsLoaded] = useFonts({
