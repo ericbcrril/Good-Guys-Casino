@@ -19,12 +19,12 @@ function home() {
 
                 <div className='home-content-box'>
                     <img src='/images/logos/logoGgAnimated.gif' className='home-logo' alt='logo'/>
-                    <div className='purple-box'>
-                    <Link to="/main" className='purple-box-img-link'>
+                    <Link to={"/GoodGuys"}><div className='purple-box'>
+                    <Link to="/GoodGuys" className='purple-box-img-link'>
                         <img src='/images/icons/groups_24dp.svg' alt='icon'/>
                     </Link>
-                        <Link to="/main">¿Quienes somos?</Link>
-                    </div>
+                        <Link to="/GoodGuys">¿Quienes somos?</Link>
+                    </div> </Link>
                 </div>
 
                 <div className='home-content-box'>

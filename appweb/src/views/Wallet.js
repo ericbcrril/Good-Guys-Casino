@@ -3,11 +3,12 @@ import axios from 'axios';
 import Footer from "../components/misc/Footer";
 import { Link } from 'react-router-dom';
 import UserLoggedNavbar from '../components/navbars/UserLoggedNavbar';
+import { LineGraph } from '../components/misc/Graph';
 
 const Wallet = () => {
     return (
         <main className='wallet-container'>
-            <UserLoggedNavbar/>
+            <UserLoggedNavbar />
             <section className='movements-section'>
                 <div className='wallet-icon'>
                     <i class='bx bx-wallet' ></i>
@@ -25,48 +26,54 @@ const Wallet = () => {
                     </div>
                     <div className='scroll-div'>
                         <table>
-                        <tr>
-                            <th>Movimiento</th>
-                            <th>Cantidad</th>
-                            <th>MM/DD/Y</th>
-                            <th>Tiempo</th>
-                        </tr>
-                        <tr>
-                            <td>Introduccion de fichas</td>
-                            <td>100GGP</td>
-                            <td>Octubre 25 2024</td>
-                            <td>14:05:26 CST</td>
-                        </tr>
-                        <tr>
-                            <td>Introduccion de fichas</td>
-                            <td>100GGP</td>
-                            <td>Octubre 25 2024</td>
-                            <td>14:05:26 CST</td>
-                        </tr>
-                        <tr>
-                            <td>Introduccion de fichas</td>
-                            <td>100GGP</td>
-                            <td>Octubre 25 2024</td>
-                            <td>14:05:26 CST</td>
-                        </tr>
-                        <tr>
-                            <td>Introduccion de fichas</td>
-                            <td>100GGP</td>
-                            <td>Octubre 25 2024</td>
-                            <td>14:05:26 CST</td>
-                        </tr>
-                        <tr>
-                            <td>Introduccion de fichas</td>
-                            <td>100GGP</td>
-                            <td>Octubre 25 2024</td>
-                            <td>14:05:26 CST</td>
-                        </tr>
+                            <tr>
+                                <th>Movimiento</th>
+                                <th>Cantidad</th>
+                                <th>MM/DD/Y</th>
+                                <th>Tiempo</th>
+                            </tr>
+                            <tr>
+                                <td>Introduccion de fichas</td>
+                                <td>100GGP</td>
+                                <td>Octubre 25 2024</td>
+                                <td>14:05:26 CST</td>
+                            </tr>
+                            <tr>
+                                <td>Introduccion de fichas</td>
+                                <td>100GGP</td>
+                                <td>Octubre 25 2024</td>
+                                <td>14:05:26 CST</td>
+                            </tr>
+                            <tr>
+                                <td>Introduccion de fichas</td>
+                                <td>100GGP</td>
+                                <td>Octubre 25 2024</td>
+                                <td>14:05:26 CST</td>
+                            </tr>
+                            <tr>
+                                <td>Introduccion de fichas</td>
+                                <td>100GGP</td>
+                                <td>Octubre 25 2024</td>
+                                <td>14:05:26 CST</td>
+                            </tr>
+                            <tr>
+                                <td>Introduccion de fichas</td>
+                                <td>100GGP</td>
+                                <td>Octubre 25 2024</td>
+                                <td>14:05:26 CST</td>
+                            </tr>
                         </table>
                     </div>
                 </div>
             </section>
             <section className='graph-section'>
-            <h1>Grafica de ganancias del mes</h1>
+                <div className='graph-container'>
+                    <LineGraph />
+                    <div className='tittle-graph'>
+                        <h1>Grafica de ganancias del mes</h1>
+                        <i class='bx bx-line-chart'></i>
+                    </div>
+                </div>
             </section>
         </main>
     )

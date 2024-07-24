@@ -21,21 +21,10 @@ const Login = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            const auth = await axios.get('http://localhost:5000/api/accounts/Authentication', { withCredentials: true })
-            if (auth.status == 200) {
-                alert('sesion iniciada anteriormente!');
-                navigate('/profile');
-            }
-            else {
                 const response = await axios.post('http://localhost:5000/api/accounts/login', { ...account }, { withCredentials: true });
                 alert('sesion iniciada con exito');
-
-                const ggpResponse = await axios.put('http://localhost:5000/api/accounts/addggp', { amount }, { withCredentials: true });
-                if (ggpResponse.status === 200) {
-                    alert('¡Tus 100 GGP gratis del día!');
-                }
                 navigate(response.data.redirectURL);
-            }
+    
         } catch (error) {
             alert('error al iniciar sesion');
         }

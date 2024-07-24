@@ -8,6 +8,8 @@ import {
     Title,
     Tooltip,
     Legend,
+    plugins,
+    Ticks,
 } from 'chart.js';
 import { Data } from './Data';
 
@@ -22,7 +24,37 @@ ChartJS.register(
 )
 
 export const LineGraph = () => {
-    const options = {};
+    const options = {
+            plugins: {
+            legend: {
+                display: true,
+                labels: {
+                    color: 'white', // Cambia el color de las etiquetas de la leyenda
+                },
+            },
+            tooltip: {
+                enabled: true,
+            },
+        },
+        scales: {
+            x: {
+                grid: {
+                    display: false,
+                },
+                ticks: {
+                    color: 'white', // Cambia el color de las etiquetas del eje X
+                },
+            },
+            y: {
+                grid: {
+                    display: false,
+                },
+                ticks: {
+                    color: 'white', // Cambia el color de las etiquetas del eje Y
+                },
+            },
+        },
+      };
     return (
         <Line options={ options } data={ Data }/>
     );

@@ -147,3 +147,142 @@ html{
 .profile-exit {
     animation: slideOut 0.5s forwards;
 }
+
+@media (width <= 600px) {
+    .profile {
+        width: 60%;
+        height: 60%;
+        padding: 3%;
+    }
+
+    .profile-header div {
+        padding: 4%;
+        margin-top: 4%;
+    }
+
+    .profile-header div i {
+        margin-left: 4px;
+    }
+    
+    .profile-header h2 {
+        font-size: 24px;
+    }
+
+    .profile-header div h3 {
+        font-size: 15px;
+    }
+
+    .profile-header p {
+        font-size: 15px;
+    }
+    
+    .log-out i{
+        font-size: 40px;
+        padding: 4%;
+    }
+
+    .box {
+        padding: 10%;
+    }
+
+    .box i {
+        font-size: 30px;
+    }
+}
+
+@media (601px <= width <= 767px) {
+    .profile {
+        width: 50%;
+        height: 60%;
+        padding: 3%;
+    }
+    .profile-header h2 {
+        font-size: 25px;
+    }
+
+    .profile-header i {
+        font-size: 70px;
+    }
+
+    .profile-header p {
+        font-size: 15px;
+    }
+    .log-out i{
+        font-size: 40px;
+        padding: 4%;
+    }
+    
+    .profile-header div {
+        padding: 4%;
+        border-radius: 30px;
+    }
+
+    .profile-header div i {
+        font-size: 20px;
+        margin-left: 5px;
+    }
+    .profile-header div h3 {
+        font-size: 20px;
+    }
+
+    .box { 
+        padding: 8%;
+    }
+
+    .box i {
+        font-size: 20px;
+    }
+
+    .box p {
+        font-size: 18px;
+    }
+}
+
+@media (768px <= width <= 1024px) {
+    .profile {
+        width: 50%;
+        height: 70%;
+        padding: 2%;
+    }
+    
+    .profile-header h2 {
+        font-size: 30px;
+    }
+
+    .profile-header i {
+        font-size: 70px;
+    }
+
+    .profile-header p {
+        font-size: 25px;
+    }
+    .log-out i{
+        font-size: 40px;
+        padding: 4%;
+    }
+    
+    .profile-header div {
+        padding: 4%;
+        border-radius: 30px;
+    }
+
+    .profile-header div i {
+        font-size: 20px;
+        margin-left: 5px;
+    }
+    .profile-header div h3 {
+        font-size: 20px;
+    }
+
+    .box { 
+        padding: 5%;
+    }
+
+    .box i {
+        font-size: 40px;
+    }
+
+    .box p {
+        font-size: 20px;
+    }
+}

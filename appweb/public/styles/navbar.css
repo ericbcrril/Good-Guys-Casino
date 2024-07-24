@@ -101,10 +101,14 @@ nav img {
         width: 3vw;
         height: 3vw;
     }
+
+    .user-icon {
+        font-size: 60px;
+    }
 }
 
 /* Estilos para dispositivos móviles */
-@media only screen and (min-width:320px) and (max-width:480px){
+@media only screen and (min-width:320px) and (max-width:600px){
  
 nav a {
     font-size: 3.2vw;
@@ -118,5 +122,9 @@ nav button {
 nav img {
     width: 3vw;
     height: 3vw;
+}
+
+.user-icon {
+    font-size: 50px;
 }
 }
