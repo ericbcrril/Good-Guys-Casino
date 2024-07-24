@@ -115,7 +115,7 @@
 /* scroll bar design */
 
 ::-webkit-scrollbar {
-    width: 10px;
+    width: 20px;
   }
   
   /* Track */
@@ -125,10 +125,7 @@
   }
   
   /* Handle */
-  ::-webkit-scrollbar-thumb {
-    background: #DE3D8C;
-    border-radius: 20px;
-  }
+
   
   /* Handle on hover */
   ::-webkit-scrollbar-thumb:hover {

@@ -1,31 +1,29 @@
-.gginformation-main-container {
-    height: 90%;
+.gginformationmain-container {
+    position: static;
+    margin-top: 5%;
     width: 100%;
-    display: grid;
-    grid-template-columns: repeat(1, 1fr);
-    grid-template-rows: repeat(4, 1fr);
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
 }
 
 .sb-section {
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-top: 5%;
+    margin: 10px;
 }
 
 .search-bar {
     border: 2px solid #000;
     border-radius: 10px;
-    width: 40%;
     padding: .5%;
     display: flex;
-    flex-direction: row;
     background-color: #fff;
 
 }
 
 .search-bar i:first-of-type {
-    width: 5%;
     font-size: 30px;
 }
 
@@ -34,16 +32,13 @@
 }
 
 .search-bar input {
+    width: 400px;
     border: none;
-    width: 90%;
     outline: none;
     background-color: transparent;
-    margin-left: 2%;
-    margin-right: 2%;
 }
 
 .search-bar i:nth-of-type(2) {
-    width: 5%;
     font-size: 30px;
 }
 
@@ -52,17 +47,21 @@
     align-items: center;
     justify-content: center;
     margin-bottom: 20px;
+    background-color: #831675;
 }
 
 .title-section h1 {
     font-size: 60px;
     font-weight: 500;
+    color: #fff;
 }
 
 .videos-section {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
+    gap: 50px;
     justify-items: center;
+    margin-top: 80px; margin-bottom: 80px;
 }
 
 .video-container {
@@ -70,14 +69,18 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 80%;
+    margin-bottom: 20px;
+    overflow: hidden;
+    width: 100%;
+}
+
+
+video {
+    height: auto;
+    border-radius: 10px;
 }
 
 /*
-video {
-    z-index: 1;
-}
-
 .video-container:nth-of-type(1)::before{
     position: absolute;
     content: '';
@@ -158,6 +161,7 @@ video {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     grid-template-rows: repeat(3, 1fr);
+    height: 100%;
 }
 
 .img-introduction {
@@ -165,7 +169,9 @@ video {
     grid-row: 1/4;
 }
 
-
+.img-introduction img {
+    height: max-content;
+}
 
 .introduction-title {
     grid-column: 2/4;
@@ -219,18 +225,19 @@ video {
 .carousel-container {
     overflow: hidden;
     width: 100%;
-    margin: auto;
 }
 
 .carousel {
     display: flex;
     transition: transform 0.5s ease-in-out;
+    height: 90vh;
 }
 
 .carousel-item {
     min-width: 100%;
     box-sizing: border-box;
     text-align: center;
+    margin-top: 10px;
 }
 
 .carousel-controls {
@@ -247,7 +254,7 @@ video {
     flex-direction: column;
     align-items: center;
     padding-top: 2%;
-    padding-bottom: 2%;
+    height: 100%;
 }
 
 .Objectives-tittle h1 {
@@ -260,8 +267,9 @@ video {
     grid-template-columns: repeat(3, 1fr);
     gap: 50px;
     margin-top: 2%;
-    height: 70%;
+    height: 68%;
 }
+
 .objective-box {
     display: grid;
     grid-template-rows: repeat(4, 1fr);
@@ -276,17 +284,17 @@ video {
     background: rgb(45, 88, 158);
     background: linear-gradient(321deg, rgba(45, 88, 158, 1) 41%, rgba(177, 116, 213, 1) 77%);
     border-radius: 80px;
-    padding: 20px;
+    padding: 10px;
     z-index: 2;
     width: 160px;
 }
 
 .objective-icon i {
-    font-size: 120px;
+    font-size: 140px;
 }
 
 .objective-icon span {
-    font-size: 120px;
+    font-size: 140px;
 }
 
 .subtext {
@@ -306,6 +314,7 @@ video {
 .services {
     display: flex;
     flex-direction: column;
+    height: 100%;
 }
 
 .services-image {
@@ -317,27 +326,62 @@ video {
     width: 100%;
 }
 
+.services-tittle {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.services-tittle h1 {
+    font-size: 50px;
+}
+
 .our-services {
-    flex: calc(50%);
+    flex: calc(60%);
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    grid-template-rows: repeat(2, 1fr);
+    gap: 10px;
     text-align: center;
 }
 
-.our-services h1 {
-    font-size: 45px;
-    grid-column: 2/3;
-}
 
 .service {
-    grid-row: 2/3;
     padding: 2%;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
 
+.serice h2,
+.service p {
+    filter: brightness(2);
+}
 
+.service:first-of-type {
+    background-image: url('/images/1scaled.png');
+    background-size: cover;
+    background-position: center;
+    z-index: 6;
+}
+
+.service:nth-of-type(2) {
+    background-image: url('/images/3scaled.png');
+    background-size: cover;
+    background-position: center;
+    z-index: 6;
+}
+
+.service:last-of-type {
+    background-image: url('/images/2scaled.png');
+    background-size: cover;
+    background-position: center;
+    z-index: 6;
+}
 
 .containers-colored {
+    margin-top: 10px;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 10px;
@@ -350,7 +394,7 @@ video {
 }
 
 .colored-container:nth-of-type(2) {
-    background-color: lightblue;
+    background-color: #49A5EF;
     width: auto;
     height: 50px;
 }
@@ -359,4 +403,605 @@ video {
     background-color: #120052;
     width: auto;
     height: 50px;
+}
+
+
+@media (width <=600px) {
+    .gginformationmain-container {
+        width: 100%;
+        margin-top: 20%;
+    }
+    .search-bar {
+        border: 1px solid black;
+    }
+    .introduction {
+        grid-template-columns: 1fr;
+        align-items: center;
+    }
+
+    .introduction-title {
+        grid-column: 1/2;
+        justify-content: center;
+    }
+
+    .introduction-text {
+        grid-column: 1/2;
+        padding: 4%;
+    }
+
+    .introduction-text p{
+        margin-right: 0;
+    }
+
+    .title-section {
+        background-color: #831675;
+    }
+
+    .title-section h1 {
+        color: #fff;
+        font-size: 40px;
+    }
+
+    .search-bar input {
+        width: 200px;
+        font-size: 18px;
+    }
+
+    .videos-section {
+        gap: 50px;
+        grid-template-rows: repeat(3, 1fr);
+        grid-template-columns: 1fr;
+    }
+
+
+    .video-container video {
+        width: 320px;
+        height: auto;
+        border-radius: 5px;
+    }
+
+    .img-introduction {
+        grid-column: 1/4;
+        grid-row: 2/3;
+        padding: 10px;
+        background-color: #DE3D8C;
+    }
+
+    .img-introduction img {
+        content: url('/images/introductionimgphoneG.jpg');
+        width: 100%;
+    }
+    /* introduction section */
+
+    .introduction-title {
+        grid-row: 1/2;
+        background-color: #831675;
+        display: flex;
+        align-items: end;
+    }
+
+    .introduction-text {
+        grid-column: 1/4;
+        grid-row: 3/4;
+    }
+
+    .Objectives-main {
+        padding: 1%;
+        justify-content: center;
+    }
+
+    .objective-icon {
+        width: 110px;
+        height: 110px;
+        grid-row: 1/2;
+        grid-column: 1/3;
+        display: grid;
+        padding: 0;
+        border-radius: 150px;
+        align-self: center;
+    }
+
+    .objective-icon i {
+        align-self: center;
+        justify-self: center;
+        font-size: 90px;
+    }
+    .objective-icon span {
+        align-self: center;
+        justify-self: center;
+        font-size: 80px;
+    }
+    /* carousel */
+    .carousel-container {
+        overflow: hidden;
+        width: 100%;
+    }
+
+    .carousel {
+        display: flex;
+        transition: transform 0.5s ease-in-out;
+        height: 100vh;
+    }
+
+    .carousel-item {
+        min-width: 100%;
+        box-sizing: border-box;
+        text-align: center;
+        margin-top: 10px;
+    }
+    
+    .boxes {
+        grid-template-columns: repeat(1, 1fr);
+        grid-template-rows: repeat(3, 1fr);
+        gap: 40px;
+        width: 100%;
+        align-items: center;
+    }
+
+    .objective-box {
+        grid-template-columns: repeat(4, 1fr);
+        grid-template-rows: 1fr;
+    }
+    .subtext {
+        grid-row: 1/2;
+        grid-column: 2/5;
+        width: 90%;
+        height: 80%;
+        align-self: center;
+    }
+
+    /* services section */
+    .services-image {
+        display: none;
+    }
+
+    .our-services {
+        grid-template-columns: 1fr;
+    }
+
+    .containers-colored {
+        gap: 5px;
+    }
+
+    .colored-container:last-of-type  {
+        display: none;
+    }
+
+    .colored-container:nth-of-type(2) {
+        grid-column: 2/4;
+        background-color: #120052;
+    }
+
+    /* next item */
+    .next-item {
+        bottom: -80%;
+        z-index: 1;
+    }
+}
+
+@media (768px >= width >=600px) {
+
+    .gginformationmain-container {
+        width: 100%;
+        margin-top: 20%;
+    }
+
+    .videos-section {
+        gap: 90px;
+        grid-template-rows: repeat(3, 1fr);
+        grid-template-columns: 1fr;
+    }
+
+
+    .video-container video {
+        width: 480px;
+        height: auto;
+        border-radius: 10px;
+    }
+
+    .sb-section {
+        margin-bottom: 40px;
+    }
+
+    .search-bar {
+        border: 2px solid black;
+    }
+    .introduction {
+        grid-template-columns: 1fr;
+        align-items: center;
+    }
+
+    .introduction-title {
+        grid-column: 1/2;
+        justify-content: center;
+    }
+
+    .introduction-text {
+        grid-column: 1/2;
+        padding: 4%;
+    }
+
+    .introduction-text p{
+        margin-right: 0;
+        font-size: 30px;
+    }
+
+    .title-section {
+        background-color: #831675;
+    }
+
+    .title-section h1 {
+        color: #fff;
+        font-size: 60px;
+    }
+
+    .search-bar input {
+        width: 500px;
+        font-size: 30px;
+    }
+
+    .search-bar i:first-of-type {
+        font-size: 40px;
+    }
+
+    .search-bar i:nth-of-type(2) {
+        font-size: 40px;
+    }
+
+    .img-introduction {
+        grid-column: 1/4;
+        grid-row: 2/3;
+        padding: 40px;
+        background-color: #3E0B3A;
+    }
+
+    .img-introduction img {
+        content: url('/images/introductionimgphoneG.jpg');
+        width: 100%;
+    }
+    /* introduction section */
+
+    .introduction-title {
+        grid-row: 1/2;
+        background-color: #831675;
+        display: flex;
+        align-items: end;
+    }
+
+    .introduction-title h1 {
+        font-size: 50px;
+    }
+
+    .introduction-text {
+        grid-column: 1/4;
+        grid-row: 3/4;
+    }
+
+    .Objectives-main {
+        padding: 1%;
+        justify-content: center;
+    }
+
+    .Objectives-tittle h1 {
+        font-size: 80px;
+    }
+
+    .objective-icon {
+        width: 220px;
+        height: 220px;
+        grid-row: 1/2;
+        grid-column: 1/3;
+        display: grid;
+        padding: 0;
+        border-radius: 150px;
+        align-self: center;
+    }
+
+    .objective-icon i {
+        align-self: center;
+        justify-self: center;
+        font-size: 180px;
+    }
+    .objective-icon span {
+        align-self: center;
+        justify-self: center;
+        font-size: 180px;
+    }
+    /* carousel */
+    .carousel-container {
+        overflow: hidden;
+        width: 100%;
+    }
+
+    .carousel {
+        display: flex;
+        transition: transform 0.5s ease-in-out;
+        height: 120vh;
+    }
+
+    .carousel-item {
+        min-width: 100%;
+        box-sizing: border-box;
+        text-align: center;
+        margin-top: 10px;
+    }
+    
+    .boxes {
+        grid-template-columns: repeat(1, 1fr);
+        grid-template-rows: repeat(3, 1fr);
+        gap: 40px;
+        width: 100%;
+        align-items: center;
+    }
+
+    .objective-box {
+        grid-template-columns: repeat(4, 1fr);
+        grid-template-rows: 1fr;
+    }
+    .subtext {
+        grid-row: 1/2;
+        grid-column: 2/5;
+        width: 90%;
+        height: 70%;
+        align-self: center;
+    }
+
+    .subtext h2 {
+        font-size: 40px;
+    }
+
+    /* services section */
+    .services-image {
+        display: none;
+    }
+
+    .services-tittle h1 {
+        font-size: 80px;
+    }
+
+    .our-services {
+        grid-template-columns: 1fr;
+    }
+
+    .service h2{
+        font-size: 50px;
+    }
+
+    .service p {
+        font-size: 40px;
+    }
+
+    .containers-colored {
+        gap: 5px;
+    }
+
+    .colored-container:last-of-type  {
+        display: none;
+    }
+
+    .colored-container:nth-of-type(2) {
+        grid-column: 2/4;
+        background-color: #120052;
+    }
+
+    /* next item */
+    .next-item {
+        bottom: -130%;
+        z-index: 1;
+        width: 100px;
+        height: 100px;
+    }
+}
+
+@media (1200px >= width >=768px) {
+    .gginformationmain-container {
+        width: 100%;
+        margin-top: 20%;
+    }
+
+    .videos-section {
+        gap: 90px;
+        grid-template-rows: repeat(3, 1fr);
+        grid-template-columns: 1fr;
+    }
+
+
+    .video-container video {
+        width: 720px;
+        height: auto;
+        border-radius: 10px;
+    }
+
+    .sb-section {
+        margin-bottom: 40px;
+    }
+
+    .search-bar {
+        border: 2px solid black;
+    }
+    .introduction {
+        grid-template-columns: 1fr;
+        align-items: center;
+    }
+
+    .introduction-title {
+        grid-column: 1/2;
+        justify-content: center;
+    }
+
+    .introduction-text {
+        grid-column: 1/2;
+        padding: 4%;
+    }
+
+    .introduction-text p{
+        margin-right: 0;
+        font-size: 30px;
+    }
+
+    .title-section {
+        background-color: #831675;
+    }
+
+    .title-section h1 {
+        color: #fff;
+        font-size: 60px;
+    }
+
+    .search-bar input {
+        width: 500px;
+        font-size: 30px;
+    }
+
+    .search-bar i:first-of-type {
+        font-size: 40px;
+    }
+
+    .search-bar i:nth-of-type(2) {
+        font-size: 40px;
+    }
+
+    .img-introduction {
+        grid-column: 1/4;
+        grid-row: 2/3;
+        padding: 40px;
+        background-color: #3E0B3A;
+    }
+
+    .img-introduction img {
+        content: url('/images/introductionimgphoneG.jpg');
+        width: 100%;
+    }
+    /* introduction section */
+
+    .introduction-title {
+        grid-row: 1/2;
+        background-color: #831675;
+        display: flex;
+        align-items: end;
+    }
+
+    .introduction-title h1 {
+        font-size: 50px;
+    }
+
+    .introduction-text {
+        grid-column: 1/4;
+        grid-row: 3/4;
+    }
+
+    .Objectives-main {
+        padding: 1%;
+        justify-content: center;
+    }
+
+    .Objectives-tittle h1 {
+        font-size: 80px;
+    }
+
+    .objective-icon {
+        width: 220px;
+        height: 220px;
+        grid-row: 1/2;
+        grid-column: 1/3;
+        display: grid;
+        padding: 0;
+        border-radius: 150px;
+        align-self: center;
+    }
+
+    .objective-icon i {
+        align-self: center;
+        justify-self: center;
+        font-size: 180px;
+    }
+    .objective-icon span {
+        align-self: center;
+        justify-self: center;
+        font-size: 180px;
+    }
+    /* carousel */
+    .carousel-container {
+        overflow: hidden;
+        width: 100%;
+    }
+
+    .carousel {
+        display: flex;
+        transition: transform 0.5s ease-in-out;
+        height: 120vh;
+    }
+
+    .carousel-item {
+        min-width: 100%;
+        box-sizing: border-box;
+        text-align: center;
+        margin-top: 10px;
+    }
+    
+    .boxes {
+        grid-template-columns: repeat(1, 1fr);
+        grid-template-rows: repeat(3, 1fr);
+        gap: 40px;
+        width: 100%;
+        align-items: center;
+    }
+
+    .objective-box {
+        grid-template-columns: repeat(4, 1fr);
+        grid-template-rows: 1fr;
+    }
+    .subtext {
+        grid-row: 1/2;
+        grid-column: 2/5;
+        width: 90%;
+        height: 70%;
+        align-self: center;
+    }
+
+    .subtext h2 {
+        font-size: 40px;
+    }
+
+    /* services section */
+    .services-image {
+        display: none;
+    }
+
+    .services-tittle h1 {
+        font-size: 80px;
+    }
+
+    .our-services {
+        grid-template-columns: 1fr;
+    }
+
+    .service h2{
+        font-size: 50px;
+    }
+
+    .service p {
+        font-size: 40px;
+    }
+
+    .containers-colored {
+        gap: 5px;
+    }
+
+    .colored-container:last-of-type  {
+        display: none;
+    }
+
+    .colored-container:nth-of-type(2) {
+        grid-column: 2/4;
+        background-color: #120052;
+    }
+
+    /* next item */
+    .next-item {
+        bottom: -130%;
+        z-index: 1;
+        width: 100px;
+        height: 100px;
+    }
 }

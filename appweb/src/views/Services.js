@@ -4,8 +4,10 @@ export const Services = () => {
             <div className="services-image">
                 <img src="images/imgServices.jpg" />
             </div>
-            <div className="our-services">
+            <div className="services-tittle">
                 <h1>Nuestros servicios</h1>
+            </div>
+            <div className="our-services">
                 <div className="service">
                     <h2>
                         Desarrollo web y

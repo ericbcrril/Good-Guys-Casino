@@ -3,10 +3,13 @@ import axios from 'axios';
 import { accountCollection } from '../model/collections';
 import MainNabvar from "../components/navbars/MainNavbar";
 import 'boxicons';
+import { useNavigate } from 'react-router-dom';
 
 const  Register = () => {
     const [account, setAccount] = useState({...accountCollection});
     const [passwordsMatch, setPasswordsMatch] = useState(true);
+    const navigate = useNavigate();    
+
     const handleChangeAccount = (e) => {
         const { name, value } = e.target;
         setAccount( prevState => {
@@ -27,6 +30,7 @@ const  Register = () => {
           await axios.post('http://localhost:5000/api/accounts/register', { ...account });
           alert('cuenta agregada exitosamente');
           setAccount({ ...account });
+          navigate('/login');
         } catch (error) {
           alert('Error al agregar usuario');
         }

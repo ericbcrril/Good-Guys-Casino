@@ -6,12 +6,28 @@ import UserLoggedNavbar from '../components/navbars/UserLoggedNavbar';
 import { LineGraph } from '../components/misc/Graph';
 
 const Wallet = () => {
+    /*
+    const [showGGP, setShowGGP] = useState(false);
+    const [animationClass, setAnimationClass] = useState('');
+
+    const handleWallet = () => {
+        if (showProfile) {
+            setAnimationClass('profile-exit');
+            setTimeout(() => {
+                setShowGGP(false);
+                setAnimationClass('');
+            }, 500); // El tiempo debe coincidir con la duración de la animación
+        } else {
+            setShowGGP(true);
+            setAnimationClass('profile-enter');
+        }
+    }; */
     return (
         <main className='wallet-container'>
             <UserLoggedNavbar />
             <section className='movements-section'>
                 <div className='wallet-icon'>
-                    <i class='bx bx-wallet' ></i>
+                    <i class='bx bx-wallet'></i>
                 </div>
                 <div className='total-GGP'>
                     <h2>Creditos totales: 1500GGP</h2>

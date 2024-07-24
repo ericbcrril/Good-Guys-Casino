@@ -34,7 +34,7 @@ export const GgInformation = () => {
     const offset = -currentIndex * 100;
 
     return (
-        <main className='gginformation-main-container'>
+        <section className='gginformationmain-container'>
             <MainNabvar />
             <section className='sb-section'>
                 <div className='search-bar'>
@@ -48,23 +48,23 @@ export const GgInformation = () => {
             </section>
             <section className='videos-section'>
                 <div className='video-container'>
-                    <video width={"320"} height={"240"} controls >
+                    <video width={"360"} height={"240"} controls >
                         <source src='/videos/anuncioGG.mp4' type='video/mp4'></source>
                     </video>
                 </div>
                 <div className='video-container'>
-                    <video width={"320"} height={"240"} controls >
+                    <video width={"360"} height={"240"} controls >
                         <source src='/videos/anuncioGG.mp4' type='video/mp4'></source>
                     </video>
                 </div>
                 <div className='video-container'>
-                    <video width={"320"} height={"240"} controls >
+                    <video width={"360"} height={"240"} controls >
                         <source src='/videos/anuncioGG.mp4' type='video/mp4'></source>
                     </video>
                 </div>
             </section>
 
-            <div className="carousel-container">
+            <section className="carousel-container">
                 <div className="carousel" style={{ transform: `translateX(${offset}%)` }}>
                     {sections.map((section, index) => (
                         <div key={section.id} className="carousel-item">
@@ -75,7 +75,7 @@ export const GgInformation = () => {
                 <div className='next-item' onClick={nextSection}>
                     <i class='bx bx-chevron-right'></i>
                 </div>
-            </div>
-        </main>
+            </section>
+        </section>
     )
 }
