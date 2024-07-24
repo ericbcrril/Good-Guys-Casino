@@ -59,8 +59,8 @@ connectToDatabase();
 app.use(bodyParser.json());
 app.use(express.json());
 app.use(cors({
-  //origin: ['http://localhost:3000', 'exp://192.168.1.72:8081'],
-  origin: true,
+  origin: ['http://localhost:3000', 'exp://192.168.1.72:8081'],
+  //origin: true,
   credentials: true
 }));
 app.use(cookieParser());

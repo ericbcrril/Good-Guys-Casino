@@ -51,11 +51,11 @@ export default function HomeScreen() {
       </View>
       <View style={home.balanceBoxContainerActions}>
         <WhiteBoxButton onPress={() => handleNavigate('buyPoints')} style={{display: 'flex', flexDirection: 'row'}}>
-          <Text style={{width: 50}}>Ingresar</Text>
+          <Text style={{width: 50}} numberOfLines={1}>Ingresar</Text>
           <Icon name="import" size={20} color="#000" style={{ marginLeft: 5 }} />
         </WhiteBoxButton>
         <WhiteBoxButton onPress={() => handleNavigate('buyPoints')} style={{display: 'flex', flexDirection: 'row'}}>
-          <Text style={{width: 50}}>Retirar</Text>
+          <Text style={{width: 50}} numberOfLines={1}>Retirar</Text>
           <Icon name="export" size={20} color="#000" style={{ marginLeft: 5 }} />
         </WhiteBoxButton>
       </View>
@@ -66,10 +66,10 @@ export default function HomeScreen() {
           <WhiteBoxTitle>Informe de Balance</WhiteBoxTitle>
           {movementsData.slice(-5).reverse().map((movement, index) => (
             <View key={index} style={stylesbalanceReport.transaction}>
-              <Text style={movement.amount > 0 ? stylesbalanceReport.positive : stylesbalanceReport.negative}>
+              <Text numberOfLines={1} style={movement.amount > 0 ? stylesbalanceReport.positive : stylesbalanceReport.negative}>
                 {movement.amount > 0 ? '+' : ''}{movement.amount}
               </Text>
-              <Text style={stylesbalanceReport.details}>
+              <Text numberOfLines={1} style={stylesbalanceReport.details}>
                 {movement.date} - {movement.reason}
               </Text>
             </View>
