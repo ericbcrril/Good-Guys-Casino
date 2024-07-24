@@ -47,10 +47,10 @@ exports.createItem = async (req, res) => {
   console.log("Datos rrecibidos: ", req.body)
   try {
     const {
-      userId, date, amount, reason, platform
+      userId, date, amount, totalggp, reason, platform
     } = req.body;
     const newItem = new Item({
-      userId, date, amount, reason, platform
+      userId, date, amount, totalggp, reason, platform
     });
     await newItem.save();
     res.json(newItem);
@@ -64,12 +64,12 @@ exports.createItem = async (req, res) => {
 exports.updateItem = async (req, res) => {
   try {
     const {
-      userId, date, amount, reason, platform
+      userId, date, amount, totalggp, reason, platform
     } = req.body;
     const updatedItem = await Item.findByIdAndUpdate(
       req.params.id,
       {
-        userId, date, amount, reason, platform
+        userId, date, amount, totalggp, reason, platform
       },
       { new: true }
     );

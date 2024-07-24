@@ -21,11 +21,11 @@ import { userData, movementsData } from '../../constants/simulateUser';
 export default function HomeScreen() {
   const navigation = useNavigation();
 
-  const [balance, setBalance] = useState(userData.balance);
+  const [balance, setBalance] = useState(userData.wallet.totalgg);
 
   useEffect(() => {
     const interval = setInterval(() => {
-      setBalance(userData.balance);
+      setBalance(userData.wallet.totalgg);
     }, 1000); // Actualiza el balance cada segundo
 
     return () => clearInterval(interval); // Limpia el intervalo al desmontar el componente

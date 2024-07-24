@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Text, Animated, View, StyleSheet, TouchableOpacity } from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
+import { useNavigation } from '@react-navigation/native';
 // Componentes 
 import HomeScreen from "./menus/HomeScreen";
 import SelectGameScreen from './menus/SelectGameScreen';
@@ -10,7 +11,6 @@ import { UserIcon } from 'components/home/homeComponents';
 import { styles } from "assets/styles/styles";
 //Usuario
 import { userData, movementsData } from '../constants/simulateUser';
-
 // Imagenes
 const logoGG = require('assets/images/logos/logoGG.png');
 const theTest = require('assets/images/test.png');
@@ -27,8 +27,6 @@ const Settings = () => (
   <SettingsScreen />
 );
 
-
-
 const NavBar = ({ setScreen }) => (
   <View style={styles.navBar}>
     <TouchableOpacity style={styles.navItem} onPress={() => setScreen('home')}>
@@ -38,7 +36,7 @@ const NavBar = ({ setScreen }) => (
       <Icon name="game-controller-sharp" size={32} color="#fff" />
     </TouchableOpacity>
     <TouchableOpacity style={styles.navItem} onPress={() => setScreen('settings')}>
-      <Icon name="settings" size={32} color="#fff" />
+      <Icon name="menu" size={32} color="#fff" />
     </TouchableOpacity>
     
   </View>
@@ -100,19 +98,24 @@ const AnimatedScreen = ({ currentScreen, previousScreen }) => {
 export default function AppScreen() {
   const [currentScreen, setCurrentScreen] = useState('home');
   const [previousScreen, setPreviousScreen] = useState(null);
+  const navigation = useNavigation();
 
    const handleSetScreen = (screen) => {
     setPreviousScreen(currentScreen);
     setCurrentScreen(screen);
   };
 
+  const handleNavigate = (screen) => {
+    navigation.navigate('SubScreen', { screen });
+  };
+
   return (
     <View style={{ flex: 1, backgroundColor: '#F5FCFF' }}>
           <View style={{ display: currentScreen === 'settings' ? 'none' : 'flex', flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', margin: 10, marginTop: 35}}>
-            <TouchableOpacity style={{flexDirection: 'row', alignItems: 'center'}}>
+            <TouchableOpacity onPress={() => handleNavigate('account')} style={{flexDirection: 'row', alignItems: 'center'}}>
               <UserIcon source={theTest}/><Text>{ userData.user }</Text>
             </TouchableOpacity>
-            <Text style={{ display: currentScreen == 'minigames' ? 'flex' : 'none'}}>{ userData.balance } GGP</Text>
+            <Text style={{ display: currentScreen == 'minigames' ? 'flex' : 'none'}}>{ userData.wallet.totalgg } GGP</Text>
           </View>
         <AnimatedScreen currentScreen={currentScreen} previousScreen={previousScreen} />
         <NavBar setScreen={handleSetScreen} />
