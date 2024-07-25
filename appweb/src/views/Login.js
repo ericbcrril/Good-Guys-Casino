@@ -4,7 +4,6 @@ import MainNabvar from "../components/navbars/MainNavbar";
 import { Link, useNavigate } from 'react-router-dom';
 import 'boxicons';
 import { accountCollection } from '../model/collections';
-import Footer from '../components/misc/Footer';
 
 
 
@@ -67,7 +66,6 @@ const Login = () => {
                     </div>
                 </div>
             </section>
-            <Footer />
         </main>
     );
 }

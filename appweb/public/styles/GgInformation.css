@@ -212,7 +212,7 @@ video {
     height: 40px;
     border-radius: 50px;
     display: grid;
-    z-index: 5;
+    z-index: 1;
 }
 
 .next-item i {
@@ -342,6 +342,7 @@ video {
     grid-template-columns: repeat(3, 1fr);
     gap: 10px;
     text-align: center;
+    background-color: #000;
 }
 
 
@@ -357,6 +358,7 @@ video {
 .serice h2,
 .service p {
     filter: brightness(2);
+    font-weight: 500;
 }
 
 .service:first-of-type {
@@ -405,7 +407,11 @@ video {
     height: 50px;
 }
 
-
+@media (width <= 480px) {
+    .video-container video {
+        width: 280px;
+    }
+}
 @media (width <=600px) {
     .gginformationmain-container {
         width: 100%;
@@ -576,6 +582,18 @@ video {
     .next-item {
         bottom: -80%;
         z-index: 1;
+    }
+
+    .service:first-of-type {
+        background-image: url('/images/smarthphone/2.png');
+    }
+    
+    .service:nth-of-type(2) {
+        background-image: url('/images/smarthphone/1.png');
+    }
+    
+    .service:last-of-type {
+        background-image: url('/images/smarthphone/3.png');
     }
 }
 

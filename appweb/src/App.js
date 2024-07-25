@@ -11,23 +11,31 @@ import ProtectedRoute from './ProtectedRoute';
 import Wallet from './views/Wallet';
 import { LineGraph } from './components/misc/Graph';
 import { GgInformation } from './views/GgInformation';
+import AlertRoute from './AlertRoute';
+import ProtectedRouteStart from './start';
+
 
 function App() {
   return (
     <Router>
       <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/main" element={<Home />} />
-        <Route path="/minigames" element={<Minigames />} />
+        <Route path="/" element={<ProtectedRouteStart
+         component={HomeUser} />} />
+        <Route path="/main" element={<ProtectedRouteStart
+         component={HomeUser} />} />
+        <Route
+          path="/minigames"
+          element={<AlertRoute message="los minijuegos aun no estan disponibles, esperalos pronto!" to="/" />}
+        />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
         <Route
           path="/profile"
-          element={ <ProtectedRoute component={HomeUser}/> }/>
+          element={<ProtectedRoute component={HomeUser} />} />
         <Route path="*" element={<NotFound />} />
-        <Route path='/Wallet' element={<Wallet/>}/>
-        <Route path='/graph' element={<LineGraph/>}/>
-        <Route path='/GoodGuys' element={<GgInformation/>}/>
+        <Route path='/Wallet' element={<Wallet />} />
+        <Route path='/graph' element={<LineGraph />} />
+        <Route path='/GoodGuys' element={<GgInformation />} />
       </Routes>
     </Router>
   );

@@ -115,7 +115,7 @@
 /* scroll bar design */
 
 ::-webkit-scrollbar {
-    width: 20px;
+    width: 10px;
   }
   
   /* Track */
@@ -125,11 +125,13 @@
   }
   
   /* Handle */
-
+  ::-webkit-scrollbar-thumb {
+    background-color: #3E0B3A;
+  }
   
   /* Handle on hover */
   ::-webkit-scrollbar-thumb:hover {
-    background: #3E0B3A;
+    background: #DE3D8C;
   }
 
 

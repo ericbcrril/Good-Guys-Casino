@@ -25,7 +25,7 @@ const HomeUser = () => {
                     <Link to="/main" className='purple-box-img-link'>
                         <img src='/images/icons/groups_24dp.svg' alt='icon'/>
                     </Link>
-                        <Link to="/main">¿Quienes somos?</Link>
+                        <Link to="/GoodGuys">¿Quienes somos?</Link>
                     </div>
                 </div>
 

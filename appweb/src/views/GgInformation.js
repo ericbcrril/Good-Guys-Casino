@@ -1,17 +1,37 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import MainNabvar from "../components/navbars/MainNavbar";
 import { Introduction } from './Introduction';
 import { Objectives } from './Objectives';
 import { Services } from './Services';
+import UserLoggedNavbar from '../components/navbars/UserLoggedNavbar';
 
 export const GgInformation = () => {
     const [currentIndex, setCurrentIndex] = useState(0);
+    const [isAuthenticated, setIsAuthenticated] = useState(false);
 
     const sections = [
         { id: 'section1', content: <Introduction /> },
         { id: 'section2', content: <Objectives /> },
         { id: 'section3', content: <Services /> }
     ];
+
+    useEffect(() => {
+        const checkAuth = async () => {
+            try {
+                const response = await fetch('http://localhost:5000/api/accounts/Authentication', {
+                    credentials: 'include'
+                });
+
+                if (response.ok) {
+                    setIsAuthenticated(true);
+                } 
+            } catch (error) {
+                console.error('Error checking auth', error);
+            }
+        };
+
+        checkAuth();
+    }, []);
 
     const showSection = (index) => {
         if (index >= sections.length) {
@@ -35,7 +55,7 @@ export const GgInformation = () => {
 
     return (
         <section className='gginformationmain-container'>
-            <MainNabvar />
+            { isAuthenticated ? <UserLoggedNavbar/> : <MainNabvar/>}
             <section className='sb-section'>
                 <div className='search-bar'>
                     <i class='bx bx-search'></i>
