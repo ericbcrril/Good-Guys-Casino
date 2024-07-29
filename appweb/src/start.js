@@ -30,7 +30,7 @@ const ProtectedRouteStart = ({ component: Component, ...rest }) => {
     }
 
     return (
-        isAuthenticated ? <Component {...rest} /> : <Navigate to='/' replace />
+        isAuthenticated ? <Component {...rest} /> : <Navigate to='/main' replace />
     );
 };
 

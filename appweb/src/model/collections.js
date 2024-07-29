@@ -5,3 +5,8 @@ export const accountCollection = {
     user: '',
     password: ''
 };
+
+export const surveyCollection = {
+    answer: true,
+    minigame: 0
+};

@@ -1,0 +1,82 @@
+.main-survey {
+    position: static;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    height: 100vh;
+    background-color: gray;
+}
+
+.survey-container {
+    width: 40%;
+    height: 90vh;
+    border: 4px solid #2DFEFF;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #000;
+    color: #fff;
+}
+
+.survey-container h2 {
+    font-weight: 400;
+    font-size: 20px;
+}
+
+.question {
+    display: flex;
+    justify-content: center;
+    width: 80%;
+    border: 1px solid #2DFEFF;
+    border-radius: 20px;
+    text-align: center;
+    padding: 2%;
+    margin: 20px 0;
+
+}
+
+.question h1 {
+    font-size: 30px;
+}
+
+.images-survey {
+    display: grid;
+    width: 90%;
+    grid-template-columns: repeat(3, 1fr);
+    justify-items: center;
+}
+
+.images-survey img {
+    height: 200px;
+    justify-self: center;
+    align-self: center;
+}
+
+.survey-section {
+    display: flex;
+    flex-direction: row;
+    margin: 10px 0;
+}
+
+.survey-section p {
+    font-size: 20px;
+}
+
+.survey-section input[type="radio"]{
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+    border: 1px solid #2DFEFF;
+    margin: 0 10px;
+}
+
+
+.survey-section input[type="radio"]:checked {
+    background-color: #2DFEFF;
+}

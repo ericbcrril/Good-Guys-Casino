@@ -12,20 +12,17 @@ import Wallet from './views/Wallet';
 import { LineGraph } from './components/misc/Graph';
 import { GgInformation } from './views/GgInformation';
 import AlertRoute from './AlertRoute';
-import ProtectedRouteStart from './start';
-
+import { Survey } from './components/misc/survey';
 
 function App() {
   return (
     <Router>
       <Routes>
-        <Route path="/" element={<ProtectedRouteStart
-         component={HomeUser} />} />
-        <Route path="/main" element={<ProtectedRouteStart
-         component={HomeUser} />} />
+        <Route path="/" element={<Home />} />
+        <Route path="/main" element={<Home />} />
         <Route
           path="/minigames"
-          element={<AlertRoute message="los minijuegos aun no estan disponibles, esperalos pronto!" to="/" />}
+          element={<Survey />}
         />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />

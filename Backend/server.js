@@ -75,6 +75,9 @@ app.use('/api/accounts', accountsRoutes);
 const movementsRoutes = require('./src/routes/movementsRoutes');
 app.use('/api/movements', movementsRoutes);
 
+const surveyRoutes = require('./src/routes/surveyRoutes');
+app.use('/api/survey', surveyRoutes);
+
 
 // Iniciar el servidor
 app.listen(PORT, () => {
