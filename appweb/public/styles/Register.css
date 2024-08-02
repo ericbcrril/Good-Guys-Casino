@@ -1,11 +1,9 @@
 .main-register {
-    position: static;
     background: rgb(78, 1, 111);
     background: linear-gradient(90deg, rgba(78, 1, 111, 1) 0%, rgba(189, 138, 255, 1) 70%, rgba(254, 122, 255, 1) 100%);
     display: flex;
     justify-content: center;
     align-content: center;
-    height: 100vh;
 }
 
 .box-form {
@@ -18,9 +16,8 @@
     height: auto;
     border: 4px solid #fff;
     border-radius: 10px;
-    padding: 1%;
-    margin-top: 7%;
-    margin-bottom: 5%;
+    padding: 1%; 
+    margin-top: 10%;   
 }
 
 .header-register {
@@ -42,15 +39,20 @@
     margin: 10px;
 }
 
-.header-register img {
-    transform: rotate(20deg);
+.gg-img {
     grid-column: 3 / span 1;
     grid-row: 1/2;
     justify-self: end;
-    width: 120px;
+    width: auto;
     z-index: 1;
-    margin-top: -30px;
+    margin-top: -50px;
     margin-left: 120px;
+}
+
+.gg-img img{
+    transform: rotate(20deg); /* Ajusta la posición para centrar y rota la imagen */
+    width: 100px;
+    animation: AnimationImg .5s infinite alternate;
 }
 
 /* form */
@@ -146,22 +148,21 @@
     background-color: #fff;
     color: #3E0B3A;
     border: none;
-    border-top-left-radius: 20px;
-    border-top-right-radius: 20px;
-    border-bottom-left-radius: 20px;
-    border-bottom-right-radius: 20px;
     cursor: pointer;
+    border-radius: 30px;
     width: 100%;
     height: 80%;
     font-size: 15px;
-    transition: background-color .5s;
+    transition: border 0.3s ease-in-out;
+    animation: glowB 1.5s infinite alternate;
 }
- 
+
 
 .login-item button:hover {
-    background-color: #007BFF;
-    color: #fff;
+    background-color: transparent;
+    border: 3px dashed #DE3D8C;
 }
+
 .login-item div {
     grid-column: 1/2;
     grid-row: 1/2;
@@ -188,10 +189,13 @@
     color: #fff;
     padding: 10px;
     border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .login-item div a i {
-    font-size: 18px;
+    font-size: 25px;
 }
 
 .login-item h4 {
@@ -211,12 +215,16 @@
     .box-form {
         width: 100%;
         height: 100%;
-        margin-top: 20%;
+        margin: 0;
     }
 
-    .header-register img {
+    .gg-img {
+        grid-column: 1 / span 5;
+        margin-left: -40px;
+    }
+
+    .gg-img img{
         width: 80px;
-        margin-left: 150px;
     }
 
     .inputs-item {
@@ -241,18 +249,19 @@
         font-size: 22px;
     }
 
-    .options-item{
+    .options-item {
         align-items: center;
     }
+
     .options-item i {
         font-size: 35px;
     }
 
-    .login-item{
+    .login-item {
         grid-template-columns: repeat(3, 1fr);
     }
 
-    .login-item a{
+    .login-item a {
         grid-column: 1/2;
     }
 
@@ -266,6 +275,14 @@
         grid-column: 3/4;
     }
 
+    .login-item div a i {
+        font-size: 30px;
+    }
+
+    .login-item h4 {
+        font-size: 18px;
+    }
+
     h4 {
         font-size: 18px;
         justify-self: center;
@@ -275,10 +292,110 @@
 
 /*responsive for smarthphones finish*/
 
+/* responsive for tablets */
+
+@media (998px >= width >=768px) {
+    .box-form {
+        width: 90%;
+        margin: 0;
+    }
+
+    .inputs-item {
+        gap: 20px;
+    }
+
+    .inputs-item h3 {
+        font-size: 28px;
+    }
+
+    .inputs-item input::placeholder {
+        font-size: 18px;
+    }
+
+    .login-item h4 {
+        font-size: 20px;
+    }
+
+    .login-item a {
+        grid-column: 5/6;
+    }
+
+    .login-item button {
+        font-size: 20px;
+        height: 90%;
+    }
+}
+
+@media (601px <= width <= 767px) {
+    .box-form{
+        width: 90%;
+    }
+}
+
+@media (width >= 1400px) {
+    .box-form {
+        margin-top: 0;
+    }
+
+    .gg-img {
+        margin-left: 0;
+    }
+
+    .inputs-item {
+        row-gap: 30px;
+    }
+}
+
+/* landscape */
+
+@media (orientation: landscape) {
+    @media (width <=1200px) {
+        .box-form {
+            width: 80%;
+            margin-bottom: 0;
+            margin-top: 40%;
+        }
+
+        .inputs-item input::placeholder {
+            font-size: 18px;
+        }
+    }
+}
+
+
+/* animations */
+@keyframes glowB {
+    0% {
+        border-color: #FE7AFF;
+        box-shadow: 0 0 5px #FE7AFF;
+    }
+
+    50% {
+        border-color: #DE3D8C;
+        box-shadow: 0 0 10px #DE3D8C, 0 0 20px #FE7AFF;
+    }
+
+    100% {
+        border-color: #FE7AFF;
+        box-shadow: 0 0 5px #FE7AFF;
+    }
+}
+
+@keyframes AnimationImg {
+    0% {
+        width: 80px;
+    }
+
+    100% {
+        width: 120px;
+    }
+}
 
 input:-webkit-autofill {
-    background-color: transparent !important; /* Cambia este color por el que desees */
-    color: #000 !important; /* Cambia el color del texto si es necesario */
+    background-color: transparent !important;
+    /* Cambia este color por el que desees */
+    color: #000 !important;
+    /* Cambia el color del texto si es necesario */
 }
 
 input:-moz-autofill {

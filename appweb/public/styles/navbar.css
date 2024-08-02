@@ -154,3 +154,24 @@ nav img {
         font-size: 60px;
     }
 }
+
+
+
+/* ladnscape */
+
+@media (orientation: landscape) {
+    @media (width <= 1200px) {
+      nav {
+        height: auto;
+      }
+
+      nav button {
+        height: auto;
+        width: 20%;
+      }
+
+      nav a {
+        font-size: 2.8vw;
+      }
+    }
+  }

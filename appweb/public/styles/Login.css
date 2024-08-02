@@ -577,3 +577,15 @@ input:-webkit-autofill:active {
         display: none;
     }
 }
+
+@media (orientation: landscape) {
+    @media( width <= 1200px) {
+        .main-box {
+            margin-top: 8%;
+        }
+
+        .item1 input {
+            font-size: 20px;
+        }
+    }
+}

@@ -22,7 +22,7 @@ const HomeUser = () => {
                 <div className='home-content-box'>
                     <img src='/images/logos/logoGgAnimated.gif' className='home-logo' alt='logo'/>
                     <div className='purple-box'>
-                    <Link to="/main" className='purple-box-img-link'>
+                    <Link to="/GoodGuys" className='purple-box-img-link'>
                         <img src='/images/icons/groups_24dp.svg' alt='icon'/>
                     </Link>
                         <Link to="/GoodGuys">¿Quienes somos?</Link>

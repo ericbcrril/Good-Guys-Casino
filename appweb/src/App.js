@@ -8,6 +8,7 @@ import HelloWorld from './views/helloWorld';
 import NotFound from './views/Home';
 import HomeUser from './views/HomeUser';
 import ProtectedRoute from './ProtectedRoute';
+import SurveyProtected from './surveyProtected';
 import Wallet from './views/Wallet';
 import { LineGraph } from './components/misc/Graph';
 import { GgInformation } from './views/GgInformation';
@@ -19,20 +20,21 @@ function App() {
     <Router>
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/main" element={<Home />} />
+        <Route path="/main" element={<ProtectedRoute component={HomeUser} redirectTo={'/'}/>} />
         <Route
           path="/minigames"
-          element={<Survey />}
+          element={<SurveyProtected component={HomeUser} />}
         />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
         <Route
           path="/profile"
-          element={<ProtectedRoute component={HomeUser} />} />
+          element={<ProtectedRoute component={HomeUser} redirectTo={'/login'}/>} />
         <Route path="*" element={<NotFound />} />
         <Route path='/Wallet' element={<Wallet />} />
         <Route path='/graph' element={<LineGraph />} />
         <Route path='/GoodGuys' element={<GgInformation />} />
+        <Route path='/survey' element={<Survey />} />
       </Routes>
     </Router>
   );

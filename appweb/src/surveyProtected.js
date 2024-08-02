@@ -1,22 +1,22 @@
 import React, { useEffect, useState } from 'react';
 import { Navigate } from 'react-router-dom';
 
-const ProtectedRoute = ({ component: Component, redirectTo,  ...rest }) => {
-    const [isAuthenticated, setIsAuthenticated] = useState(false);
+const SurveyProtected = ({ component: Component, ...rest }) => {
+    const [answered, setAnswered] = useState(false);
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
         const checkAuth = async () => {
             try {
-                const response = await fetch('http://localhost:5000/api/accounts/Authentication', {
+                const response = await fetch('http://localhost:5000/api/survey/checkUser', {
                     credentials: 'include'
                 });
 
                 if (response.ok) {
-                    setIsAuthenticated(true);
+                    setAnswered(true);
                 } 
             } catch (error) {
-                console.error('Error checking auth', error);
+                console.error('Error checking id user', error);
             } finally {
                 setLoading(false);
             }
@@ -30,8 +30,8 @@ const ProtectedRoute = ({ component: Component, redirectTo,  ...rest }) => {
     }
 
     return (
-        isAuthenticated ? <Component {...rest} /> : <Navigate to={redirectTo} replace />
+        answered ? <Component {...rest} /> : <Navigate to='/survey' replace />
     );
 };
 
-export default ProtectedRoute;
+export default SurveyProtected;

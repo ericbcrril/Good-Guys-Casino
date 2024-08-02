@@ -46,7 +46,9 @@ const Register = () => {
             <section className='box-form'>
                 <div className='header-register'>
                     <h1>Registrate!</h1>
-                    <img src='/images/logos/logoGG.png' width={100}></img>
+                    <div className='gg-img'>
+                        <img src='/images/logos/logoGG.png' width={100}></img>
+                    </div>
                 </div>
                 <div className='inputs-item'>
                     <h3>nombre</h3>

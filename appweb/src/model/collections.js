@@ -8,5 +8,6 @@ export const accountCollection = {
 
 export const surveyCollection = {
     answer: true,
-    minigame: 0
+    minigame: 0,
+    idUser: '',
 };
