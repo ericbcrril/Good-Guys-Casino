@@ -1084,7 +1084,6 @@ video {
 @media (orientation: landscape) {
     @media (width <=1100px) {
         .gginformationmain-container {
-            margin-top: 1%;
             overflow-x: auto;
         }
 
