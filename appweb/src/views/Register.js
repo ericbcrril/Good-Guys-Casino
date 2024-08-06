@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import axios from 'axios';
 import { accountCollection } from '../model/collections';
 import MainNabvar from "../components/navbars/MainNavbar";
@@ -47,7 +47,7 @@ const Register = () => {
                 <div className='header-register'>
                     <h1>Registrate!</h1>
                     <div className='gg-img'>
-                        <img src='/images/logos/logoGG.png' width={100}></img>
+                        <img src='/images/logos/logoGG.png' width={100} alt='good guys logo'></img>
                     </div>
                 </div>
                 <div className='inputs-item'>
