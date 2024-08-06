@@ -5,6 +5,8 @@ import { Text, View, ScrollView, Image, StyleSheet, TouchableOpacity } from 'rea
 import { useNavigation } from '@react-navigation/native';
 import { Linking } from 'react-native';
 import { useState, useEffect } from 'react';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import axios from 'axios';
 //Componentes 
 import { WhiteBox, WhiteBoxText, WhiteBoxTitle, WhiteBoxLink, WhiteBoxButton, NavBar } from "components/misc/components";
 import { UserIcon } from 'components/home/homeComponents';
@@ -16,20 +18,10 @@ import { home } from "assets/styles/home";
 const logoGG = require('assets/images/logos/logoGG.png');
 const theTest = require('assets/images/test.png');
 //Usuario
-import { userData, movementsData } from '../../constants/simulateUser';
+import { movementsData } from '../../constants/simulateUser';
 
-export default function HomeScreen() {
+export default function HomeScreen({userData}) {
   const navigation = useNavigation();
-
-  const [balance, setBalance] = useState(userData.wallet.totalgg);
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setBalance(userData.wallet.totalgg);
-    }, 1000); // Actualiza el balance cada segundo
-
-    return () => clearInterval(interval); // Limpia el intervalo al desmontar el componente
-  }, []);
 
   const handleNavigate = (screen) => {
     navigation.navigate('SubScreen', { screen });
@@ -47,14 +39,14 @@ export default function HomeScreen() {
     <WhiteBoxTitle>Balance</WhiteBoxTitle>
     <View style={home.balanceBox}>
       <View style={home.balanceBoxContainer}>
-        <WhiteBoxTitle>{ balance } GGP</WhiteBoxTitle>
-      </View>
+        <WhiteBoxTitle>{userData ? userData.wallet.totalggp : '00.00' } GGP</WhiteBoxTitle>
+      </View> 
       <View style={home.balanceBoxContainerActions}>
         <WhiteBoxButton onPress={() => handleNavigate('buyPoints')} style={{display: 'flex', flexDirection: 'row'}}>
           <Text style={{width: 50}} numberOfLines={1}>Ingresar</Text>
           <Icon name="import" size={20} color="#000" style={{ marginLeft: 5 }} />
         </WhiteBoxButton>
-        <WhiteBoxButton onPress={() => handleNavigate('buyPoints')} style={{display: 'flex', flexDirection: 'row'}}>
+        <WhiteBoxButton onPress={() => handleNavigate('payment')} style={{display: 'flex', flexDirection: 'row'}}>
           <Text style={{width: 50}} numberOfLines={1}>Retirar</Text>
           <Icon name="export" size={20} color="#000" style={{ marginLeft: 5 }} />
         </WhiteBoxButton>

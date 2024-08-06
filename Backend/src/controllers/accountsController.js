@@ -107,7 +107,9 @@ exports.getProfile = async (req, res) => {
   if (!account) {
       return res.status(404).json({ error: 'Usuario no encontrado' });
   }
+  console.log(account);
   res.json({
+      id: account._id,
       user: account.user,
       email: account.email,
       name: account.name,

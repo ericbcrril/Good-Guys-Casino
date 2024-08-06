@@ -26,10 +26,8 @@ export default function App() {
       setIsConnected(state.isConnected);
     });
 
-    // Simulación de carga
     setTimeout(() => {
-      setIsLoading(false);
-      setIsLoggedIn(true);
+      setIsLoading(false)
     }, 2000);
 
     return () => {
@@ -64,7 +62,7 @@ export default function App() {
             <Stack.Screen name="SubScreen" component={SubScreen} options={{ headerShown: false }}/>
           </>
         ) : (
-          <Stack.Screen name="Login" component={LoginScreen} options={{ headerShown: false }}/>
+          <Stack.Screen name="Login" initialParams={{setIsLoggedIn}} component={LoginScreen} options={{ headerShown: false }}/>
         )}
       </Stack.Navigator>
     </NavigationContainer>

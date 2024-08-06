@@ -4,7 +4,7 @@ import { userData } from '../../constants/simulateUser';
 /**
  * Efectuar compra.
  * @param {string} userId - El nombre de usuario que efectuo la trannsaccion.
- * @param {number} totalggp - Cantidad añadida o perdida del balance.
+ * @param {any} totalggp - Cantidad añadida o perdida del balance.
  * @param {string} date - Fecha en la que se realizo la transaccion.
  * @param {string} rason - Razon de la transaccion, compra, ganancias jugando, etc.
  */
@@ -19,9 +19,9 @@ export const handleTransaction = ( amount, totalggp, rason ) => {
             "platform": "mobile" 
         };
     if(transactionOk){
-        userData.wallet.totalgg += amount;
+        userData.wallet.totalgg += amount;//Sumamos el balance al usuario
         console.log(userData.wallet.totalgg);
-        createItems('movements', data); 
+        createItems('movements', data);//Guardamos el registro
     }
     else{alert('¡Ups! algo salio mal, vuelve a intentarlo mas tarde.')}
 };

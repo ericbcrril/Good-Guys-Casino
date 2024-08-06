@@ -2,7 +2,7 @@ import { Text, TextInput, Button, TouchableOpacity } from "react-native";
 import styled  from "styled-components";
 
 const LabelForm = styled(Text)({
-    fontSize: 23,
+    fontSize: 18,
     color: "#333",
     marginBottom: 10
 });

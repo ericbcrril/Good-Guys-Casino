@@ -10,10 +10,7 @@ import { UserIcon, OptionText } from 'components/home/settingsComponents';
 import { styles } from "assets/styles/settings";
 // Imágenes (asegúrate de que las rutas estén correctamente definidas)
 const theTest = require('assets/images/test.png');
-//Usuario
-import { userData, movementsData } from '../../constants/simulateUser';
-
-export default function SettingsScreen() {
+export default function SettingsScreen({userData}) {
   const navigation = useNavigation();
 
   const handleNavigate = (screen) => {
@@ -25,7 +22,7 @@ export default function SettingsScreen() {
       <View style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', margin: 10, marginTop: 35 }}>
         <TouchableOpacity onPress={() => handleNavigate('account')} style={{ flexDirection: 'row', alignItems: 'center' }}>
           <UserIcon source={theTest} />
-          <Text style={{ fontSize: 32 }}>{ userData.user }</Text>
+          <Text style={{ fontSize: 32 }}>{ userData ? userData.user:'Unknown' }</Text>
         </TouchableOpacity>
       </View>
       <Hr />

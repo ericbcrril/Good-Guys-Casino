@@ -2,30 +2,17 @@ import React, { useState, useEffect, useRef } from 'react';
 import { Text, Animated, View, StyleSheet, TouchableOpacity } from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
 import { useNavigation } from '@react-navigation/native';
-// Componentes 
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import { styles } from "assets/styles/styles";
 import HomeScreen from "./menus/HomeScreen";
 import SelectGameScreen from './menus/SelectGameScreen';
 import SettingsScreen from './menus/SettingsScreen';
 import { UserIcon } from 'components/home/homeComponents';
-// Estilos
-import { styles } from "assets/styles/styles";
-//Usuario
-import { userData, movementsData } from '../constants/simulateUser';
+import loadUserData from '../scripts/user/loadUserData';
+
 // Imagenes
 const logoGG = require('assets/images/logos/logoGG.png');
 const theTest = require('assets/images/test.png');
-
-const Home = () => (
-  <HomeScreen />
-);
-
-const Minigames = () => (
-  <SelectGameScreen />
-);
-
-const Settings = () => (
-  <SettingsScreen />
-);
 
 const NavBar = ({ setScreen }) => (
   <View style={styles.navBar}>
@@ -38,13 +25,15 @@ const NavBar = ({ setScreen }) => (
     <TouchableOpacity style={styles.navItem} onPress={() => setScreen('settings')}>
       <Icon name="menu" size={32} color="#fff" />
     </TouchableOpacity>
-    
   </View>
 );
 
-const AnimatedScreen = ({ currentScreen, previousScreen }) => {
+const AnimatedScreen = ({ currentScreen, previousScreen, userData }) => {
   const translateYAnimNew = useRef(new Animated.Value(100)).current;
   const translateYAnimOld = useRef(new Animated.Value(0)).current;
+  const Home = () => <HomeScreen userData={userData}/>;
+  const Minigames = () => <SelectGameScreen userData={userData}/>;
+  const Settings = () => <SettingsScreen userData={userData}/>;
 
   useEffect(() => {
     translateYAnimNew.setValue(800); // Reset the new component position
@@ -98,9 +87,10 @@ const AnimatedScreen = ({ currentScreen, previousScreen }) => {
 export default function AppScreen() {
   const [currentScreen, setCurrentScreen] = useState('home');
   const [previousScreen, setPreviousScreen] = useState(null);
+  const [userData, setUserData] = useState(null);
   const navigation = useNavigation();
 
-   const handleSetScreen = (screen) => {
+  const handleSetScreen = (screen) => {
     setPreviousScreen(currentScreen);
     setCurrentScreen(screen);
   };
@@ -109,16 +99,28 @@ export default function AppScreen() {
     navigation.navigate('SubScreen', { screen });
   };
 
+  useEffect(() => {
+    const interval = setInterval(async () => {
+      const data = await loadUserData();
+      setUserData(data);
+    }, 1000); // Actualiza el balance cada segundo
+
+    return () => clearInterval(interval); // Limpia el intervalo al desmontar el componente
+  }, []);
+
   return (
     <View style={{ flex: 1, backgroundColor: '#F5FCFF' }}>
-          <View style={{ display: currentScreen === 'settings' ? 'none' : 'flex', flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', margin: 10, marginTop: 35}}>
-            <TouchableOpacity onPress={() => handleNavigate('account')} style={{flexDirection: 'row', alignItems: 'center'}}>
-              <UserIcon source={theTest}/><Text>{ userData.user }</Text>
-            </TouchableOpacity>
-            <Text style={{ display: currentScreen == 'minigames' ? 'flex' : 'none'}}>{ userData.wallet.totalgg } GGP</Text>
-          </View>
-        <AnimatedScreen currentScreen={currentScreen} previousScreen={previousScreen} />
-        <NavBar setScreen={handleSetScreen} />
+      <View style={{ display: currentScreen === 'settings' ? 'none' : 'flex', flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', margin: 10, marginTop: 35 }}>
+        <TouchableOpacity onPress={() => handleNavigate('account')} style={{ flexDirection: 'row', alignItems: 'center' }}>
+          <UserIcon source={theTest} />
+          <Text>{userData?.user ? userData?.user:'Unknown'}</Text> 
+        </TouchableOpacity>
+        {currentScreen === 'minigames' && userData && (
+          <Text>{userData.wallet?.totalggp ? userData.wallet?.totalggp:'00.00'} GGP</Text> 
+        )}
+      </View>
+      <AnimatedScreen currentScreen={currentScreen} previousScreen={previousScreen} userData={userData}/>
+      <NavBar setScreen={handleSetScreen} />
     </View>
   );
 }
