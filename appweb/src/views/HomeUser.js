@@ -1,5 +1,3 @@
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
 import Footer from "../components/misc/Footer";
 import { Link } from 'react-router-dom';
 import UserLoggedNavbar from '../components/navbars/UserLoggedNavbar';
@@ -22,7 +20,7 @@ const HomeUser = () => {
                 <div className='home-content-box'>
                     <img src='/images/logos/logoGgAnimated.gif' className='home-logo' alt='logo'/>
                     <div className='purple-box'>
-                    <Link to="/main" className='purple-box-img-link'>
+                    <Link to="/GoodGuys" className='purple-box-img-link'>
                         <img src='/images/icons/groups_24dp.svg' alt='icon'/>
                     </Link>
                         <Link to="/GoodGuys">¿Quienes somos?</Link>

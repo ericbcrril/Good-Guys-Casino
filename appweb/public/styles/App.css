@@ -286,3 +286,37 @@ footer p {
   font-size: 3.4vw;
 }
 }
+
+/* ladnscape */
+
+@media (orientation: landscape) {
+  @media (width <= 1200px) {
+    main {
+      top: 0;
+      display: inline-block;
+    }
+
+    .home-content {
+      overflow-x: auto;
+      white-space: nowrap;
+      margin-top: 10%;
+    }
+
+    .purple-box {
+      width: 20vw;
+      height: 20vw;
+    }
+
+    .purple-box a {
+      font-size: 2vw;
+    }
+
+    footer {
+      height: auto;
+    }
+
+    .footer-second {
+      margin-top: 1px;
+    }
+  }
+}

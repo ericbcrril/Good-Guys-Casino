@@ -61,7 +61,8 @@
     grid-template-columns: repeat(3, 1fr);
     gap: 50px;
     justify-items: center;
-    margin-top: 80px; margin-bottom: 80px;
+    margin-top: 80px;
+    margin-bottom: 80px;
 }
 
 .video-container {
@@ -287,6 +288,9 @@ video {
     padding: 10px;
     z-index: 2;
     width: 160px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .objective-icon i {
@@ -407,19 +411,22 @@ video {
     height: 50px;
 }
 
-@media (width <= 480px) {
+@media (width <=480px) {
     .video-container video {
         width: 280px;
     }
 }
+
 @media (width <=600px) {
     .gginformationmain-container {
         width: 100%;
         margin-top: 20%;
     }
+
     .search-bar {
         border: 1px solid black;
     }
+
     .introduction {
         grid-template-columns: 1fr;
         align-items: center;
@@ -435,7 +442,7 @@ video {
         padding: 4%;
     }
 
-    .introduction-text p{
+    .introduction-text p {
         margin-right: 0;
     }
 
@@ -477,6 +484,7 @@ video {
         content: url('/images/introductionimgphoneG.jpg');
         width: 100%;
     }
+
     /* introduction section */
 
     .introduction-title {
@@ -512,11 +520,13 @@ video {
         justify-self: center;
         font-size: 90px;
     }
+
     .objective-icon span {
         align-self: center;
         justify-self: center;
         font-size: 80px;
     }
+
     /* carousel */
     .carousel-container {
         overflow: hidden;
@@ -535,7 +545,7 @@ video {
         text-align: center;
         margin-top: 10px;
     }
-    
+
     .boxes {
         grid-template-columns: repeat(1, 1fr);
         grid-template-rows: repeat(3, 1fr);
@@ -548,6 +558,7 @@ video {
         grid-template-columns: repeat(4, 1fr);
         grid-template-rows: 1fr;
     }
+
     .subtext {
         grid-row: 1/2;
         grid-column: 2/5;
@@ -569,7 +580,7 @@ video {
         gap: 5px;
     }
 
-    .colored-container:last-of-type  {
+    .colored-container:last-of-type {
         display: none;
     }
 
@@ -587,17 +598,17 @@ video {
     .service:first-of-type {
         background-image: url('/images/smarthphone/2.png');
     }
-    
+
     .service:nth-of-type(2) {
         background-image: url('/images/smarthphone/1.png');
     }
-    
+
     .service:last-of-type {
         background-image: url('/images/smarthphone/3.png');
     }
 }
 
-@media (768px >= width >=600px) {
+@media (768px >=width >=600px) {
 
     .gginformationmain-container {
         width: 100%;
@@ -624,6 +635,7 @@ video {
     .search-bar {
         border: 2px solid black;
     }
+
     .introduction {
         grid-template-columns: 1fr;
         align-items: center;
@@ -639,7 +651,7 @@ video {
         padding: 4%;
     }
 
-    .introduction-text p{
+    .introduction-text p {
         margin-right: 0;
         font-size: 30px;
     }
@@ -677,6 +689,7 @@ video {
         content: url('/images/introductionimgphoneG.jpg');
         width: 100%;
     }
+
     /* introduction section */
 
     .introduction-title {
@@ -720,11 +733,13 @@ video {
         justify-self: center;
         font-size: 180px;
     }
+
     .objective-icon span {
         align-self: center;
         justify-self: center;
         font-size: 180px;
     }
+
     /* carousel */
     .carousel-container {
         overflow: hidden;
@@ -743,7 +758,7 @@ video {
         text-align: center;
         margin-top: 10px;
     }
-    
+
     .boxes {
         grid-template-columns: repeat(1, 1fr);
         grid-template-rows: repeat(3, 1fr);
@@ -756,6 +771,7 @@ video {
         grid-template-columns: repeat(4, 1fr);
         grid-template-rows: 1fr;
     }
+
     .subtext {
         grid-row: 1/2;
         grid-column: 2/5;
@@ -781,7 +797,7 @@ video {
         grid-template-columns: 1fr;
     }
 
-    .service h2{
+    .service h2 {
         font-size: 50px;
     }
 
@@ -793,7 +809,7 @@ video {
         gap: 5px;
     }
 
-    .colored-container:last-of-type  {
+    .colored-container:last-of-type {
         display: none;
     }
 
@@ -811,7 +827,7 @@ video {
     }
 }
 
-@media (1200px >= width >=768px) {
+@media (1200px >=width >=768px) {
     .gginformationmain-container {
         width: 100%;
         margin-top: 20%;
@@ -837,6 +853,7 @@ video {
     .search-bar {
         border: 2px solid black;
     }
+
     .introduction {
         grid-template-columns: 1fr;
         align-items: center;
@@ -852,7 +869,7 @@ video {
         padding: 4%;
     }
 
-    .introduction-text p{
+    .introduction-text p {
         margin-right: 0;
         font-size: 30px;
     }
@@ -890,6 +907,7 @@ video {
         content: url('/images/introductionimgphoneG.jpg');
         width: 100%;
     }
+
     /* introduction section */
 
     .introduction-title {
@@ -933,11 +951,13 @@ video {
         justify-self: center;
         font-size: 180px;
     }
+
     .objective-icon span {
         align-self: center;
         justify-self: center;
         font-size: 180px;
     }
+
     /* carousel */
     .carousel-container {
         overflow: hidden;
@@ -956,7 +976,7 @@ video {
         text-align: center;
         margin-top: 10px;
     }
-    
+
     .boxes {
         grid-template-columns: repeat(1, 1fr);
         grid-template-rows: repeat(3, 1fr);
@@ -969,6 +989,7 @@ video {
         grid-template-columns: repeat(4, 1fr);
         grid-template-rows: 1fr;
     }
+
     .subtext {
         grid-row: 1/2;
         grid-column: 2/5;
@@ -994,7 +1015,7 @@ video {
         grid-template-columns: 1fr;
     }
 
-    .service h2{
+    .service h2 {
         font-size: 50px;
     }
 
@@ -1006,7 +1027,7 @@ video {
         gap: 5px;
     }
 
-    .colored-container:last-of-type  {
+    .colored-container:last-of-type {
         display: none;
     }
 
@@ -1021,5 +1042,76 @@ video {
         z-index: 1;
         width: 100px;
         height: 100px;
+    }
+}
+
+@media (width >=1400px) {
+    video {
+        width: 560px;
+    }
+
+    .img-introduction img {
+        content: url('/images/IntroductionImgBigScreen.jpg');
+    }
+
+    .introduction-title h1 {
+        font-size: 60px;
+    }
+
+    .introduction-text p {
+        font-size: 30px;
+    }
+
+    .boxes {
+        height: 80%;
+    }
+
+    .objective-icon {
+        width: 300px;
+        border-radius: 50%;
+    }
+
+    .objective-icon i,
+    .objective-icon span {
+        font-size: 180px;
+    }
+
+    .subtext {
+        width: 400px;
+    }
+}
+
+@media (orientation: landscape) {
+    @media (width <=1100px) {
+        .gginformationmain-container {
+            margin-top: 1%;
+            overflow-x: auto;
+        }
+
+        .img-introduction {
+            padding: 0;
+        }
+
+        .img-introduction img {
+            width: 50%;
+        }
+        
+        .service h2 {
+            font-size: 30px;
+        }
+
+        .service p {
+            font-size: 20px;
+        }
+
+        .carousel {
+            height: auto;
+        }
+
+        .next-item {
+            bottom: -100vh;
+            width: 50px;
+            height: 50px;
+        }
     }
 }

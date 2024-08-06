@@ -102,7 +102,6 @@ exports.login = async (req, res) => {
 
 exports.getProfile = async (req, res) => { 
   const user = req.user.user.user;
-  console.log(req.user.user);
   const account = await accounts.findOne({ user: user });
   if (!account) {
       return res.status(404).json({ error: 'Usuario no encontrado' });

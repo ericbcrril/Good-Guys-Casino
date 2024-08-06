@@ -10,10 +10,10 @@ function home() {
             <div className='home-content'>
                 <div className='home-content-box'>
                     <div className='purple-box'>
-                    <Link to="/minigames" className='purple-box-img-link'>
+                    <Link to="/login" className='purple-box-img-link'>
                         <img src='/images/icons/playing_cards_24dp.svg' alt='icon'/>
                     </Link>
-                        <Link to="/minigames">Minijuegos</Link>
+                        <Link to="/login">Minijuegos</Link>
                     </div>
                 </div>
 

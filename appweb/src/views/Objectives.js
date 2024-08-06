@@ -9,7 +9,8 @@ export const Objectives = () => {
             <section className="boxes">
                 <section className="objective-box">
                     <div className="objective-icon">
-                        <i class='bx bxs-medal'></i>                    </div>
+                        <i class='bx bxs-medal'></i>
+                    </div>
                     <div className="subtext">
                         <h2>Calidad</h2>
                     </div>
