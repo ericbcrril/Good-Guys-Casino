@@ -18,7 +18,7 @@ const Hr = styled(View)({
 
 const TitleSreen = styled(View)({
     display: 'flex',
-    width: '100%',
+    width: '100%',  
     paddingTop: '10%',
     justifyContent: 'center',
     backgroundColor: 'white',
@@ -31,10 +31,7 @@ const WhiteBox = styled(View)({
     margin: 10,
     borderRadius: 10,
     shadowColor: "#000",
-    shadowOffset: {
-      width: 0,
-      height: 2,
-    },
+    shadowOffset: { width: 0, height: 2 },
     shadowRadius: 3.84,
     elevation: 5,
     overflow: 'visible',

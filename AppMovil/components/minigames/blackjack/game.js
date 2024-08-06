@@ -8,6 +8,8 @@ import { styles } from 'assets/styles/minigames/styles';
 import { stylesBlackjack } from 'assets/styles/minigames/blackjack';
 //Audio
 import soundsEffects from 'constants/sounds/minigames/soundsEffects'; // Importa el gestor de sonidos
+//Scripts
+import { handleTransaction } from '../../../scripts/transactions/handleTransactions';
 
 const Game = ({ coins, setCoins }) => {
     const [gameState, setGameState] = useState('betting'); // 'betting', 'playing', 'gameOver', 'goodEnding'
@@ -21,6 +23,7 @@ const Game = ({ coins, setCoins }) => {
     const [isResetButtonDisabled, setResetButtonDisabled] = useState(false);
     const [isHitButtonDisabled, setHitButtonDisabled] = useState(false);
     const [isStandButtonDisabled, setStandButtonDisabled] = useState(false);
+    const [gameOver, setGameOver] = useState(false);
 
     const cardImages = {
         
@@ -141,7 +144,7 @@ const Game = ({ coins, setCoins }) => {
     };
 
     const startGame = () => {
-        //cardDealSound.play(); // Reproducir sonido al repartir las cartas
+       // Reproducir sonido al repartir las cartas
         const newDeck = generateDeck();
         const initialPlayerCards = [newDeck.pop(), newDeck.pop()];
         const initialDealerCards = [newDeck.pop(), newDeck.pop()];
@@ -192,30 +195,35 @@ const Game = ({ coins, setCoins }) => {
                 const dealerTotal = calculateTotal(newDealerCards);
                 const playerTotal = calculateTotal(playerCards);
     
-                setTimeout(() => {
+                setTimeout(async() => {
                     if (playerTotal > 21) {
                         setMessage('¡Te pasaste! Pierdes.');
                         setCoinsEarned(coinsEarned - bet);
                         setCoins(coins - bet);
+                        handleTransaction(0, coinsEarned-bet, 'Jugando BlackJack');
                         setGameState('gameOver');
                     } else if (playerTotal === 21 && dealerTotal === 21) {
                         setMessage('¡Empate! Ambos tienen Blackjack.');
                         setCoins(coins + bet);
+                        handleTransaction(0, coinsEarned+bet, 'Jugando BlackJack');
                         setGameState('gameOver');
                     } else if (playerTotal === 21) {
                         setMessage('¡Blackjack! ¡Ganas!');
                         setCoinsEarned(coinsEarned + (bet * 2.5));
                         setCoins(coins + (bet * 2.5));
+                        handleTransaction(0, coinsEarned + (bet * 2.5), 'Jugando BlackJack');
                         setGameState('goodEnding');
                     } else if (dealerTotal === 21) {
                         setMessage('¡Blackjack del crupier! ¡Pierdes!');
                         setCoinsEarned(coinsEarned - bet);
                         setCoins(coins - bet);
+                        handleTransaction(0, coinsEarned-bet, 'Jugando BlackJack');
                         setGameState('gameOver');
                     } else if (dealerTotal > 21) {
                         setMessage('¡Ganaste!, Crupier se paso');
                         setCoinsEarned(coinsEarned + bet * 2);
                         setCoins(coins + bet * 2);
+                        handleTransaction(0, coinsEarned+bet*2, 'Jugando BlackJack');
                         setGameState('goodEnding');
                     } else if (playerTotal === dealerTotal) {
                         setMessage('¡Empate!');
@@ -225,16 +233,19 @@ const Game = ({ coins, setCoins }) => {
                         setMessage('¡Ganaste!');
                         setCoinsEarned(coinsEarned + bet * 2);
                         setCoins(coins + bet * 2);
+                        handleTransaction(0, coinsEarned+bet*2, 'Jugando BlackJack');
                         setGameState('goodEnding');
                     }else if (dealerTotal > playerTotal){
                         setMessage('¡Perdiste!');
                         setCoinsEarned(coinsEarned - bet * 2);
                         setCoins(coins - bet * 2);
+                        handleTransaction(0, coinsEarned-bet*2, 'Jugando BlackJack');
                         setGameState('gameOver');
                     }else {
                         setMessage('¡Perdiste!');
                         setCoinsEarned(coinsEarned - bet);
                         setCoins(coins - bet);
+                        handleTransaction(0, coinsEarned-bet, 'Jugando BlackJack');
                         setGameState('gameOver');
                     }
                 }, 2000);
@@ -260,6 +271,7 @@ const Game = ({ coins, setCoins }) => {
         setHitButtonDisabled(false);
         setStandButtonDisabled(false);
         setDealerSecondCardVisible(false); // Reiniciar el estado de visibilidad de la segunda carta del crupier
+        setGameOver(false);
     };
 
     const getCardImage = (card) => {
