@@ -88,6 +88,7 @@ export default function AppScreen() {
   const [currentScreen, setCurrentScreen] = useState('home');
   const [previousScreen, setPreviousScreen] = useState(null);
   const [userData, setUserData] = useState(null);
+  const [totalggp, setTotalggp] = useState (0);
   const navigation = useNavigation();
 
   const handleSetScreen = (screen) => {
@@ -100,9 +101,16 @@ export default function AppScreen() {
   };
 
   useEffect(() => {
-    const interval = setInterval(async () => {
+    const fetchData = async () => {
       const data = await loadUserData();
       setUserData(data);
+    }
+    fetchData();
+  }, []);
+
+  useEffect(() => {
+    const interval = setInterval(async () => {
+      setTotalggp(await AsyncStorage.getItem('userWallet'));
     }, 1000); // Actualiza el balance cada segundo
 
     return () => clearInterval(interval); // Limpia el intervalo al desmontar el componente
@@ -116,7 +124,7 @@ export default function AppScreen() {
           <Text>{userData?.user ? userData?.user:'Unknown'}</Text> 
         </TouchableOpacity>
         {currentScreen === 'minigames' && userData && (
-          <Text>{userData.wallet?.totalggp ? userData.wallet?.totalggp:'00.00'} GGP</Text> 
+          <Text>{totalggp ? totalggp:'00.00'} GGP</Text> 
         )}
       </View>
       <AnimatedScreen currentScreen={currentScreen} previousScreen={previousScreen} userData={userData}/>

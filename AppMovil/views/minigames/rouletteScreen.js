@@ -4,18 +4,19 @@ import Game from 'components/minigames/roulette/game';
 import { useFonts } from '@expo-google-fonts/press-start-2p';
 import { styles } from 'assets/styles/minigames/styles';
 import useScreenShake from 'assets/effects/shake'; // Ajusta la ruta según tu estructura de proyecto
-import { userData } from '../../constants/simulateUser'; 
 
-const App = () => {
-  const [coins, setCoins] = useState(userData.wallet.totalgg);
+const App = ({userData, updateTotalGgp}) => {
+  const [coins, setCoins] = useState(0); // Monedas o Balance
   const { screenShake, setScreenShake, shakeAnimation } = useScreenShake();
   const [fontsLoaded] = useFonts({
     'PressStart2P': require('assets/fonts/PressStart2P-Regular.ttf'),
   });
 
   useEffect(() => {
-    userData.wallet.totalgg = coins;
-  }, [coins]);
+    if(userData){
+      setCoins(userData.wallet.totalggp);
+    }
+  }, [userData]);
 
   if (!fontsLoaded) {
     return null; // o cualquier componente de carga
@@ -29,7 +30,9 @@ const App = () => {
           transform: [{ translateX: shakeAnimation }],
         }}
       >
-        <Game setScreenShake={setScreenShake} coins={coins} setCoins={setCoins} />
+        <Game setScreenShake={setScreenShake} 
+           coins={userData ? userData.wallet.totalggp : 0}
+           updateTotalGgp={updateTotalGgp} setCoins={setCoins} />
       </Animated.View>
     </View>
   );

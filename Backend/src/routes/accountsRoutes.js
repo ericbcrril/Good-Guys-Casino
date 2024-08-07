@@ -14,6 +14,7 @@ router.put('/addggp', validateToken, accountsController.GGP);
 router.get('/', accountsController.getItems);
 router.get('/:id', accountsController.getItemById);
 router.put('/:id', accountsController.updateItem);
+router.put('/updateGGP/:id', accountsController.updateTotalGGP);
 router.delete('/:id', accountsController.deleteItem);
 
 

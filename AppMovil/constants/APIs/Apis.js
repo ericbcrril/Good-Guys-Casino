@@ -64,6 +64,22 @@ export const updateItems = async (endPointName , id, data) => {
 };
 
 /**
+ * Actualizar el balance(GGP) de un usuario.
+ * @param {string} id - El ID del elemento con el que se va a trabajar.
+ * @param {object} totalggp - Los datos que enviaras al backend.
+ * @returns {Promise<any>} Una promesa que se resuelve con la respuesta del servidor.
+ */
+export const updateGGP = async ( id, totalggp) => {
+  try {
+    const response = await axios.put(`${BASE_URL}/accounts/updateGGP/${id}`, {totalggp});
+    console.log("Registro actualizado exitosamente");
+    return handleResponse(response);
+  } catch (error) {
+    handleError(error);
+  }
+};
+
+/**
  * Eliminar un elemento por ID.
  * @param {string} endPointName - El nombre de tu endPoint declarado en Backend.
  * @param {string} id - El ID del elemento con el que se va a trabajar.

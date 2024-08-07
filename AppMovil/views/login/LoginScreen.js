@@ -44,10 +44,15 @@ export default function LoginScreen({ route }) {
     try {
         const response = await axios.post('http://192.168.1.72:5000/api/accounts/login', { ...account }, { withCredentials: true });
         const user = await axios.get('http://192.168.1.72:5000/api/accounts/profile', {withCredentials: true});
+        const userData = await axios.get(`http://192.168.1.72:5000/api/accounts/${user.data.id}`, { withCredentials: true });
         //console.log(user.data);
         await AsyncStorage.clear();
-        await AsyncStorage.setItem('userName', user.data.user);
+        await AsyncStorage.setItem('userNickName', user.data.user);
         await AsyncStorage.setItem('userId', user.data.id);
+        await AsyncStorage.setItem('userEmail', userData.data.email);
+        await AsyncStorage.setItem('userName', userData.data.name);
+        await AsyncStorage.setItem('userLastName', userData.data.lastName);
+        await AsyncStorage.setItem('userWallet', String(userData.data.wallet.totalggp));
         console.log('Sesión iniciada con éxito');
         await handleLogin();
     } catch (error) {

@@ -194,6 +194,36 @@ exports.updateItem = async (req, res) => {
   }
 };
 
+// Ganar o perder puntos
+exports.updateTotalGGP = async (req, res) => {
+  try {
+    const { totalggp } = req.body; // Extrae el ID y el valor de totalggp del cuerpo de la solicitud
+    console.log('Datos recibidos:', req.body);
+    // Asegúrate de que totalggp sea un número válido
+    if (typeof totalggp !== 'number') {
+      return res.status(400).json({ mensaje: 'El valor de totalggp debe ser un número' });
+    }
+
+    // Actualiza el campo wallet.totalggp del documento con el ID proporcionado
+    const updatedAccount = await accounts.findByIdAndUpdate(
+      req.params.id, // Usa el ID proporcionado
+      { $set: { 'wallet.totalggp': totalggp } }, // Actualiza el campo wallet.totalggp
+      { new: true, runValidators: true } // Devuelve el documento actualizado y aplica validaciones
+    );
+
+    // Maneja el caso en que no se encuentra el documento
+    if (!updatedAccount) {
+      return res.status(404).json({ mensaje: 'Registro no encontrado' });
+    }
+
+    // Envía la respuesta con el documento actualizado
+    res.json(updatedAccount);
+  } catch (error) {
+    console.error(error.message);
+    res.status(500).send('Error del servidor');
+  }
+};
+
 // Eliminar un registro
 exports.deleteItem = async (req, res) => {
   try {

@@ -3,6 +3,7 @@ import { Text, View, ScrollView, TouchableOpacity, TextInput } from 'react-nativ
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import IconFontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import { useNavigation } from '@react-navigation/native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 //Componentes
 import { FormInput, PurpleButton, ButtonText, LabelForm } from '../../components/forms/formComponents';
 import { Hr } from 'components/misc/components';
@@ -27,7 +28,7 @@ export default function AccountScreen({userData}) {
         </TouchableOpacity>
             <TextInput style={{ fontSize: 32 }}>{ userData ? userData.user:'Unknown' }</TextInput>
         <TouchableOpacity onPress={() => handleNavigate('buyPoints')}>
-            <Text style={{ fontSize: 32 }}>{userData ? userData.wallet.totalggp:'00.00'} GGP</Text>
+            <Text style={{ fontSize: 32 }}>{userData ? userData.wallet.totalggp : '00.00' } GGP</Text>
         </TouchableOpacity>
       </View>
       <Hr />

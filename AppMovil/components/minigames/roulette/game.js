@@ -10,8 +10,10 @@ import StatusBar from './statusBar';
 import { GameContainer, GameButton, TextGameButton, ResetButton, GameText } from 'components/minigames/components';
 //Audio
 import soundsEffects from 'constants/sounds/minigames/soundsEffects'; // Importa el gestor de sonidos
+//Scripts
+import { handleTransaction } from '../../../scripts/transactions/handleTransactions';
 
-const Game = ({ setScreenShake, coins, setCoins }) => {
+const Game = ({ setScreenShake, coins, updateTotalGgp, setCoins }) => {
   const [gameState, setGameState] = useState('betting');
   const [message, setMessage] = useState('Empieza el juego...');
   const [bet, setBet] = useState(20);
@@ -37,7 +39,9 @@ const Game = ({ setScreenShake, coins, setCoins }) => {
   const handleBet = (amount) => {
     setBet(amount);
     setInitialCoins(coins);
-    setCoins(coins - amount);
+    updateTotalGgp(coins - amount);
+    handleTransaction(0, -amount, 'Apuesta en Ruleta Rusa');
+    //setCoins(coins - amount);
     setGameState('gunSelection');
   };
 
@@ -82,13 +86,16 @@ const Game = ({ setScreenShake, coins, setCoins }) => {
       setMessage('Has muerto...');
       newGameState = 'gameOver';
       newCoins -= turns * (bet * multiplier);
+      handleTransaction(0, newCoins - initialCoins, 'Jugando Ruleta Rusa');
     } else if (newTurns >= 6 || newBulletFired === bullets) {
+      handleTransaction(0, newCoins - initialCoins, 'Jugando Ruleta Rusa');
       setMessage(
         newTurns >= 6 ? '¡Sobreviviste los 6 tiros!' : 'Se han disparado todas las balas'
       );
       newGameState = 'goodEnding';
     }
 
+    updateTotalGgp(newCoins);
     setTurns(newTurns);
     setShotsFired(newShotsFired);
     setHealth(newHealth);
@@ -115,6 +122,8 @@ const Game = ({ setScreenShake, coins, setCoins }) => {
 
   const withdraw = () => {
     setGameState('goodEnding');
+    updateTotalGgp(coins);
+    handleTransaction(0, coins - initialCoins, 'Jugando Ruleta Rusa');
   };
 
   return (

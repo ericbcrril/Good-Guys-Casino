@@ -22,6 +22,14 @@ import { movementsData } from '../../constants/simulateUser';
 
 export default function HomeScreen({userData}) {
   const navigation = useNavigation();
+  const [totalggp, setTotalggp] = useState(0);
+
+  useEffect(() => {
+    fetchData = async() => {
+      setTotalggp(await AsyncStorage.getItem('userWallet'));
+    }
+    fetchData();
+  }, []);
 
   const handleNavigate = (screen) => {
     navigation.navigate('SubScreen', { screen });
@@ -39,7 +47,7 @@ export default function HomeScreen({userData}) {
     <WhiteBoxTitle>Balance</WhiteBoxTitle>
     <View style={home.balanceBox}>
       <View style={home.balanceBoxContainer}>
-        <WhiteBoxTitle>{userData ? userData.wallet.totalggp : '00.00' } GGP</WhiteBoxTitle>
+        <WhiteBoxTitle>{totalggp ? totalggp : '00.00' } GGP</WhiteBoxTitle>
       </View> 
       <View style={home.balanceBoxContainerActions}>
         <WhiteBoxButton onPress={() => handleNavigate('buyPoints')} style={{display: 'flex', flexDirection: 'row'}}>

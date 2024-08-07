@@ -11,7 +11,7 @@ import soundsEffects from 'constants/sounds/minigames/soundsEffects'; // Importa
 //Scripts
 import { handleTransaction } from '../../../scripts/transactions/handleTransactions';
 
-const Game = ({ coins, setCoins }) => {
+const Game = ({ coins, setCoins, updateTotalGgp }) => {
     const [gameState, setGameState] = useState('betting'); // 'betting', 'playing', 'gameOver', 'goodEnding'
     const [coinsEarned, setCoinsEarned] = useState(0); // Monedas ganadas
     const [bet, setBet] = useState(20); // Apuesta
@@ -138,7 +138,9 @@ const Game = ({ coins, setCoins }) => {
 
     const handleBet = (amount) => {
         setBet(amount);
-        setCoins(coins - amount);
+        coins -= amount;
+        updateTotalGgp(coins);
+        handleTransaction(0, coinsEarned-amount, 'Apuesta en BlackJack');
         setGameState('playing');
         startGame();
     };
@@ -199,55 +201,57 @@ const Game = ({ coins, setCoins }) => {
                     if (playerTotal > 21) {
                         setMessage('¡Te pasaste! Pierdes.');
                         setCoinsEarned(coinsEarned - bet);
-                        setCoins(coins - bet);
+                        coins -= bet;
                         handleTransaction(0, coinsEarned-bet, 'Jugando BlackJack');
                         setGameState('gameOver');
                     } else if (playerTotal === 21 && dealerTotal === 21) {
                         setMessage('¡Empate! Ambos tienen Blackjack.');
-                        setCoins(coins + bet);
+                        coins += bet;
                         handleTransaction(0, coinsEarned+bet, 'Jugando BlackJack');
                         setGameState('gameOver');
                     } else if (playerTotal === 21) {
                         setMessage('¡Blackjack! ¡Ganas!');
                         setCoinsEarned(coinsEarned + (bet * 2.5));
-                        setCoins(coins + (bet * 2.5));
+                        coins += (bet * 2.5);
                         handleTransaction(0, coinsEarned + (bet * 2.5), 'Jugando BlackJack');
                         setGameState('goodEnding');
                     } else if (dealerTotal === 21) {
                         setMessage('¡Blackjack del crupier! ¡Pierdes!');
                         setCoinsEarned(coinsEarned - bet);
-                        setCoins(coins - bet);
+                        coins -= bet;
                         handleTransaction(0, coinsEarned-bet, 'Jugando BlackJack');
                         setGameState('gameOver');
                     } else if (dealerTotal > 21) {
                         setMessage('¡Ganaste!, Crupier se paso');
                         setCoinsEarned(coinsEarned + bet * 2);
-                        setCoins(coins + bet * 2);
+                        coins += bet * 2;
                         handleTransaction(0, coinsEarned+bet*2, 'Jugando BlackJack');
                         setGameState('goodEnding');
                     } else if (playerTotal === dealerTotal) {
                         setMessage('¡Empate!');
-                        setCoins(coins + bet);
+                        coins += bet;
                         setGameState('gameOver');
                     } else if (playerTotal > dealerTotal){
                         setMessage('¡Ganaste!');
                         setCoinsEarned(coinsEarned + bet * 2);
-                        setCoins(coins + bet * 2);
+                        coins += bet * 2;
                         handleTransaction(0, coinsEarned+bet*2, 'Jugando BlackJack');
                         setGameState('goodEnding');
                     }else if (dealerTotal > playerTotal){
                         setMessage('¡Perdiste!');
                         setCoinsEarned(coinsEarned - bet * 2);
-                        setCoins(coins - bet * 2);
+                        coins -= bet * 2;
                         handleTransaction(0, coinsEarned-bet*2, 'Jugando BlackJack');
                         setGameState('gameOver');
                     }else {
                         setMessage('¡Perdiste!');
                         setCoinsEarned(coinsEarned - bet);
-                        setCoins(coins - bet);
+                        coins -= bet;
                         handleTransaction(0, coinsEarned-bet, 'Jugando BlackJack');
                         setGameState('gameOver');
                     }
+                    console.log('puntos actualizados:', coins);
+                    await updateTotalGgp(coins);
                 }, 2000);
             }
         }, 1000); // Intervalo de 1 segundo entre cada carta del crupier

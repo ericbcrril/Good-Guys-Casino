@@ -25,13 +25,21 @@ export default function SubScreen() {
   };
 
   useEffect(() => {
-    const interval = setInterval(async () => {
+    const fetchData = async () => {
       const data = await loadUserData();
       setUserData(data);
-    }, 1000); // Actualiza cada segundo
-
-    return () => clearInterval(interval); // Limpia el intervalo al desmontar el componente
+    }
+    fetchData();
   }, []);
+
+  useEffect(() => {
+    if (userData && userData.wallet) {
+      // Ejecutar la acción cuando `userData.wallet.totalggp` cambie
+      console.log('totalggp ha cambiado:', userData.wallet.totalggp);
+
+      // Aquí puedes realizar cualquier otra acción que necesites
+    }
+  }, [userData?.wallet?.totalggp]); // Dependencia en `userData.wallet.totalggp`
 
   // Aquí puedes usar screen para decidir qué contenido renderizar
   let screenContent;
