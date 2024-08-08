@@ -19,14 +19,18 @@ const logoGG = require('assets/images/logos/logoGG.png');
 const theTest = require('assets/images/test.png');
 //Usuario
 import { movementsData } from '../../constants/simulateUser';
+//Scripts
+import loadUserMovements from '../../scripts/user/loadUserMovements';
 
 export default function HomeScreen({userData}) {
   const navigation = useNavigation();
   const [totalggp, setTotalggp] = useState(0);
+  const [userMovements, setmovementsData] = useState(movementsData)
 
   useEffect(() => {
     fetchData = async() => {
       setTotalggp(await AsyncStorage.getItem('userWallet'));
+      setmovementsData(await loadUserMovements());
     }
     fetchData();
   }, []);
@@ -64,10 +68,10 @@ export default function HomeScreen({userData}) {
 
         <WhiteBox style={{width: '95%'}}>
           <WhiteBoxTitle>Informe de Balance</WhiteBoxTitle>
-          {movementsData.slice(-5).reverse().map((movement, index) => (
+          {userMovements.slice(-5).reverse().map((movement, index) => (
             <View key={index} style={stylesbalanceReport.transaction}>
-              <Text numberOfLines={1} style={movement.amount > 0 ? stylesbalanceReport.positive : stylesbalanceReport.negative}>
-                {movement.amount > 0 ? '+' : ''}{movement.amount}
+              <Text numberOfLines={1} style={movement.totalggp > 0 ? stylesbalanceReport.positive : stylesbalanceReport.negative}>
+                {movement.totalggp > 0 ? '+' : ''}{movement.totalggp}
               </Text>
               <Text numberOfLines={1} style={stylesbalanceReport.details}>
                 {movement.date} - {movement.reason}

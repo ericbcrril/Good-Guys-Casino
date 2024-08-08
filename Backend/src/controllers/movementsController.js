@@ -31,7 +31,7 @@ exports.getItemByKey = async (req, res) => {
   try {
     const key = req.params.key; // Obtener la clave desde los parámetros de la solicitud
     console.log('recibo la llave', key);
-    const item = await Item.findOne({ key: key }); // Buscar una registro por su clave en la base de datos
+    const item = await Item.find({ userId: key }); // Buscar una registro por su clave en la base de datos
     if (!item) {
       return res.status(404).json({ mensaje: 'Registro no encontrado' });
     }

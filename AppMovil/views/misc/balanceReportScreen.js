@@ -5,13 +5,17 @@ import Collapsible from 'react-native-collapsible';
 import { stylesbalanceReport } from 'assets/styles/balanceReport';
 //Usuario
 import { userData, movementsData } from '../../constants/simulateUser';
+//Scripts
+import loadUserMovements from '../../scripts/user/loadUserMovements';
 
-const transactionsData = movementsData;
+//const transactionsData = movementsData;
 
 const BalanceReport = () => {
     const [monthlyTransactions, setMonthlyTransactions] = useState({});
     const [isChartVisible, setIsChartVisible] = useState(false);
     const currentYear = new Date().getFullYear();
+    //console.log(transactionsData);
+    //console.log(userMovements);
     const monthNames = [
         'Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio',
         'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'
@@ -22,27 +26,33 @@ const BalanceReport = () => {
     ];
 
     useEffect(() => {
-        const monthlyData = {};
-        transactionsData.forEach((transaction) => {
-            const date = new Date(transaction.date);
-            const year = date.getFullYear();
-            const month = date.getMonth();
-
-            if (year === currentYear) {
-                if (!monthlyData[month]) {
-                    monthlyData[month] = [];
+        async function fetchData() {
+            const transactionsData = await loadUserMovements();
+            const monthlyData = {};
+            transactionsData.forEach((transaction) => {
+                const date = new Date(transaction.date);
+                const year = date.getFullYear();
+                const month = date.getMonth();
+    
+                if (year === currentYear) {
+                    if (!monthlyData[month]) {
+                        monthlyData[month] = [];
+                    }
+                    monthlyData[month].push(transaction);
                 }
-                monthlyData[month].push(transaction);
-            }
-        });
-        setMonthlyTransactions(monthlyData);
+            });
+            setMonthlyTransactions(monthlyData);
+        }
+    
+        fetchData();
     }, [currentYear]);
+    
 
     const chartData = useMemo(() => {
         const initialChartData = Array(12).fill(0);
         Object.keys(monthlyTransactions).forEach((month) => {
             monthlyTransactions[month].forEach((transaction) => {
-                initialChartData[month] += transaction.amount;
+                initialChartData[month] += transaction.totalggp;
             });
         });
         return initialChartData;
@@ -51,20 +61,26 @@ const BalanceReport = () => {
     return (
         <View style={stylesbalanceReport.container}>
             <ScrollView style={stylesbalanceReport.scrollView}>
+            <View>
                 <Text style={stylesbalanceReport.title}>Informe de Balance</Text>
-                {Object.keys(monthlyTransactions).map((month) => (
-                    <View key={month} style={stylesbalanceReport.monthContainer}>
-                        <Text style={stylesbalanceReport.monthTitle}>{monthNames[month]}</Text>
-                        {monthlyTransactions[month].map((transaction, index) => (
-                            <View key={index} style={stylesbalanceReport.transaction}>
-                                <Text style={transaction.amount > 0 ? stylesbalanceReport.positive : stylesbalanceReport.negative}>
-                                    {transaction.amount > 0 ? '+' : ''}{transaction.amount}
-                                </Text>
-                                <Text style={stylesbalanceReport.details}>{transaction.date} - {transaction.reason}</Text>
-                            </View>
-                        ))}
-                    </View>
-                ))}
+                {Object.keys(monthlyTransactions).length > 0 ? (
+                    Object.keys(monthlyTransactions).map((month) => (
+                        <View key={month} style={stylesbalanceReport.monthContainer}>
+                            <Text style={stylesbalanceReport.monthTitle}>{monthNames[month]}</Text>
+                            {monthlyTransactions[month].map((transaction, index) => (
+                                <View key={index} style={stylesbalanceReport.transaction}>
+                                    <Text style={transaction.totalggp > 0 ? stylesbalanceReport.positive : stylesbalanceReport.negative}>
+                                        {transaction.totalggp > 0 ? '+' : ''}{transaction.totalggp}
+                                    </Text>
+                                    <Text style={stylesbalanceReport.details}>{transaction.date} - {transaction.reason}</Text>
+                                </View>
+                            ))}
+                        </View>
+                    ))
+                ) : (
+                    <Text style={stylesbalanceReport.noData}>Nada que mostrar...</Text>
+                )}
+            </View>
             </ScrollView>
             <TouchableOpacity onPress={() => setIsChartVisible(!isChartVisible)}>
                 <Text style={stylesbalanceReport.chartToggle}>{isChartVisible ? 'Ocultar Gráfica' : 'Mostrar Gráfica'}</Text>

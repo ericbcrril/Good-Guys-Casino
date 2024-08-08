@@ -2,6 +2,7 @@ import React from 'react';
 import { View, Text, TouchableOpacity } from 'react-native';
 import { useRoute, useNavigation } from '@react-navigation/native';
 import { useState,  useEffect } from 'react';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons'
 //Componentes
 import { TitleSreen } from '../../components/misc/components';
@@ -18,16 +19,20 @@ export default function SubScreen() {
   const route = useRoute();
   const [userData, setUserData] = useState(null);
   const { screen } = route.params;
-  
 
   const handleNavigate = () => {
     navigation.navigate('App');
   };
 
+  async function updatePoints(ggp){
+    await AsyncStorage.setItem('userWallet', String(ggp));
+    await updateGGP(userData.id, ggp);
+  }
+
   useEffect(() => {
     const fetchData = async () => {
-      const data = await loadUserData();
-      setUserData(data);
+      const data0 = await loadUserData();
+      setUserData(data0);
     }
     fetchData();
   }, []);
@@ -36,10 +41,19 @@ export default function SubScreen() {
     if (userData && userData.wallet) {
       // Ejecutar la acción cuando `userData.wallet.totalggp` cambie
       console.log('totalggp ha cambiado:', userData.wallet.totalggp);
-
-      // Aquí puedes realizar cualquier otra acción que necesites
+      updatePoints(userData.wallet.totalggp);
     }
   }, [userData?.wallet?.totalggp]); // Dependencia en `userData.wallet.totalggp`
+
+  const updateTotalGgp = (newTotalGgp) => {
+    setUserData((prevUserData) => ({
+      ...prevUserData,
+      wallet: {
+        ...prevUserData.wallet,
+        totalggp: newTotalGgp,
+      },
+    }));
+  };
 
   // Aquí puedes usar screen para decidir qué contenido renderizar
   let screenContent;
@@ -52,13 +66,13 @@ export default function SubScreen() {
       screenContent = <BalanceReport/>;
       break;
     case 'buyPoints':
-        screenContent = <BuyGGPoints/>;
+        screenContent = <BuyGGPoints updateTotalGgp={updateTotalGgp}/>;
         break;
     case 'account':
             screenContent = <AccountScreen userData={userData}/>;
         break;
     case 'payment':
-            screenContent = <PaymentScreen/>;
+            screenContent = <PaymentScreen updateTotalGgp={updateTotalGgp}/>;
         break;
     // Agrega más casos según sea necesario
     default:
