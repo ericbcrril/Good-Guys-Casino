@@ -1,6 +1,7 @@
 // LoginScreen.js
 import React, { useState } from 'react';
 import axios from 'axios';
+import { useNavigation } from '@react-navigation/native';
 import { ActivityIndicator, View, Image, TouchableOpacity, Text } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import AsyncStorage from '@react-native-async-storage/async-storage';
@@ -23,8 +24,13 @@ export default function LoginScreen({ route }) {
     const [user, setUser] = useState('');
     const [pass, setPass] = useState('');
     const [error, setError] = useState('');
+    const navigation = useNavigation();
 
     const account = { user: user, password: pass };
+
+    const handleNavigate = () => {
+        navigation.navigate('App');
+      };
 
     const handleLogin = async () => {
         const token = genToken();
@@ -32,6 +38,7 @@ export default function LoginScreen({ route }) {
         try {
             await AsyncStorage.setItem('userToken', token);
             setIsLoggedIn(true);
+            handleNavigate();
         } catch (error) {
             console.error('Error logging in', error);
             setError('Error al guardar el token de usuario');

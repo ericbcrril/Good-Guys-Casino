@@ -26,7 +26,7 @@ export default function AccountScreen({userData}) {
         <TouchableOpacity>
             <UserIcon source={theTest} />
         </TouchableOpacity>
-            <TextInput style={{ fontSize: 32 }}>{ userData ? userData.user:'Unknown' }</TextInput>
+            <TextInput editable={false} style={{ fontSize: 32 }}>{ userData ? userData.user:'Unknown' }</TextInput>
         <TouchableOpacity onPress={() => handleNavigate('buyPoints')}>
             <Text style={{ fontSize: 32 }}>{userData ? userData.wallet.totalggp : '00.00' } GGP</Text>
         </TouchableOpacity>
@@ -34,8 +34,8 @@ export default function AccountScreen({userData}) {
       <Hr />
       <LabelForm style={{marginLeft: 15}}>Nombre y Apellido </LabelForm>
       <View style={{ alignItems: 'center', width: '60%', margin: '5%', marginLeft: '20%'}}>
-            <FormInput placeholder='Nombre'>{userData ? userData.name:''}</FormInput>
-            <FormInput placeholder='Apellido'>{userData ? userData.lastName:''}</FormInput>
+            <FormInput editable={false} placeholder='Nombre'>{userData ? userData.name:''}</FormInput>
+            <FormInput editable={false} placeholder='Apellido'>{userData ? userData.lastName:''}</FormInput>
       </View>
       <Hr />
       <View style={{ alignItems: 'center' }}>

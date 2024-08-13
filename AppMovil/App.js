@@ -60,6 +60,7 @@ export default function App() {
             <Stack.Screen name="App" component={AppScreen} options={{ headerShown: false }}/>
             <Stack.Screen name="MinigameScreen" component={MinigameScreen} options={{ headerShown: false }}/>
             <Stack.Screen name="SubScreen" component={SubScreen} options={{ headerShown: false }}/>
+            <Stack.Screen name="Login" initialParams={{setIsLoggedIn}} component={LoginScreen} options={{ headerShown: false }}/>
           </>
         ) : (
           <Stack.Screen name="Login" initialParams={{setIsLoggedIn}} component={LoginScreen} options={{ headerShown: false }}/>

@@ -100,6 +100,11 @@ exports.login = async (req, res) => {
   }
 };
 
+exports.logout = (req, res) => {
+  res.clearCookie('access-token');
+  res.status(200).json({ message: 'Sesión cerrada con éxito' });
+};
+
 exports.getProfile = async (req, res) => { 
   const user = req.user.user.user;
   const account = await accounts.findOne({ user: user });

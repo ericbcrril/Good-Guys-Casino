@@ -8,6 +8,8 @@ import { Hr } from 'components/misc/components';
 import { UserIcon, OptionText } from 'components/home/settingsComponents';
 //Estilos
 import { styles } from "assets/styles/settings";
+//Scripts
+import { logout } from '../../scripts/login/logout';
 // Imágenes (asegúrate de que las rutas estén correctamente definidas)
 const theTest = require('assets/images/test.png');
 export default function SettingsScreen({userData}) {
@@ -59,7 +61,8 @@ export default function SettingsScreen({userData}) {
             <Icon name="credit-card-multiple-outline" size={22} color="#000" style={{ marginLeft: 5 }} />
             <OptionText>Metodos de Pago</OptionText>
           </TouchableOpacity>
-          <TouchableOpacity style={{ flexDirection: 'row', alignItems: 'center' }}>
+          <TouchableOpacity style={{ flexDirection: 'row', alignItems: 'center' }}
+                            onPress={() => logout(navigation)}>
             <Icon name="logout" size={22} color="#000" style={{ marginLeft: 5 }} />
             <OptionText>Cerrar Sesion</OptionText>
           </TouchableOpacity>

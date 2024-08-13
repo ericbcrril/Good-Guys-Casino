@@ -4,6 +4,7 @@ const { validateToken } = require('../JWT');
 const accountsController = require('../controllers/accountsController');
 
 router.post('/login', accountsController.login);
+router.post('/logout', accountsController.logout);
 router.post('/register', accountsController.createItem);
 
 

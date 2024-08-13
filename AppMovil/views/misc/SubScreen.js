@@ -66,7 +66,8 @@ export default function SubScreen() {
       screenContent = <BalanceReport/>;
       break;
     case 'buyPoints':
-        screenContent = <BuyGGPoints updateTotalGgp={updateTotalGgp}/>;
+        screenContent = <BuyGGPoints userData={userData} 
+                                     updateTotalGgp={updateTotalGgp}/>;
         break;
     case 'account':
             screenContent = <AccountScreen userData={userData}/>;

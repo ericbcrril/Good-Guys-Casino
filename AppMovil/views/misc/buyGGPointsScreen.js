@@ -15,9 +15,9 @@ const theTest = require('assets/images/test.png');
 //Scritps
 import { handleTransaction } from '../../scripts/transactions/handleTransactions';
 //Usuario
-import { userData } from '../../constants/simulateUser';
+//import { userData } from '../../constants/simulateUser';
 
-export default function HomeScreen() {
+export default function HomeScreen({userData, updateTotalGgp}) {
   
   const createConfirmAlert = (amount, totalggp, rason) =>
     Alert.alert('Atencion!', '¿Deseas continuar con la compra?', [
@@ -37,6 +37,7 @@ export default function HomeScreen() {
 
   const handleBuy = async (amount, totalggp, reason) => {
     await handleTransaction(amount, totalggp, reason);
+    updateTotalGgp(userData.wallet.totalggp + totalggp);
   }
 
   return (
