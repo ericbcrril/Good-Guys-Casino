@@ -28,12 +28,13 @@ const NavBar = ({ setScreen }) => (
   </View>
 );
 
-const AnimatedScreen = ({ currentScreen, previousScreen, userData }) => {
+const AnimatedScreen = ({ setScreen, currentScreen, previousScreen, userData }) => {
   const translateYAnimNew = useRef(new Animated.Value(100)).current;
   const translateYAnimOld = useRef(new Animated.Value(0)).current;
   const Home = () => <HomeScreen userData={userData}/>;
   const Minigames = () => <SelectGameScreen userData={userData}/>;
-  const Settings = () => <SettingsScreen userData={userData}/>;
+  const Settings = () => <SettingsScreen setScreen={setScreen} 
+                                          userData={userData}/>;
 
   useEffect(() => {
     translateYAnimNew.setValue(800); // Reset the new component position
@@ -92,6 +93,7 @@ export default function AppScreen() {
   const navigation = useNavigation();
 
   const handleSetScreen = (screen) => {
+    console.log('Navegacion AppScreen a:', screen); // Añade un console log para depuración
     setPreviousScreen(currentScreen);
     setCurrentScreen(screen);
   };
@@ -127,7 +129,7 @@ export default function AppScreen() {
           <Text>{totalggp ? totalggp:'00.00'} GGP</Text> 
         )}
       </View>
-      <AnimatedScreen currentScreen={currentScreen} previousScreen={previousScreen} userData={userData}/>
+      <AnimatedScreen setScreen={handleSetScreen} currentScreen={currentScreen} previousScreen={previousScreen} userData={userData}/>
       <NavBar setScreen={handleSetScreen} />
     </View>
   );

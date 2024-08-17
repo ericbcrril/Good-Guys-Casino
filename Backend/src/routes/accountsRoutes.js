@@ -6,7 +6,7 @@ const accountsController = require('../controllers/accountsController');
 router.post('/login', accountsController.login);
 router.post('/logout', accountsController.logout);
 router.post('/register', accountsController.createItem);
-
+router.get('/validateToken/:token', accountsController.authenticateToken);
 
 router.get('/profile', validateToken, accountsController.getProfile); // Ruta estática primero
 router.get('/Authentication', validateToken, accountsController.checkAuth);

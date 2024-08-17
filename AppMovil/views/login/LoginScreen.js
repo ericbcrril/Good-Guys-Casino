@@ -32,28 +32,18 @@ export default function LoginScreen({ route }) {
         navigation.navigate('App');
       };
 
-    const handleLogin = async () => {
-        const token = genToken();
-        //console.log('Token generado:', token);
-        try {
-            await AsyncStorage.setItem('userToken', token);
-            setIsLoggedIn(true);
-            handleNavigate();
-        } catch (error) {
-            console.error('Error logging in', error);
-            setError('Error al guardar el token de usuario');
-        }
-    };
-
+// #region Inicio de sesion
     const handleSubmit = async () => {
     setLoad(true);
     setError('');
     try {
         const response = await axios.post('http://192.168.1.72:5000/api/accounts/login', { ...account }, { withCredentials: true });
+        //console.log('Recibo token:', response.data.aToken);
         const user = await axios.get('http://192.168.1.72:5000/api/accounts/profile', {withCredentials: true});
         const userData = await axios.get(`http://192.168.1.72:5000/api/accounts/${user.data.id}`, { withCredentials: true });
         //console.log(user.data);
         await AsyncStorage.clear();
+        await AsyncStorage.setItem('userToken', response.data.aToken);
         await AsyncStorage.setItem('userNickName', user.data.user);
         await AsyncStorage.setItem('userId', user.data.id);
         await AsyncStorage.setItem('userEmail', userData.data.email);
@@ -61,7 +51,8 @@ export default function LoginScreen({ route }) {
         await AsyncStorage.setItem('userLastName', userData.data.lastName);
         await AsyncStorage.setItem('userWallet', String(userData.data.wallet.totalggp));
         console.log('Sesión iniciada con éxito');
-        await handleLogin();
+        setIsLoggedIn(true);
+        handleNavigate();
     } catch (error) {
         console.error('Error al iniciar sesión', error);
         setError('Error al iniciar sesión. Por favor, verifica tus credenciales.');
@@ -81,7 +72,7 @@ export default function LoginScreen({ route }) {
     setLoad(false);
 }; 
 
-
+// #region Login Form
     if (isLogin) {
         return (
             <View style={styles.mainLogin}>
@@ -128,7 +119,7 @@ export default function LoginScreen({ route }) {
             </View>
         );
     }
-
+// #region Registrarse Form
     if (!isLogin) {
         return (
             <View style={styles.mainLogin}>

@@ -3,9 +3,10 @@ const accounts = require('../models/accounts');
 const bcrypt = require('bcryptjs');
 const {createToken, validateToken} = require('../JWT');
 const { decode, verify } = require('jsonwebtoken');
+const jwt = require('jsonwebtoken');
 const { signedCookie } = require('cookie-parser');
-// Obtener todos los registros de una coleccion
 
+// Obtener todos los registros de una coleccion
 exports.getItems = async (req, res) => {
     console.log('Cookies recibidas:', req.cookies);
 
@@ -47,7 +48,6 @@ exports.getItems = async (req, res) => {
     }
 };
 
-
 // Obtener un registro por su ID
 exports.getItemById = async (req, res) => {
   try {
@@ -62,7 +62,7 @@ exports.getItemById = async (req, res) => {
   }
 };
 
-
+//Iniciar Sesion
 exports.login = async (req, res) => {
   try {
     const { user, password } = req.body;
@@ -84,13 +84,17 @@ exports.login = async (req, res) => {
         return res.status(400).json({ error: 'Usuario o contraseña incorrectos' });
       } else {
         const accessToken = createToken(account);
+        console.log('Token de acceso:', accessToken);
         res.cookie('access-token', accessToken, {
           httpOnly: true,
           maxAge: 86400000,
           //path: '/profile',
         });
         //const setCookieHeader = res.getHeader('Set-Cookie');
-        res.json({redirectURL: '/profile'});
+        res.json({
+          redirectURL: '/profile',
+          aToken: accessToken
+        });
       }
     });
 
@@ -100,9 +104,24 @@ exports.login = async (req, res) => {
   }
 };
 
-exports.logout = (req, res) => {
-  res.clearCookie('access-token');
-  res.status(200).json({ message: 'Sesión cerrada con éxito' });
+//Cerrar sesion
+exports.logout = async (req, res) => {
+  const { token } = req.body; // Asumiendo que el token se envía en el cuerpo de la solicitud
+
+  if (!token) {
+    return res.status(400).json({ message: 'Token no proporcionado' });
+  }
+
+  try {
+    // Verifica el token y encuentra al usuario, si es necesario
+    const decoded = jwt.verify(token, process.env.ACCESS_TOKEN_SECRET); // Reemplaza 'tu_clave_secreta' con tu clave real
+    // Borra la cookie
+    res.clearCookie('access-token');
+    console.log('Sesion cerrada');
+    res.status(200).json({ message: 'Sesión cerrada con éxito' });
+  } catch (error) {
+    res.status(401).json({ message: 'Token inválido' });
+  }
 };
 
 exports.getProfile = async (req, res) => { 
@@ -144,10 +163,10 @@ exports.GGP = async (req, res) => {
   }
 };
 
-
 exports.checkAuth = async (req, res) => {
   res.status(200).json({mesagge: 'Authenticated'});
 };
+
 // Crear una nuevo registro
 exports.createItem = async (req, res) => {
   try {
@@ -199,7 +218,7 @@ exports.updateItem = async (req, res) => {
   }
 };
 
-// Ganar o perder puntos
+// Ganar o perder puntos (Se esta usando en la App Movil)
 exports.updateTotalGGP = async (req, res) => {
   try {
     const { totalggp } = req.body; // Extrae el ID y el valor de totalggp del cuerpo de la solicitud
@@ -241,4 +260,25 @@ exports.deleteItem = async (req, res) => {
     console.error(error.message);
     res.status(500).send('Error del servidor');
   }
+};
+
+//Verificar token en app movil
+exports.authenticateToken = (req, res) => {
+  const token = req.params.token;
+  console.log('Recibo el token: ', token);
+  
+  if (token == null) {
+    return res.status(401).json({ success: false, message: 'Token no proporcionado' });
+  }
+
+  jwt.verify(token, process.env.ACCESS_TOKEN_SECRET, (err, user) => {
+    if (err) {
+      console.log('Token no válido 😕');
+      return res.status(403).json({ isValid: false, message: 'Token no válido' });
+    }
+
+    req.user = user;
+    console.log('Token válido 😎');
+    return res.json({ isValid: true, message: 'Token válido' });
+  });
 };

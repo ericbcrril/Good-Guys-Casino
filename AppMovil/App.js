@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { NavigationContainer } from '@react-navigation/native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import { createStackNavigator } from '@react-navigation/stack';
 import { View, ActivityIndicator, Text } from 'react-native';
 import NetInfo from '@react-native-community/netinfo';
+import axios from 'axios';
 import { Logo } from './components/misc/components';
 import { styles } from "./assets/styles/styles";
 const logoGG = require('./assets/images/logos/logoGG.png');
@@ -26,14 +28,32 @@ export default function App() {
       setIsConnected(state.isConnected);
     });
 
-    setTimeout(() => {
-      setIsLoading(false)
-    }, 2000);
-
     return () => {
       unsubscribe();
     };
   }, []);
+
+  //#region Verificar Token
+  async function verifiLogin() {
+    const accesToken = await AsyncStorage.getItem('userToken');
+    if(accesToken){
+      const response = await axios.get(`http://192.168.1.72:5000/api/accounts/validateToken/${accesToken}`);
+      if(response.data.isValid){
+        setIsLoggedIn(true);
+        setIsLoading(false);
+      }else if(!response.data.isValid){ 
+        await AsyncStorage.clear();
+        setIsLoggedIn(false);
+        setIsLoading(false);
+        alert('Tu Sesion ah expirado, vuelve a Iniciar Sesion');
+      }
+    }else{
+      console.log('No se ah iniciado sesion')
+      setIsLoading(false);
+    }
+  }
+
+  verifiLogin();
 
   if (isLoading) {
     return (

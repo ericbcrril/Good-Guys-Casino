@@ -12,7 +12,7 @@ import { styles } from "assets/styles/settings";
 import { logout } from '../../scripts/login/logout';
 // Imágenes (asegúrate de que las rutas estén correctamente definidas)
 const theTest = require('assets/images/test.png');
-export default function SettingsScreen({userData}) {
+export default function SettingsScreen({setScreen, userData}) {
   const navigation = useNavigation();
 
   const handleNavigate = (screen) => {
@@ -31,7 +31,8 @@ export default function SettingsScreen({userData}) {
       <View style={{ alignItems: 'center' }}>
         <View>
           <Text style={{ color: '#F5FCFF' }}>------------------------------------------------------------------------</Text>
-          <TouchableOpacity style={{ flexDirection: 'row', alignItems: 'center' }} onPress={() => navigation.navigate('App')}>
+          <TouchableOpacity style={{ flexDirection: 'row', alignItems: 'center' }} 
+                            onPress={() => setScreen('home')}>
             <Icon name="home" size={22} color="#000" style={{ marginLeft: 5 }} />
             <OptionText>Inicio</OptionText>
           </TouchableOpacity>
