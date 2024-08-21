@@ -106,7 +106,8 @@ exports.login = async (req, res) => {
 
 //Cerrar sesion
 exports.logout = async (req, res) => {
-  const { token } = req.body; // Asumiendo que el token se envía en el cuerpo de la solicitud
+  const token = req.params.token; 
+  console.log('Recibo el token:', token);
 
   if (!token) {
     return res.status(400).json({ message: 'Token no proporcionado' });

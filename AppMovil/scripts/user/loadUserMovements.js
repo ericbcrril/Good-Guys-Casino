@@ -1,5 +1,8 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import axios from "axios";
+import Constants from 'expo-constants';
+const config = Constants.expoConfig || {};
+const { API_URL } = config.extra || {};
 
 const loadUserMovements = async () => {
     try {
@@ -7,7 +10,7 @@ const loadUserMovements = async () => {
         const userId = await AsyncStorage.getItem('userId');
 
         // Hacer la solicitud para obtener los datos del usuario
-        const movements = await axios.get(`http://192.168.1.72:5000/api/movements/key/${userId}`);
+        const movements = await axios.get(`${API_URL}/api/movements/key/${userId}`);
         //console.log(movements.data);
 
         return movements.data;

@@ -1,4 +1,7 @@
-export const BASE_URL = 'http://192.168.1.72:5000/api'; // Reemplaza con la URL base de tu API
+import Constants from 'expo-constants';
+const config = Constants.expoConfig || {};
+const { API_URL } = config.extra || {};
+export const BASE_URL = `${API_URL}/api`; // Reemplaza con la URL base de tu API
 /**
  * 
  * @param {any} response -El resultado de tu consulta al backend.

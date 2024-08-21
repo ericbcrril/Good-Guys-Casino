@@ -14,6 +14,10 @@ import AppScreen from './views/AppScreen';
 import MinigameScreen from './views/minigames/minigameScreen';
 import SubScreen from './views/misc/SubScreen';
 import LoginScreen from './views/login/LoginScreen';
+//Constantes
+import Constants from 'expo-constants';
+const config = Constants.expoConfig || {};
+const { API_URL } = config.extra || {};
 
 const Stack = createStackNavigator();
 
@@ -37,7 +41,7 @@ export default function App() {
   async function verifiLogin() {
     const accesToken = await AsyncStorage.getItem('userToken');
     if(accesToken){
-      const response = await axios.get(`http://192.168.1.72:5000/api/accounts/validateToken/${accesToken}`);
+      const response = await axios.get(`${API_URL}/api/accounts/validateToken/${accesToken}`);
       if(response.data.isValid){
         setIsLoggedIn(true);
         setIsLoading(false);

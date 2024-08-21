@@ -12,6 +12,10 @@ import { LabelForm, FormInput, ButtonText, PurpleButton, GoogleButton, GoogleBut
 import { Logo, WhiteBoxLink } from "components/misc/components";
 // Scripts
 import genToken from '../../scripts/login/genLoginToken';
+//Constantes
+import Constants from 'expo-constants';
+const config = Constants.expoConfig || {};
+const { API_URL } = config.extra || {};
 
 const logoGG = require('assets/images/logos/logoGG.png');
 const logoGgAnimated = require('assets/images/logos/logoGgAnimated.gif');
@@ -37,10 +41,11 @@ export default function LoginScreen({ route }) {
     setLoad(true);
     setError('');
     try {
-        const response = await axios.post('http://192.168.1.72:5000/api/accounts/login', { ...account }, { withCredentials: true });
-        //console.log('Recibo token:', response.data.aToken);
-        const user = await axios.get('http://192.168.1.72:5000/api/accounts/profile', {withCredentials: true});
-        const userData = await axios.get(`http://192.168.1.72:5000/api/accounts/${user.data.id}`, { withCredentials: true });
+        console.log(API_URL);
+        const response = await axios.post(`${API_URL}/api/accounts/login`, { ...account }, { withCredentials: true });
+        console.log('Recibo token:', response.data.aToken);
+        const user = await axios.get(`${API_URL}/api/accounts/profile`, {withCredentials: true});
+        const userData = await axios.get(`${API_URL}/api/accounts/${user.data.id}`, { withCredentials: true });
         //console.log(user.data);
         await AsyncStorage.clear();
         await AsyncStorage.setItem('userToken', response.data.aToken);
@@ -61,12 +66,15 @@ export default function LoginScreen({ route }) {
             console.log('Data:', error.response.data);
             console.log('Status:', error.response.status);
             console.log('Headers:', error.response.headers);
+            setError('Error interno, intenta de nuevo mas tarde.');
         } else if (error.request) {
             // La solicitud fue hecha pero no se recibió respuesta
             console.log('Request:', error.request);
+            setError('Error interno, intenta de nuevo mas tarde.');
         } else {
             // Algo pasó al configurar la solicitud
             console.log('Error:', error.message);
+            setError('Error interno, intenta de nuevo mas tarde.');
         }
     }
     setLoad(false);

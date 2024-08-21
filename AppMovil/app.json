@@ -4,12 +4,16 @@
     "slug": "AppCasino",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/icon.png",
+    "icon": "./assets/images/logos/logoGgAnimated.gif",
     "userInterfaceStyle": "light",
     "splash": {
       "image": "./assets/splash.png",
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
+    },
+    "extra": {
+      "API_URL": "https://85cb-45-190-78-24.ngrok-free.app",
+      "API_URL_LOCAL": "http://192.168.1.72:5000"
     },
     "ios": {
       "supportsTablet": true,
@@ -21,8 +25,8 @@
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/adaptive-icon.png",
-        "backgroundColor": "#ffffff"
+        "foregroundImage": "./assets/images/logos/logoGgAnimated.gif",
+        "backgroundColor": "#F5FCFF"
       },
       "permissions": [
         "INTERNET"
