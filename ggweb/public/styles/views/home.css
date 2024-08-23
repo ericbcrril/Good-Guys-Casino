@@ -1,0 +1,83 @@
+.main-home{
+    display: flex;
+    position: absolute;
+    overflow: hidden;
+    justify-content: center;
+    background-color: darkgrey;
+    height: 100vh;
+    width: 100vw;
+}
+
+.gg-letters{
+    color: white;
+    position: absolute;
+    left: 0;
+    margin: 1vw;
+    text-wrap: nowrap;
+}
+
+.services-letters{
+    color: white;
+}
+
+.gg-logo{
+    height: 10vh;
+    width: 5vw;
+}
+
+.home-main-content{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.home-content0{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.home-content1{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    height: 60%;
+    width: 50vw;
+    background-color: rgba(0, 0, 0, 0.5);
+    flex-wrap: wrap;
+}
+
+.home-box-element{
+    text-align: center;
+    height: 30%;
+    width: 20%;
+    margin: 3%;
+    padding: 1%;
+}
+
+.home-box-element img{
+    height: 75%;
+    width: 65%;
+}
+
+.home-box-element p{
+    color: white;
+    font-size: 2vh;
+    text-decoration: none;
+}
+
+.home-content2{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.custom-icon {
+    margin: 15px 25px 0px;
+    font-size: 300%; /* Ajusta el tamaño del icono */
+    color: #ffffff;  /* Establece el color blanco */
+  }
