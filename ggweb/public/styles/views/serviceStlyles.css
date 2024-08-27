@@ -1,0 +1,117 @@
+@keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(20px); /* Inicia 20px más abajo */
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0); /* Termina en su posición original */
+    }
+  }
+
+*{text-decoration: none;}
+
+.main-serviceView{
+    
+}
+
+.gg-logo-toHome{
+    position: fixed;
+    width: 3%;
+    height: 6%;
+    margin: 1%;
+    z-index: 1;
+}.gg-logo-toHome img{pointer-events: none;}
+
+.hero-section {
+    position: relative;
+    height: 100vh;
+    overflow: hidden;
+}
+
+.hero-image {
+    background-image: url('../../images/wallpers/wallper-webDevelopment.png'); /* Reemplaza 'tu-imagen.jpg' por la ruta de tu imagen */
+    background-size: cover;
+    background-position: center;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+}
+
+.hero-image h1 {
+    font-size: 3rem;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.content-section {
+    background-color: white;
+    padding: 50px;
+}
+
+.content-section .content {
+    max-width: 800px;
+    margin: auto auto 5%;
+}
+
+.content-section h2 {
+    margin-top: 0;
+}
+
+.imgTec-container{
+    display: flex;
+    flex-direction: row;
+    width: 130px;
+    height: 130px;
+    padding: auto;
+    margin-left: 25%;
+}.imgTec-container img{margin: 20px;}
+ .imgTec-container img:hover{scale: 1.2;}
+
+.imgTec-container2{
+    display: flex;
+    flex-direction: row;
+    width: 120px;
+    height: 120px;
+    padding: auto;
+    margin-left: 15%;
+}.imgTec-container2 img{margin: 20px;}
+ .imgTec-container2 img:hover{scale: 1.2;}
+
+ .faq-item {
+    margin-bottom: 15px;
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 10px;
+}
+
+.faq-question {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+    padding: 10px 0;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.faq-answer {
+    padding: 10px 0;
+    font-size: 18px;
+    color: #333;
+}
+
+  /* Moviles */
+  @media only screen and (min-width:320px) and (max-width:480px){
+    .main-home{
+        overflow: hidden;
+        flex-direction: column;
+        height: 100vh;
+        width: 100vw;
+    }
+    
+  }
+
+  /* Tablets */
+  @media (min-width: 768px) and (max-width: 991.98px) {
+  }

@@ -1,0 +1,27 @@
+.footer-serview{
+    width: cover;
+    background-color: #231440;
+}
+
+.footer-serview-section0{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+.footer-serview-section0 div{
+    display: flex;
+    flex-direction: column;
+}
+.footer-serview-section0 div h2,
+.footer-serview-section0 div p,
+.footer-serview-section0 div a {
+    color: white;
+}
+
+.footer-serview-section1{
+    width: 100%;
+    height: 10%;
+    background-color: #130B22;
+    padding: 1% 0% 1% 0%;
+    text-align: center;
+}.footer-serview-section1 p{color: white;}

@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import 'boxicons';
-
+//Icons By www.freepik.es
 function Home(){
     return(
         <main className="main-home">
@@ -15,23 +15,41 @@ function Home(){
 
                 <div className="home-content1">
                         <div className="home-box-element">
-                            <img src="/images/test.png" alt="logo"/> <p>Cursos Online</p>
+                            <Link className="link-wrapper" to="#">
+                                <img src="/images/icons/online-education.png" alt="logo"/> 
+                                <p>Cursos Online</p>
+                            </Link>
                         </div>
                         <div className="home-box-element">
-                            <img src="/images/test.png" alt="logo" className="home-box-element-img"/> <p>Encriptacion y Ciberseguridad</p>
+                            <Link className="link-wrapper" to="#">
+                                <img src="/images/icons/cyber-security.png" alt="logo" className="home-box-element-img"/> 
+                                <p>Encriptacion y Ciberseguridad</p>
+                            </Link>
                         </div>
                         <div className="home-box-element">
-                            <img src="/images/test.png" alt="logo"/> <p>Marketing</p>
+                            <Link className="link-wrapper" to="#">
+                                <img src="/images/icons/bullhorn.png" alt="logo"/> 
+                                <p>Marketing</p>
+                            </Link>
                         </div>
 
                         <div className="home-box-element">
-                            <img src="/images/test.png" alt="logo"/> <p>Desarrollo Movil</p>
+                            <Link className="link-wrapper" to="#">
+                                <img src="/images/icons/mobile-development.png" alt="logo"/> 
+                                <p>Desarrollo Movil</p>
+                            </Link>
                         </div>
                         <div className="home-box-element">
-                            <img src="/images/test.png" alt="logo"/> <p>Desarrollo Web</p>
+                            <Link className="link-wrapper" to="/desarrollo-web"> 
+                                <img src="/images/icons/web-coding.png" alt="logo"/> 
+                                <p>Desarrollo Web</p>
+                            </Link>
                         </div>
                         <div className="home-box-element">
-                            <img src="/images/test.png" alt="logo"/> <p>GG CASINO</p>
+                            <Link className="link-wrapper" to="#"> 
+                                <img src="/images/icons/game.png" alt="logo"/> 
+                                <p className="home-box-element-casino">GG CASINO</p>
+                            </Link>
                         </div>
                 </div>
 
@@ -41,7 +59,9 @@ function Home(){
                     <a href='https://x.com/'><i class='bx bxl-twitter bx-burst-hover custom-icon'></i></a>
                 </div>
             </div>
-
+            <div className="credits">
+                <a href="http://www.freepik.es/">Icons By www.freepik.es</a>
+            </div>
         </main>
     );
 }
