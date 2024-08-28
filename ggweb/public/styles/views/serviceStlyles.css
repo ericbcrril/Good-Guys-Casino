@@ -29,8 +29,9 @@
     overflow: hidden;
 }
 
-.hero-image {
-    background-image: url('../../images/wallpers/wallper-webDevelopment.png'); /* Reemplaza 'tu-imagen.jpg' por la ruta de tu imagen */
+.hero-image0,
+.hero-image1,
+.hero-image2 {
     background-size: cover;
     background-position: center;
     height: 100%;
@@ -40,7 +41,19 @@
     color: white;
 }
 
-.hero-image h1 {
+.hero-image0 {
+    background-image: url('../../images/wallpers/wallper-webDev.png'); 
+}
+.hero-image1 {
+    background-image: url('../../images/wallpers/wallper-mobileDev.png'); 
+}
+.hero-image2 {
+    background-image: url('../../images/wallpers/wallper-marketing.png'); 
+}
+
+.hero-image0 h1,
+.hero-image1 h1,
+.hero-image2 h1 {
     font-size: 3rem;
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
 }
@@ -48,6 +61,7 @@
 .content-section {
     background-color: white;
     padding: 50px;
+    font-size: 1.5rem;
 }
 
 .content-section .content {

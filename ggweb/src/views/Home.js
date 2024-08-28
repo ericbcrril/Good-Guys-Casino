@@ -15,26 +15,26 @@ function Home(){
 
                 <div className="home-content1">
                         <div className="home-box-element">
-                            <Link className="link-wrapper" to="#">
+                            <Link className="link-wrapper" to="#" onClick={() => alert("Cursos en linea de distintas tecnologias, ¡Esperalo!")}>
                                 <img src="/images/icons/online-education.png" alt="logo"/> 
                                 <p>Cursos Online</p>
                             </Link>
                         </div>
                         <div className="home-box-element">
-                            <Link className="link-wrapper" to="#">
+                            <Link className="link-wrapper" to="#" onClick={() => alert("Encriptacion y Proteccion de datos, ¡Esperalo!")}>
                                 <img src="/images/icons/cyber-security.png" alt="logo" className="home-box-element-img"/> 
                                 <p>Encriptacion y Ciberseguridad</p>
                             </Link>
                         </div>
                         <div className="home-box-element">
-                            <Link className="link-wrapper" to="#">
+                            <Link className="link-wrapper" to="/marketing">
                                 <img src="/images/icons/bullhorn.png" alt="logo"/> 
                                 <p>Marketing</p>
                             </Link>
                         </div>
 
                         <div className="home-box-element">
-                            <Link className="link-wrapper" to="#">
+                            <Link className="link-wrapper" to="/desarrollo-movil">
                                 <img src="/images/icons/mobile-development.png" alt="logo"/> 
                                 <p>Desarrollo Movil</p>
                             </Link>
@@ -46,7 +46,7 @@ function Home(){
                             </Link>
                         </div>
                         <div className="home-box-element">
-                            <Link className="link-wrapper" to="#"> 
+                            <Link className="link-wrapper" to="#" onClick={() => alert("Divertido Casino en linea, ¡Esperalo!")}> 
                                 <img src="/images/icons/game.png" alt="logo"/> 
                                 <p className="home-box-element-casino">GG CASINO</p>
                             </Link>

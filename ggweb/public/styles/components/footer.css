@@ -17,6 +17,11 @@
 .footer-serview-section0 div a {
     color: white;
 }
+.social-links{
+    display: flex;
+    flex-direction: row;
+    color: white;
+}
 
 .footer-serview-section1{
     width: 100%;
