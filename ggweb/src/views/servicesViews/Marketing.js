@@ -45,19 +45,25 @@ function Marketing(){
             </section>
 
             <section className="content-section">
-                <div className="content">
-                    <h2>Introducción</h2>
-                    <p>En Good Guys te ayudamos a impulsar tu negocio a través de estrategias de marketing digital personalizadas. 
-                        Ayudamos a nuestros clientes a alcanzar su audiencia objetivo, aumentar su visibilidad online 
-                        mediante técnicas y herramientas innovadoras.</p>
+            <div className="content">
+                    <h2>Introduccion</h2>
+                    <p>En Good Guys, ayudamos a impulsar tu negocio a través de estrategias de marketing digital personalizadas. 
+                        Colaboramos con nuestros clientes para alcanzar su audiencia objetivo y aumentar su visibilidad online 
+                        mediante técnicas y herramientas innovadoras.
+                    </p>
                 </div>
+
                 <div className="content">
-                    <h2>Sección 2</h2>
-                    
+                    <h2>Estrategias de Mercado</h2>
+                    <p>Planeamos y visualizamos el público objetivo y los medios más efectivos para alcanzarlo. Utilizamos 
+                        nuevas herramientas de programación y marketing para crear innovaciones que destacan por encima de las 
+                        tendencias habituales.</p>
                 </div>
+
                 <div className="content">
-                    <h2>Sección 3</h2>
-                    
+                    <h2>Compromiso con el Cliente</h2>
+                    <p>Nos enfocamos en encontrar la mejor manera de crecer juntos y alcanzar nuestros objetivos. Por ello, el costo 
+                        de nuestros servicios se acordará según el progreso del trabajo.</p>
                 </div>
                 <div className="content">
                     <h2>Preguntas Frecuentes</h2>

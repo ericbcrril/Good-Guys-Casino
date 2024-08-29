@@ -16,7 +16,8 @@
     position: absolute;
     overflow: hidden;
     justify-content: center;
-    background-image: url('../../images/wallpers/peakpx.jpg');
+    background-image: url('../../images/wallpers/main-background.png');
+    background-size: cover;
     height: 100vh;
     width: 100vw;
 }
@@ -88,7 +89,7 @@
 .home-box-element img{
     height: 75%;
     width: 65%;
-    pointer-events: none;
+    pointer-events: painted;
 }
 
 .home-box-element-casino{
@@ -121,7 +122,12 @@
     position: absolute;
     bottom: 0;
     right: 0;
-}.credits a{color: #FFFF;}
+}.credits a{color: rgba(255, 255, 255, 0.2);}
+.credits2{
+    position: absolute;
+    bottom: 0;
+    left: 0;
+}.credits2 a{color: rgba(255, 255, 255, 0.2);}
 
   /* Moviles */
   @media only screen and (min-width:320px) and (max-width:480px){
@@ -141,7 +147,6 @@
     .gg-logo{
         height: 10vh;
         width: 15vw;
-        pointer-events: none;
     }
     .services-letters{
         color: white;
@@ -169,7 +174,6 @@
     .home-box-element img{
         height: 65%;
         width: 80%;
-        pointer-events: none;
         cursor: pointer;
     }
     .link-wrapper{
@@ -201,12 +205,55 @@
         color: #ffffff;  /* Establece el color blanco */
       }
 
-      .credits{
+      .credits, 
+      .credits2{
         position: relative;
         margin: auto;
     }
   }
 
+ @media (orientation: landscape) {
+    
+    .services-letters{
+        font-size: 0.8rem;
+    }
+
+    .custom-icon {
+        margin: 15px 25px 0px;
+        font-size: 200%; /* Ajusta el tamaño del icono */
+        color: #ffffff;  /* Establece el color blanco */
+      }
+ }
+
   /* Tablets */
-  @media (min-width: 768px) and (max-width: 991.98px) {
-  }
+@media (min-width: 768px) and (max-width: 991.98px) {
+    .gg-logo{
+        width: 10vw;
+    }
+
+    .home-content1 {
+        width: 70vw;
+    }
+    
+    .home-box-element {
+        width: 22%;
+        margin: 2%;
+    }
+    
+    .home-box-element img {
+        height: 70%;
+        width: 70%;
+    }
+    
+    .home-box-element-casino {
+        font-size: 1.8vh;
+    }
+    
+    .home-box-element p {
+        font-size: 1.8vh;
+    }
+    
+    .custom-icon {
+        font-size: 250%;
+    }
+}
