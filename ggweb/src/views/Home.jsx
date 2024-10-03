@@ -13,7 +13,7 @@ function Home(){
     }
     return(
         <main className="main-home">
-            <h1 className="gg-letters">GOOD GUYS</h1>
+            <h1 className="gg-letters" translate="no">GOOD GUYS</h1>
 
             <div className="home-main-content">
                 <div className="home-content0">
