@@ -11,222 +11,60 @@
 
 *{text-decoration: none;}
 
-
-.main-home{
-    display: flex;
-    position: absolute;
-    overflow: hidden;
-    overflow-y: auto;
-    justify-content: center;
-    background-image: url('../../images/wallpers/main-background.jpg');
-    background-size: cover;
-    height: 100vh;
-    width: 100vw;
-}
-
-.gg-letters{
-    color: white;
-    position: absolute;
-    font-family: 'Arial', sans-serif;
-    left: 0;
-    margin: 1vw;
-    max-width: 110px;
-    font-size: 32px;
-    letter-spacing: 2px;
-    text-shadow: 0 0 0.2px #FFFF, 
-                 0 0 0.5px #FFFF, 
-                 0 0 1px #FFFF, 
-                 0 0 1.5px #FFFF, 
-                 0 0 2px #FFFF, 
-                 0 0 3px #FFFF, 
-                 0 0 4px #FFFF;
-}
-
-.services-letters{
-    color: white;
-    font-size: 18px;
-}
-
-.gg-logo{
-    height: 60px;
-    width: 60px;
-    pointer-events: none;
-}
-
-.home-main-content{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-}
-
-.home-content0{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-}
-
-.home-content1{
-    z-index: 2;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    height: 500px;
-    width: 700px;
-    background-color: rgba(0, 0, 0, 0.5);
-    flex-wrap: wrap;
-}
-
-.home-box-element{
-    text-align: center;
-    height: 120px;
-    width: 120px;
-    margin: 3%;
-    padding: 1%;
-    transition: scale 0.5s;
-    animation: fadeInUp 1.5s ease-in-out forwards;
-}
-.home-box-element:hover{
-    scale: 1.2;
-}
-
-.home-box-element img{
-    height: 75%;
-    width: 65%;
-    pointer-events: painted;
-}
-
-.home-box-element-casino{
-    color: #831675 !important; 
-    font-size: 2vh;
-    font-weight: bold;
-}
-
-.home-box-element p{
-    color: white;
-    font-size: 16px;
-    font-weight: bold;
-}
-
-.home-content2{
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-}
-
-
-.custom-icon {
-    margin: 15px 25px 0px;
-    font-size: 300%; /* Ajusta el tamaño del icono */
-    color: #ffffff;  /* Establece el color blanco */
-  }
-
-.credits{
-    position: absolute;
-    bottom: 0;
-    right: 0;
-}.credits a{color: rgba(255, 255, 255, 0.2);}
-.credits2{
-    position: absolute;
-    bottom: 0;
-    left: 0;
-}.credits2 a{color: rgba(255, 255, 255, 0.2);}
-/*Google Ads*/
-.left-ad {
-    position: fixed;
-    left: 0;
-    top: 20%;
-    height: 70vh;
-    width: 10vw;
-}
-
-.right-ad {
-    position: fixed;
-    right: 0;
-    top: 20%;
-    height: 70vh;
-    width: 10vw;
-}
-
-
-/* 
-  ##Device = Tablets, Ipads, mobiles (landscape)
-  ##Screen = B/w 768px to 1024px
+/*
+    #Dispositivos de escritorio 
 */
-
-@media (min-width: 768px) and (max-width: 1024px) {
-    .gg-logo{
-        width: 50px;
-        height: 50px;
-    }
-    .services-letters{
-        font-size: 12px;
-    }
-    .home-main-content{
+    .main-home{
         display: flex;
         flex-direction: column;
-        justify-content: start;
         align-items: center;
-        height: 100vh;
-    }
-
-    .home-content1 {
-        width: 500px;
-        height: 400px;
-    }
-
-    .home-box-element {
-        margin: 3%;
-    }
-
-    .home-box-element img {
-        height: 50%;
-        width: 50%;
-    }
-    
-    .home-box-element p {
-        font-size: 14px;
-    }
-    
-    .custom-icon {
-        font-size: 40px;
-    }
-}
-
-/* 
-  ##Device = Tablets y mobiles (Portrait)
-  ##Screen = B/w 481px to 767px
-*/
-
-@media (min-width: 381px) and (max-width: 767px) {
-    .main-home{
+        justify-content: center;
         overflow: hidden;
-        flex-direction: column;
+        background-image: url('../../images/wallpers/main-background.jpg');
+        background-size: cover;
         height: 100vh;
         width: 100vw;
     }
     
     .gg-letters{
-        position: relative;
-        max-width: 400px;
-        margin: auto;
+        color: white;
+        font-family: 'Arial', sans-serif;
+        font-size: 32px;
+        margin: 1%;
+        text-wrap: nowrap;
+        letter-spacing: 3px;
+        text-shadow: 0 0 0.2px #FFFF, 
+                     0 0 0.5px #FFFF, 
+                     0 0 1px #FFFF, 
+                     0 0 1.5px #FFFF, 
+                     0 0 2px #FFFF, 
+                     0 0 3px #FFFF, 
+                     0 0 4px #FFFF;
     }
     
-    .gg-logo{
-        height: 80px;
-        width: 80px;
-    }
     .services-letters{
         color: white;
         font-size: 18px;
+        margin: 1%;
     }
+    
+    .home-content0{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+    }
+    
     .home-content1{
-        height: 520px;
-        width: 380px;
-        padding: auto;
+        z-index: 2;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        overflow-y: auto;
+        height: 60vw;
+        width: 50vw;
+        background-color: rgba(0, 0, 0, 0.5);
+        flex-wrap: wrap;
     }
     
     .home-box-element{
@@ -235,7 +73,7 @@
         width: 120px;
         margin: 3%;
         padding: 1%;
-        transition: scale 1.0s;
+        transition: scale 0.5s;
         animation: fadeInUp 1.5s ease-in-out forwards;
     }
     .home-box-element:hover{
@@ -243,22 +81,20 @@
     }
     
     .home-box-element img{
-        height: 65%;
-        width: 80%;
-        cursor: pointer;
+        height: 75%;
+        width: 65%;
+        pointer-events: painted;
     }
-    .link-wrapper{
-        width: 20%;
-    }
+    
     .home-box-element-casino{
         color: #831675 !important; 
-        font-size: 16px;
+        font-size: 2vh;
         font-weight: bold;
     }
     
     .home-box-element p{
         color: white;
-        font-size: 14px;
+        font-size: 16px;
         font-weight: bold;
     }
     
@@ -271,22 +107,194 @@
     
     
     .custom-icon {
-        margin: 15px 25px 20px;
+        margin: 15px 25px 0px;
         font-size: 300%; /* Ajusta el tamaño del icono */
         color: #ffffff;  /* Establece el color blanco */
       }
+    
+    .credits{
+        position: absolute;
+        bottom: 0;
+        right: 0;
+    }.credits a{color: rgba(255, 255, 255, 0.2);}
+    .credits2{
+        position: absolute;
+        bottom: 0;
+        left: 0;
+    }.credits2 a{color: rgba(255, 255, 255, 0.2);}
 
-      .credits, 
-      .credits2{
-        position: relative;
-        margin: auto;
-    }
-    /*Google Ads*/
-    .left-ad {
-        display: none;
+/*
+    #Dispositivos de escritorio L
+*/
+@media (min-width: 1760px) {
+    .gg-letters{
+        font-size: 52px;
     }
     
-    .right-ad {
-        display: none;
+    .services-letters{
+        font-size: 28px;
     }
+    
+    .home-content1{
+        height: 600px;
+        width: 800px;
+    }
+    
+    .home-box-element{
+        height: 180px;
+        width: 180px;
+    }
+
+    .home-box-element p{
+        font-size: 18px;
+    }
+}
+
+/*
+    #Dispositivos moviles (S y M), Portrait
+*/
+@media (min-width: 320px) and (max-width: 375px) and (orientation: portrait){   
+
+    .gg-letters{
+        font-size: 28px;
+    }
+    
+    .services-letters{
+        font-size: 16px;
+        margin: 10px;
+    }
+    
+    .home-content1{
+        height: 80vh;
+        width: 80vw;
+    }
+    
+    .home-box-element{
+        height: 100px;
+        width: 100px;
+    }
+    
+    .home-box-element p{
+        font-size: 13px;
+    }
+    
+    .custom-icon {
+        margin: 15px 15px 0px;
+    }
+    
+    .credits a{font-size: 10px;}
+    .credits2 a{font-size: 10px;}
+}
+
+/*
+    #Dispositivos moviles (S y M), Landscape
+*/
+@media (min-width: 568px) and (max-width: 735px) and (orientation: landscape) {
+    .gg-letters{
+        font-size: 18px;
+        margin: 1%;
+    }
+    
+    .services-letters{
+        font-size: 12px;
+        margin: 1%;
+    }
+    
+    .home-content1{
+        height: 300px;
+        width: 70vw;
+    }
+    
+    .home-box-element{
+        height: 80px;
+        width: 80px;
+    }
+
+    .home-box-element p{
+        font-size: 10px;
+    }
+    .custom-icon {
+        font-size: 200%; /* Ajusta el tamaño del icono */
+      }
+    
+    .credits a{font-size: 12px;}
+    .credits2 a{font-size: 12px;}
+}
+
+/*
+    #Dispositivos moviles (L) y Tablets, Portrait
+*/
+@media (min-width: 376px) and (max-width: 768px) and (orientation: portrait){
+    .main-home{
+        justify-content: start;
+    }
+
+    .gg-letters{
+        font-size: 36px;
+        margin: 5%;
+    }
+    
+    .services-letters{
+        font-size: 18px;
+        margin: 5%;
+    }
+    
+    .home-content1{
+        height: 60vh;
+        width: 70vw;
+    }
+    
+    .home-box-element{
+        height: 120px;
+        width: 120px;
+        margin: 2%;
+        padding: 1%;
+    }
+    
+    .home-box-element p{
+        font-size: 16px;
+    }
+    
+    .custom-icon {
+        margin: 15px 15px 0px;
+    }
+    
+    .credits a{font-size: 16px;}
+    .credits2 a{font-size: 16px;}
+}
+
+/*
+    #Dispositivos moviles (L) y Tablets, Landscape
+*/
+@media (min-width: 736px) and (max-width: 1024px) and (orientation: landscape) {
+
+    .gg-letters{
+        font-size: 24px;
+        margin: 1%;
+    }
+    
+    .services-letters{
+        font-size: 12px;
+        margin: 1%;
+    }
+
+    .home-content1{
+        height: 70vh;
+        width: 50vw;
+    }
+    
+    .home-box-element{
+        height: 10vw;
+        width: 10vw;
+    }
+
+    .home-box-element p{
+        font-size: 10px;
+    }
+    .custom-icon {
+        font-size: 200%; /* Ajusta el tamaño del icono */
+      }
+    
+    .credits a{font-size: 12px;}
+    .credits2 a{font-size: 12px;}
 }

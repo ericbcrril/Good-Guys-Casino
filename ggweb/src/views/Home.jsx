@@ -12,15 +12,14 @@ function Home(){
         }else{navigate(to);}
     }
     return(
+        <>
         <main className="main-home">
-            <h1 className="gg-letters" translate="no">GOOD GUYS</h1>
 
-            <div className="home-main-content">
                 <div className="home-content0">
-                    <img src="/images/logos/logo_min.png" className="gg-logo" alt="logo"/>
+                    <h1 className="gg-letters" translate="no">GOOD GUYS</h1>
                     <h2 className="services-letters">NUESTROS SERVICIOS</h2>
-            </div>
-                  
+                </div>
+                
                 <div className="home-content1">
                         <div className="home-box-element">
                             <Link className="link-wrapper" to="#" onClick={() => alert("Cursos en linea de distintas tecnologias, ¡Esperalo!")}>
@@ -71,14 +70,17 @@ function Home(){
                     <a href='https://www.instagram.com/goodguyscomp?igsh=ZHludTA4cmc1aXMw'><i class='bx bxl-instagram bx-burst-hover custom-icon'></i></a>
                     <a href='https://www.facebook.com/profile.php?id=61564172147714&mibextid=ZbWKwL'><i class='bx bxl-facebook bx-burst-hover custom-icon'></i></a>
                 </div>
-            </div>
+
+            </main>
+
             <div className="credits">
                 <a href="http://www.freepik.com/">Icons By www.freepik.com</a>
             </div>
             <div className="credits2">
                 <a href="https://www.pexels.com/es-es/foto/dunas-de-arena-negra-2387793/">Photo by Adrien Olichon </a>
-            </div>    
-        </main>
+            </div>
+
+        </>
     );
 }
 
