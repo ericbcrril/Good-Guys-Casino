@@ -11,12 +11,14 @@
 
 *{text-decoration: none;}
 
+
 .main-home{
     display: flex;
     position: absolute;
     overflow: hidden;
+    overflow-y: auto;
     justify-content: center;
-    background-image: url('../../images/wallpers/main-background.png');
+    background-image: url('../../images/wallpers/main-background.jpg');
     background-size: cover;
     height: 100vh;
     width: 100vw;
@@ -29,6 +31,7 @@
     left: 0;
     margin: 1vw;
     max-width: 110px;
+    font-size: 32px;
     letter-spacing: 2px;
     text-shadow: 0 0 0.2px #FFFF, 
                  0 0 0.5px #FFFF, 
@@ -41,11 +44,12 @@
 
 .services-letters{
     color: white;
+    font-size: 18px;
 }
 
 .gg-logo{
-    height: 10vh;
-    width: 5vw;
+    height: 60px;
+    width: 60px;
     pointer-events: none;
 }
 
@@ -54,6 +58,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    height: 100vh;
 }
 
 .home-content0{
@@ -64,19 +69,20 @@
 }
 
 .home-content1{
+    z-index: 2;
     display: flex;
     flex-direction: row;
     justify-content: center;
-    height: 60%;
-    width: 50vw;
+    height: 500px;
+    width: 700px;
     background-color: rgba(0, 0, 0, 0.5);
     flex-wrap: wrap;
 }
 
 .home-box-element{
     text-align: center;
-    height: 30%;
-    width: 20%;
+    height: 120px;
+    width: 120px;
     margin: 3%;
     padding: 1%;
     transition: scale 0.5s;
@@ -100,7 +106,7 @@
 
 .home-box-element p{
     color: white;
-    font-size: 2vh;
+    font-size: 16px;
     font-weight: bold;
 }
 
@@ -128,9 +134,74 @@
     bottom: 0;
     left: 0;
 }.credits2 a{color: rgba(255, 255, 255, 0.2);}
+/*Google Ads*/
+.left-ad {
+    position: fixed;
+    left: 0;
+    top: 20%;
+    height: 70vh;
+    width: 10vw;
+}
 
-  /* Moviles */
-  @media only screen and (min-width:320px) and (max-width:480px){
+.right-ad {
+    position: fixed;
+    right: 0;
+    top: 20%;
+    height: 70vh;
+    width: 10vw;
+}
+
+
+/* 
+  ##Device = Tablets, Ipads, mobiles (landscape)
+  ##Screen = B/w 768px to 1024px
+*/
+
+@media (min-width: 768px) and (max-width: 1024px) {
+    .gg-logo{
+        width: 50px;
+        height: 50px;
+    }
+    .services-letters{
+        font-size: 12px;
+    }
+    .home-main-content{
+        display: flex;
+        flex-direction: column;
+        justify-content: start;
+        align-items: center;
+        height: 100vh;
+    }
+
+    .home-content1 {
+        width: 500px;
+        height: 400px;
+    }
+
+    .home-box-element {
+        margin: 3%;
+    }
+
+    .home-box-element img {
+        height: 50%;
+        width: 50%;
+    }
+    
+    .home-box-element p {
+        font-size: 14px;
+    }
+    
+    .custom-icon {
+        font-size: 40px;
+    }
+}
+
+/* 
+  ##Device = Tablets y mobiles (Portrait)
+  ##Screen = B/w 481px to 767px
+*/
+
+@media (min-width: 381px) and (max-width: 767px) {
     .main-home{
         overflow: hidden;
         flex-direction: column;
@@ -145,23 +216,23 @@
     }
     
     .gg-logo{
-        height: 10vh;
-        width: 15vw;
+        height: 80px;
+        width: 80px;
     }
     .services-letters{
         color: white;
-        font-size: 2vh;
+        font-size: 18px;
     }
     .home-content1{
-        height: 65vh;
-        width: 80vw;
+        height: 520px;
+        width: 380px;
         padding: auto;
     }
     
     .home-box-element{
         text-align: center;
-        height: 30%;
-        width: 30%;
+        height: 120px;
+        width: 120px;
         margin: 3%;
         padding: 1%;
         transition: scale 1.0s;
@@ -181,13 +252,13 @@
     }
     .home-box-element-casino{
         color: #831675 !important; 
-        font-size: 2vh;
+        font-size: 16px;
         font-weight: bold;
     }
     
     .home-box-element p{
         color: white;
-        font-size: 1.7vh;
+        font-size: 14px;
         font-weight: bold;
     }
     
@@ -210,50 +281,12 @@
         position: relative;
         margin: auto;
     }
-  }
-
- @media (orientation: landscape) {
-    
-    .services-letters{
-        font-size: 0.8rem;
-    }
-
-    .custom-icon {
-        margin: 15px 25px 0px;
-        font-size: 200%; /* Ajusta el tamaño del icono */
-        color: #ffffff;  /* Establece el color blanco */
-      }
- }
-
-  /* Tablets */
-@media (min-width: 768px) and (max-width: 991.98px) {
-    .gg-logo{
-        width: 10vw;
-    }
-
-    .home-content1 {
-        width: 70vw;
+    /*Google Ads*/
+    .left-ad {
+        display: none;
     }
     
-    .home-box-element {
-        width: 22%;
-        margin: 2%;
-    }
-    
-    .home-box-element img {
-        height: 70%;
-        width: 70%;
-    }
-    
-    .home-box-element-casino {
-        font-size: 1.8vh;
-    }
-    
-    .home-box-element p {
-        font-size: 1.8vh;
-    }
-    
-    .custom-icon {
-        font-size: 250%;
+    .right-ad {
+        display: none;
     }
 }

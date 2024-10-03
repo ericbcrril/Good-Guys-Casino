@@ -42,13 +42,13 @@
 }
 
 .hero-image0 {
-    background-image: url('../../images/wallpers/wallper-webDev.png'); 
+    background-image: url('../../images/wallpers/wallper-webDev.jpg'); 
 }
 .hero-image1 {
-    background-image: url('../../images/wallpers/wallper-mobileDev.png'); 
+    background-image: url('../../images/wallpers/wallper-mobileDev.jpg'); 
 }
 .hero-image2 {
-    background-image: url('../../images/wallpers/wallper-marketing.png'); 
+    background-image: url('../../images/wallpers/wallper-marketing.jpg'); 
 }
 
 .hero-image0 h1,
@@ -114,12 +114,48 @@
     font-size: 18px;
     color: #333;
 }
+  /* 
+  ##Device = Tablets, Ipads, mobiles (landscape)
+  ##Screen = B/w 768px to 1024px
+*/
 
-  /* Moviles */
-  @media only screen and (min-width:320px) and (max-width:480px){
+@media (min-width: 768px) and (max-width: 1024px) {
     .gg-logo-toHome{
-        width: 7%;
-        height: 6%;
+        position: fixed;
+        width: 5%;
+        height: 10%;
+    }
+
+    .imgTec-container{
+        display: flex;
+        flex-direction: row;
+        width: 100px;
+        height: 100px;
+        padding: auto;
+        margin-left: 25%;
+    }.imgTec-container img{margin: 20px;}
+     .imgTec-container img:hover{scale: 1.2;}
+    
+    .imgTec-container2{
+        display: flex;
+        flex-direction: row;
+        width: 100px;
+        height: 100px;
+        padding: auto;
+        margin-left: 15%;
+    }.imgTec-container2 img{margin: 20px;}
+     .imgTec-container2 img:hover{scale: 1.2;}
+}
+
+/* 
+  ##Device = Tablets y mobiles (Portrait)
+  ##Screen = B/w 481px to 767px
+*/
+
+@media (min-width: 381px) and (max-width: 767px) {
+    .gg-logo-toHome{
+        width: 9%;
+        height: 7%;
     }
     
     .content-section {
@@ -156,37 +192,4 @@
     }.imgTec-container2 img{margin: 20px;}
      .imgTec-container2 img:hover{scale: 1.2;}
     
-  }
-
-  @media (orientation: landscape) {
-    
-  }
-
-  /* Tablets */
-  @media (min-width: 768px) and (max-width: 991.98px) {
-    .gg-logo-toHome{
-        position: fixed;
-        width: 3%;
-        height: 3%;
-    }
-
-    .imgTec-container{
-        display: flex;
-        flex-direction: row;
-        width: 100px;
-        height: 100px;
-        padding: auto;
-        margin-left: 25%;
-    }.imgTec-container img{margin: 20px;}
-     .imgTec-container img:hover{scale: 1.2;}
-    
-    .imgTec-container2{
-        display: flex;
-        flex-direction: row;
-        width: 100px;
-        height: 100px;
-        padding: auto;
-        margin-left: 15%;
-    }.imgTec-container2 img{margin: 20px;}
-     .imgTec-container2 img:hover{scale: 1.2;}
-  }
+}
