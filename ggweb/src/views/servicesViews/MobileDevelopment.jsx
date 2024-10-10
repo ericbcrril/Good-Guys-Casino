@@ -60,11 +60,41 @@ function MobileDevelopment(){
                 
                 <div className="content">
                     <h2>Tecnologías</h2>
-                    <div className="imgTec-container2">
-                        <img src="images/logos/node-logo.png" alt="Node.js"/>
-                        <img src="images/logos/react-logo.png" alt="React"/>
-                        <img src="images/logos/mongodb-logo.png" alt="MongoDB"/>
-                    </div>
+                    <table class="table-tecs">
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <img src="images/logos/react-logo.webp" alt="React" />
+                                </td>
+                                <td>
+                                    <p>React Native es un framework de desarrollo móvil de código abierto creado por Facebook. 
+                                    Permite a los desarrolladores construir aplicaciones móviles nativas para iOS y Android utilizando JavaScript y React, 
+                                    lo que significa que puedes reutilizar una gran parte del código en ambas plataformas. 
+                                    React Native combina la rapidez del desarrollo web con la funcionalidad de las aplicaciones nativas.</p>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <img src="images/logos/node-logo.webp" alt="Node.js" />
+                                </td>
+                                <td>
+                                    <p>Node.js es un entorno de ejecución de JavaScript del lado del servidor. 
+                                    Permite construir aplicaciones escalables y de alto rendimiento utilizando JavaScript en el backend, 
+                                    con un enfoque basado en eventos y programación asíncrona.</p>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <img src="images/logos/mongodb-logo.webp" alt="MongoDB" />
+                                </td>
+                                <td>
+                                    <p>MongoDB es una base de datos NoSQL orientada a documentos. 
+                                    Es ideal para manejar grandes volúmenes de datos no estructurados, con un enfoque flexible y escalable 
+                                    que facilita el almacenamiento y la recuperación de datos en aplicaciones modernas.</p>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
                 <div className="content">
                     <h2>Preguntas Frecuentes</h2>

@@ -20,7 +20,7 @@
         align-items: center;
         justify-content: center;
         overflow: hidden;
-        background-image: url('../../images/wallpers/main-background.jpg');
+        background-image: url('../../images/wallpers/main-background.webp');
         background-size: cover;
         height: 100vh;
         width: 100vw;
@@ -61,6 +61,9 @@
         flex-direction: row;
         justify-content: center;
         overflow-y: auto;
+        scrollbar-width: thin;
+        scrollbar-color: #0f0f0f rgba(0, 0, 0, 0.5);
+        scroll-behavior: smooth;
         height: 60vw;
         width: 50vw;
         background-color: rgba(0, 0, 0, 0.5);
@@ -128,21 +131,21 @@
 */
 @media (min-width: 1760px) {
     .gg-letters{
-        font-size: 52px;
+        font-size: 42px;
     }
     
     .services-letters{
-        font-size: 28px;
+        font-size: 18px;
     }
     
     .home-content1{
         height: 600px;
-        width: 800px;
+        width: 900px;
     }
     
     .home-box-element{
-        height: 180px;
-        width: 180px;
+        height: 160px;
+        width: 160px;
     }
 
     .home-box-element p{

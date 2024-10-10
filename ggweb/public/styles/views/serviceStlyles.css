@@ -18,7 +18,6 @@
 .gg-logo-toHome{
     position: fixed;
     width: 3%;
-    height: 6%;
     margin: 1%;
     z-index: 1;
 }.gg-logo-toHome img{pointer-events: none;}
@@ -42,13 +41,13 @@
 }
 
 .hero-image0 {
-    background-image: url('../../images/wallpers/wallper-webDev.jpg'); 
+    background-image: url('../../images/wallpers/wallper-webDev.webp'); 
 }
 .hero-image1 {
-    background-image: url('../../images/wallpers/wallper-mobileDev.jpg'); 
+    background-image: url('../../images/wallpers/wallper-mobileDev.webp'); 
 }
 .hero-image2 {
-    background-image: url('../../images/wallpers/wallper-marketing.jpg'); 
+    background-image: url('../../images/wallpers/wallper-marketing.webp'); 
 }
 
 .hero-image0 h1,
@@ -114,16 +113,159 @@
     font-size: 18px;
     color: #333;
 }
-  /* 
-  ##Device = Tablets, Ipads, mobiles (landscape)
-  ##Screen = B/w 768px to 1024px
-*/
 
-@media (min-width: 768px) and (max-width: 1024px) {
+.trb-j{
+    display: flex;
+    width: 90vw;
+    margin-left: 5%;
+    margin-bottom: 10%;
+}
+
+.rec-plan{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 1%;
+    width: 300px;
+    border-radius: 20px;
+    padding: 1%;
+    font-size: 14px;
+    box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.8);
+    transition: all 0.1s;
+}
+
+.rec-plan:hover{
+    transform: scale(1.02);
+}
+
+.rec-plan h4 {
+    font-size: large;
+    margin: auto;
+}
+
+.rec-plan hr{
+    width: 100%;
+}
+
+.rec-plan-servs{
+    height: 66%;
+    margin: 1% 5% 5% 5%;
+    overflow: hidden;
+}
+
+.rec-plan button {
+    background-color: #5c1156;
+    color: white;
+    font-size: 16px;
+    border: none;
+    padding: 10px;
+}.rec-plan button:hover {cursor: pointer;}
+
+.table-tecs{
+    border-collapse: collapse;
+    border-radius: 10px;
+}
+.table-tecs:hover{box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);}
+
+.table-tecs img{
+    width: 60%;
+    margin: 20%;
+}
+.table-tecs img:hover{
+    transform: scale(1.2);
+}
+
+.table-tecs td{
+    border: 1px #333 solid;
+    border-radius: 10px;
+    padding: 1%;
+    font-size: 18px;
+}
+
+/*
+    #Dispositivos de escritorio L
+*/
+@media (min-width: 1760px) {
+    
+}
+
+/*
+    #Dispositivos moviles (S y M), Portrait
+*/
+@media (min-width: 320px) and (max-width: 375px) and (orientation: portrait){   
+    .gg-logo-toHome{
+        width: 9%;
+    }
+    
+    .content-section {
+        padding: 40px;
+        font-size: 1.5rem;
+    }
+    
+    .content-section .content {
+        max-width: 800px;
+        margin: auto auto 5%;
+    }
+    
+    .content-section h2 {
+        margin-top: 0;
+    }
+    
+    .imgTec-container{
+        display: flex;
+        flex-direction: row;
+        width: 80px;
+        height: 80px;
+        padding: auto;
+        margin-left: 15%;
+    }.imgTec-container img{margin: 20px;}
+     .imgTec-container img:hover{scale: 1.2;}
+    
+    .imgTec-container2{
+        display: flex;
+        flex-direction: row;
+        width: 70px;
+        height: 70px;
+        padding: auto;
+        margin-left: 1%;
+    }.imgTec-container2 img{margin: 20px;}
+     .imgTec-container2 img:hover{scale: 1.2;}
+     .trb-j{
+        display: flex;
+        flex-direction: column;
+        width: 80vw;
+        margin-left: 1%;
+        margin-bottom: 10%;
+    }
+    
+    .rec-plan{
+        margin-top: 5%;
+        padding: 2%;
+        width: 90%;
+    }
+
+    .table-tecs{
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+    }
+    
+    .table-tecs img{
+        width: 100%;
+        margin: 0%;
+    }
+    
+    .table-tecs td{
+        font-size: 14px;
+    }
+}
+
+/*
+    #Dispositivos moviles (S y M), Landscape
+*/
+@media (min-width: 568px) and (max-width: 735px) and (orientation: landscape) {
     .gg-logo-toHome{
         position: fixed;
         width: 5%;
-        height: 10%;
     }
 
     .imgTec-container{
@@ -145,17 +287,22 @@
         margin-left: 15%;
     }.imgTec-container2 img{margin: 20px;}
      .imgTec-container2 img:hover{scale: 1.2;}
+     
+     .trb-j{
+        width: 80vw;
+     }
+
+     .rec-plan-servs textarea{
+            width: 95%;
+     }
 }
 
-/* 
-  ##Device = Tablets y mobiles (Portrait)
-  ##Screen = B/w 481px to 767px
+/*
+    #Dispositivos moviles (L) y Tablets, Portrait
 */
-
-@media (min-width: 381px) and (max-width: 767px) {
+@media (min-width: 376px) and (max-width: 768px) and (orientation: portrait){
     .gg-logo-toHome{
         width: 9%;
-        height: 7%;
     }
     
     .content-section {
@@ -191,5 +338,66 @@
         margin-left: 5%;
     }.imgTec-container2 img{margin: 20px;}
      .imgTec-container2 img:hover{scale: 1.2;}
+     .trb-j{
+        display: flex;
+        flex-direction: column;
+        width: 80vw;
+        margin-left: 5%;
+        margin-bottom: 10%;
+    }
+
+    .table-tecs{
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+    }
     
+    .rec-plan{
+        margin-top: 5%;
+        padding: 2%;
+    }
+    
+    .table-tecs img{
+        width: 100%;
+        margin: 0%;
+    }
+    
+    .table-tecs td{
+        font-size: 16px;
+    }
+}
+
+/*
+    #Dispositivos moviles (L) y Tablets, Landscape
+*/
+@media (min-width: 736px) and (max-width: 1024px) and (orientation: landscape) {
+    .gg-logo-toHome{
+        position: fixed;
+        width: 5%;
+    }
+
+    .imgTec-container{
+        display: flex;
+        flex-direction: row;
+        width: 100px;
+        height: 100px;
+        padding: auto;
+        margin-left: 25%;
+    }.imgTec-container img{margin: 20px;}
+     .imgTec-container img:hover{scale: 1.2;}
+    
+    .imgTec-container2{
+        display: flex;
+        flex-direction: row;
+        width: 100px;
+        height: 100px;
+        padding: auto;
+        margin-left: 15%;
+    }.imgTec-container2 img{margin: 20px;}
+     .imgTec-container2 img:hover{scale: 1.2;}
+     
+     .rec-plan-servs textarea{
+        width: 95%;
+        }
+        .trb-j{
+            margin-left: 0;
+        }
 }
