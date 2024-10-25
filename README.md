@@ -12,7 +12,7 @@ Estas instrucciones te ayudarán a obtener una copia del proyecto y ejecutarlo e
 
 ### Prerrequisitos:
   - Node.js 
-  - npm 
+  - npm
   - MongoDB
   
 ### Instalación:
@@ -46,12 +46,36 @@ Estas instrucciones te ayudarán a obtener una copia del proyecto y ejecutarlo e
   npx nodemon start 
    ```
  * Aplicacion movil (AppMovil):
-```sh
+  ```sh
    cd AppMovil 
    ```
    ```sh
   npm start 
    ```
+
+## Generar AAB (Android App Bundle)
+
+Para generar un archivo AAB de la aplicación móvil con Expo, sigue estos pasos:
+
+1. Asegúrate de estar en la carpeta raíz de tu proyecto:
+   ```sh
+   cd AppMovil
+   ```
+2. Instala expo-cli globalmente si no lo tienes ya instalado:
+  ```sh
+  npm install -g expo-cli
+  ```
+3. Configura tu cuenta de Expo: Asegúrate de haber iniciado sesión en Expo. Si aún no lo has hecho, usa:
+  ```sh
+  eas login
+  ```
+4. Genera el archivo AAB: Ejecuta el siguiente comando para iniciar el proceso de compilación:
+  ```sh
+  eas build -p android --profile testing
+  ```
+Este comando solicitará la creación de un archivo AAB con el profile testing declarado en tu eas.json .
+Expo gestionará el proceso de construcción en la nube, por lo que el archivo AAB estará disponible para descargar cuando finalice.
+Descarga el archivo AAB: Una vez completado, Expo proporcionará un enlace donde podrás descargar el archivo AAB. Usa el enlace para descargarlo.
 
 ### Construido con:
 
@@ -64,6 +88,7 @@ Estas instrucciones te ayudarán a obtener una copia del proyecto y ejecutarlo e
 
 * Aplicación móvil:
   * [![React Native][React-Native]][React-Native-url] - Utilizado para desarrollar la aplicación móvil nativa.
+  * Expo y Babel - Usados para simplificar el desarrollo y la configuración de la aplicación en dispositivos móviles.
 
 
 * Integración con [Jira](https://ericbecerril1234.atlassian.net/jira/software/projects/GGC/boards/1) - Gestión de proyectos y seguimiento de problemas.
